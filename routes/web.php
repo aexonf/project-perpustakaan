@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix("/")->group(function() {
+
+    //  route untuk HOME
+    Route::controller(HomeController::class)->group(function() {
+        Route::get("/", "index");
+        Route::get("/{id}", "detail");
+    });
+
+
 });
