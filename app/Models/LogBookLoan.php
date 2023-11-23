@@ -9,5 +9,7 @@ class LogBookLoan extends Model
 {
     use HasFactory;
 
+    protected $table = "log_book_loan";
+
     protected $guarded = [];
 }
