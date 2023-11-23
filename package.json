@@ -16,6 +16,7 @@
     "dependencies": {
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/react": "^1.0.14",
+        "@radix-ui/react-label": "^2.0.2",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "lucide-react": "^0.292.0",
