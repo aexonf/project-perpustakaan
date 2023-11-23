@@ -27,7 +27,6 @@ class HomeController extends Controller
         }
 
         $books = $books->get();
-
     }
 
     // function ini untuk melihat detail buku
