@@ -18,17 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("/")->group(function() {
+// Route::prefix("/")->group(function() {
 
-    //  route untuk HOME
-    Route::controller(HomeController::class)->group(function() {
-        Route::get("/", "index");
-        Route::get("/{id}", "detail");
-    });
+//     //  route untuk HOME
+//     Route::controller(HomeController::class)->group(function() {
+//         Route::get("/", "index");
+//         Route::get("/{id}", "detail");
+//     });
 
-});
-
-Route::prefix("/")->group(function() {
+// });
+Route::prefix("/admin")->group(function() {
 
     // Route::get("/", function() {
     //     return view("pages.index", [
@@ -50,3 +49,4 @@ Route::prefix("/")->group(function() {
     // });
 
 });
+
