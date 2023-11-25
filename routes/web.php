@@ -45,6 +45,8 @@ Route::prefix("/admin")->group(function() {
             Route::post("/", "create")->name("book.create");
             Route::put("/{id}/update", "update")->name("book.update");
             Route::delete("/delete/{id}", "delete")->name("book.delete");
+            Route::get("/download-template", "downloadTemplate")->name("book.download.template");
+            Route::post("/import", "import")->name("book.import");
         });
 
     });

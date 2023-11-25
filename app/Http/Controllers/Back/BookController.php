@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Imports\BookImport;
+use App\Imports\TemplateImport;
 use App\Models\Books;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookController extends Controller
 {
@@ -113,5 +116,23 @@ class BookController extends Controller
         // jika buku gagal di hapus
         Session::flash("error", "Buku gagal di hapus");
         return redirect()->back();
+    }
+
+
+    public function downloadTemplate()
+    {
+        return Excel::download(new TemplateImport, 'template.xlsx');
+    }
+
+
+    public function import()
+    {
+        try {
+            Excel::import(new BookImport, request()->file('book'));
+            return redirect()->route('book')->with('success', 'Data Buku berhasil diimport!');
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->route('book')->with('error', "Data Buku gagal diimport!");
+        }
     }
 }

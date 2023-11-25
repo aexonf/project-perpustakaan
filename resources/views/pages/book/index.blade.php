@@ -259,14 +259,14 @@
                 </div>
                 <div class="modal-body">
                     <form class="needs-validation" novalidate="" method="POST"
-                        action="" enctype="multipart/form-data">
+                        action="{{route("book.import")}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label>File </label>
-                            <input type="file" class="form-control" name="books" required>
+                            <input type="file" class="form-control" name="book" required>
                         </div>
                         <div>
-                            <a href="" class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
+                            <a href="{{route('book.download.template')}}" class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
                                 Unduh Template</a>
                         </div>
                     <div class="mt-5 d-flex justify-content-end">
