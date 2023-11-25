@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Faker\Factory as Faker;
 use App\Models\Books;
+use App\Models\LogBookLoan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $faker = Faker::create();
 
         // Seed data for the 'books' table
-        Books::create([
+       $Book = Books::create([
             'title' => $faker->sentence,
             'writer' => $faker->name,
             'genre' => $faker->word,
@@ -33,6 +34,15 @@ class DatabaseSeeder extends Seeder
             'stock' => $faker->numberBetween(1, 50),
             'location' => $faker->city,
             'status' => $faker->randomElement(['available', 'blank']),
+        ]);
+
+        LogBookLoan::create([
+            'student_id' => "9",
+            'librarian_id' => "1",
+            'book_id' => $Book->id,
+            'loan_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+            'return_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+            'status' => $faker->randomElement(['pending', 'returned']),
         ]);
     }
 }

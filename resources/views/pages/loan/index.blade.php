@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>List Buku</h1>
+                <h1>List Pinjaman</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -126,55 +126,37 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 80px;">#</th>
-                                        <th style="min-width: 240px;">Judul</th>
-                                        <th style="min-width: 160px;">Penulis</th>
+                                        <th style="min-width: 240px;">Peminjam</th>
+                                        <th style="min-width: 160px;">Buku</th>
                                         <th style="min-width: 160px;">Status</th>
                                         <th style="min-width: 160px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($books as $index => $book)
+                                    @foreach ($loan as $index => $value)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <div class="media-title">
-                                                            {{ $book->title }}</div>
-                                                        <div class="text-job text-muted">
-                                                            {{ $book->genre }}</div>
-                                                    </div>
-                                                </div>
+                                                {{$value->student->name}}
                                             </td>
-                                            <td>{{ $book->writer }}</td>
-                                            <td class="{{ $book->status === 'blank' ? 'text-warning' : 'text-success' }}">
-                                                @if ($book->status === 'blank')
-                                                    Tidak Tersedia
+                                            <td>{{ $value->book->title }}</td>
+                                            <td class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
+                                                @if ($value->status === 'pending')
+                                                    Meminjam
                                                 @else
-                                                    Tersedia
+                                                    Dikembalikan
                                                 @endif
                                             </td>
+
                                             <td>
                                                 <div class="d-flex items-center">
-                                                    <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"
-                                                        data-toggle="modal" data-target="#modal-edit"
-                                                        onclick="
-                                                    $('#modal-edit #form-edit');
-                                                    $('#modal-edit #form-edit #title').attr('value', '{{ $book->title }}');
-                                                    $('#modal-edit #form-edit #no_inventory').attr('value', '{{ $book->no_inventory }}');
-                                                    $('#modal-edit #form-edit #genre').attr('value', '{{ $book->genre }}');
-                                                    $('#modal-edit #form-edit #writer').attr('value', '{{ $book->writer }}');
-                                                    $('#modal-edit #form-edit #status').val('{{ $book->status }}');
-                                                    $('#modal-edit #form-edit #tahun').attr('value', '{{ $book->year }}');
-                                                    $('#modal-edit #form-edit #stock').attr('value', '{{ $book->stock }}');
-                                                    $('#modal-edit #form-edit #location').attr('value', '{{ $book->location }}');
-                                                    $('#modal-edit #form-edit').attr('action', '{{ route('book.update', $book->id) }}');
-                                                        "><i
-                                                            class="fas fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-icon btn-danger mr-2 mb-2"
-                                                        data-toggle="modal" data-target="#modal-delete"
-                                                        onclick="$('#modal-delete #form-delete').attr('action', '{{ route('book.delete', $book->id) }}')"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <a href="{{ route('loan.detail', $value->id) }}"
+                                                        style="text-decoration: none;">
+                                                        <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"
+                                                            data-toggle="modal">
+                                                            <i class="fas fa-eye"></i>
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -252,23 +234,24 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Import Buku</h5>
+                    <h5 class="modal-title">Import Siswa Aktif</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST"
-                        action="" enctype="multipart/form-data">
+                    {{-- <form class="needs-validation" novalidate="" method="POST"
+                        action="{{route("active-student.import")}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label>File </label>
                             <input type="file" class="form-control" name="books" required>
                         </div>
                         <div>
-                            <a href="" class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
+                            <a href="{{ route('active-student.export') }}"
+                                class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
                                 Unduh Template</a>
-                        </div>
+                        </div> --}}
                     <div class="mt-5 d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary ml-2">Kirim</button>
@@ -283,7 +266,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ubah Buku</h5>
+                    <h5 class="modal-title">Ubah Siswa Aktif</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -342,7 +325,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Hapus Buku</h5>
+                    <h5 class="modal-title">Hapus Siswa Aktif</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>

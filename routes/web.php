@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Back\BookController;
+use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\HomeController;
 use App\Models\Books;
 use App\Models\LogBookLoan;
@@ -29,15 +30,15 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::prefix("/admin")->group(function() {
 
-    // Route::get("/", function() {
-    //     return view("pages.index", [
-    //         "books" => Books::all(),
-    //         "student" => Students::all(),
-    //         "loan" => LogBookLoan::all(),
-    //     ]);
-    // })->name("admin");
+    Route::get("/", function() {
+        return view("pages.index", [
+            "books" => Books::all(),
+            "student" => Students::all(),
+            "loan" => LogBookLoan::all(),
+        ]);
+    })->name("admin");
 
-    // Route::prefix("/book")->group(function () {
+    Route::prefix("/buku")->group(function () {
 
         Route::controller(BookController::class)->group(function () {
             Route::get("/", "index")->name("book");
@@ -46,7 +47,20 @@ Route::prefix("/admin")->group(function() {
             Route::delete("/delete/{id}", "delete")->name("book.delete");
         });
 
-    // });
+    });
+
+    Route::prefix("/pinjaman")->group(function () {
+
+        Route::controller(LoanController::class)->group(function () {
+            Route::get("/", "index")->name("loan");
+            Route::get("/{id}/detail", "detail")->name("loan.detail");
+            Route::put("/{id}/returned", "returnedBook")->name("loan.returned");
+            Route::put("/{id}/returned/all", "returnedAllBook")->name("loan.returned.all");
+            Route::post("/{id}/loan", "loan")->name("loan.book");
+            // Route::delete("/delete/{id}", "delete")->name("loan.delete");
+        });
+
+    });
 
 });
 
