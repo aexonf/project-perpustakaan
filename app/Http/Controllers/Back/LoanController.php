@@ -27,7 +27,7 @@ class LoanController extends Controller
          * @param void
          * @return \Illuminate\View\View
          */
-        return view("pages.loan.index", ["loan" => LogBookLoan::with(['student', 'book'])->get()]);
+        return view("pages.loan.index", ["loan" => LogBookLoan::all()]);
     }
 
 
@@ -45,9 +45,11 @@ class LoanController extends Controller
          * @param int $id Student ID
          * @return \Illuminate\View\View
          */
+
+         $studentId = LogBookLoan::find($id);
         return view("pages.loan.detail", [
-            "student" => Students::find($id),
-            "loan" => LogBookLoan::where("student_id", $id)->get(),
+            "student" => Students::find($studentId->student_id),
+            "loan" => LogBookLoan::where("student_id", $studentId->student_id)->get(),
             "book" => Books::where("status", "available")->get(),
         ]);
     }
