@@ -17,19 +17,32 @@ return new class extends Migration
             // relasi ke student
             $table->unsignedBigInteger('student_id');
 
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')
+                ->references('id')
+                ->on('students')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             // relasi ke librarian
             $table->unsignedBigInteger('librarian_id');
 
-            $table->foreign('librarian_id')->references('id')->on('librarian');
+            $table->foreign('librarian_id')
+                ->references('id')
+                ->on('librarian')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             // relasi ke books
             $table->unsignedBigInteger('book_id');
 
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')
+                ->references('id')
+                ->on('books')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
-            $table->string("loan_date");
+
+            $table->string("loan_date")->default(now());
             $table->string("return_date");
             $table->enum("status", ['pending', 'returned'])->default('pending');
             $table->timestamps();

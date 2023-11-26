@@ -3,6 +3,9 @@
 use App\Http\Controllers\Back\BookController;
 use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\HomeController;
+use App\Models\Books;
+use App\Models\LogBookLoan;
+use App\Models\Students;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,18 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::prefix("/")->group(function() {
 
-//     //  route untuk HOME
-//     Route::controller(HomeController::class)->group(function() {
-//         Route::get("/", "index");
-//         Route::get("/{id}", "detail");
-//     });
-
+// Route::controller(HomeController::class)->group(function () {
+//     Route::get("/", "index");
+//     Route::get("/{id}", "detail");
 // });
-Route::prefix("/admin")->group(function() {
 
-    Route::get("/", function() {
+
+
+Route::prefix("/admin")->group(function () {
+
+    Route::get("/", function () {
         return view("pages.index", [
             "books" => Books::all(),
             "student" => Students::all(),
@@ -45,7 +47,6 @@ Route::prefix("/admin")->group(function() {
             Route::get("/download-template", "downloadTemplate")->name("book.download.template");
             Route::post("/import", "import")->name("book.import");
         });
-
     });
 
     Route::prefix("/pinjaman")->group(function () {
@@ -58,8 +59,5 @@ Route::prefix("/admin")->group(function() {
             Route::post("/{id}/loan", "loan")->name("loan.book");
             // Route::delete("/delete/{id}", "delete")->name("loan.delete");
         });
-
     });
-
 });
-
