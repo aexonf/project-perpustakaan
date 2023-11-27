@@ -46,4 +46,11 @@ class HomeController extends Controller
             'latestBooks' => $booksLatest,
         ]);
     }
+
+
+    // function ini untuk melihat detail buku
+    public function detail($id)
+    {
+        $book = Books::find($id);
+    }
 }
