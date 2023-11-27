@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Back\BookController;
 use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\HomeController;
@@ -20,14 +21,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::controller(HomeController::class)->group(function () {
-//     Route::get("/", "index");
-//     Route::get("/{id}", "detail");
-// });
+Route::controller(HomeController::class)->group(function () {
+    Route::get("/", "index");
+    Route::get("/{id}/detail", "detail");
+});
+
+Route::controller(AuthController::class)->group(function() {
+    Route::get("/login", "index")->name("login");
+    Route::post("/login", "login");
+    Route::post("/logout", "logout");
+});
 
 
 
-Route::prefix("/admin")->group(function () {
+Route::prefix("/admin")->middleware("auth")->group(function () {
 
     Route::get("/", function () {
         return view("pages.index", [
