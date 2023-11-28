@@ -23,8 +23,8 @@ class AuthController extends Controller
 
         // Coba autentikasi
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->role == "librarian") {
-            return redirect('/admin')->with('success', 'Masuk berhasil!');
+            if (Auth::user()->role == "librarian") {
+                return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
             return redirect('/');
         }
