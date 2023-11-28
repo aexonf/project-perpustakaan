@@ -27,8 +27,6 @@ class HomeController extends Controller
         if ($search) {
             if ($type == 'title') {
                 $books = $books->where('title', 'like', '%' . $search . '%');
-            } elseif ($type == "type") {
-                $books = $books->where('type', 'like', '%' . $search . '%');
             } elseif ($type == "genre") {
                 $books = $books->where('genre', 'like', '%' . $search . '%');
             } elseif ($type == "year") {

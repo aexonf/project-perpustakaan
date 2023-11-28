@@ -58,7 +58,6 @@ export default function Home({ books, latestBooks }) {
             preserveScroll: true,
             preserveState: true,
             onError: (e) => console.log(e),
-            onSuccess: (e) => console.log(e),
         });
     };
     return (
