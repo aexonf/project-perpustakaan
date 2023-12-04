@@ -22,17 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(HomeController::class)->group(function () {
-    Route::get("/", "index")->middleware('auth');
+    Route::get("/", "index");
     Route::get("/{id}/detail", "detail");
 });
-
-Route::controller(AuthController::class)->group(function () {
-    Route::get("/login", "index")->name("login")->middleware("guest");
-    Route::post("/login", "login");
-    Route::post("/logout", "logout");
-});
-
-
 
 Route::prefix("/admin")->middleware("auth")->group(function () {
 
