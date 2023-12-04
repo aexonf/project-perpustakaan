@@ -27,7 +27,46 @@ class LoanController extends Controller
          * @param void
          * @return \Illuminate\View\View
          */
-        return view("pages.loan.index", ["loan" => LogBookLoan::all()]);
+        return view("pages.loan.index", [
+            "loan" => LogBookLoan::all(),
+            "books" => Books::where("status", "available")->get(),
+            "students" => Students::all()
+        ]);
+    }
+
+
+    /**
+     * create loan book
+     *
+     * @param  int  $id
+     * @param  Request  $request
+     * @return Session::flash()
+     */
+    public function loanIndex(Request $request)
+    {
+        /**
+         * Create a new book loan record for a student.
+         *
+         * @param int $id Student ID
+         * @param \Illuminate\Http\Request $request
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        $loan = LogBookLoan::create([
+            "student_id" => $request->student,
+            "book_id" => $request->book,
+            "librarian_id" => "1",
+            "loan_date" => Carbon::now(),
+            "return_date" => "",
+        ]);
+
+        // jika peminjaman berhasil
+        if ($loan) {
+            Session::flash("success", "Berhasil meminjam buku");
+            return redirect()->back();
+        }
+        // jika gagal meminjam
+        Session::flash("error", "Gagal meminjam buku");
+        return redirect()->back();
     }
 
 
