@@ -49,15 +49,15 @@
                     </div>
                     <div class="card-body">
                         <div class="collapse mb-3 pb-3 border-bottom show" id="section-filter">
-                            <form class="needs-validation" novalidate="" method="GET" action=""
+                            <form class="needs-validation" novalidate="" method="GET" action="{{route("book")}}"
                                 enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
                                             <label class="mb-2">Tahun Pelajaran</label>
                                             <select class="form-control select2" name="school_year" required
                                                 onchange="handleChangeFilter(this)">
-                                                {{-- @foreach ($school_years as $school_year)
+                                                @foreach ($school_years as $school_year)
                                                     @if ($request->school_year === $school_year || $setting->school_years === $school_year)
                                                         <option value="{{ $school_year }}" id="schoolYearSelect" selected>
                                                             {{ $school_year }}</option>
@@ -67,8 +67,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    </div> --}}
+                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
                                             <label class="mb-2">Tingkat</label>
                                             <select class="form-control select2" id="generationSelect" name="generation"
@@ -83,40 +83,31 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </div> --}}
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                        <div class="form-group mb-2">
+                                            <label class="mb-2">Genre</label>
+                                            <select class="form-control select2" id="classSelect" name="genre" required
+                                                onchange="handleChangeFilter(this)">
+                                                @foreach ($genre as $g)
+                                                <option value="{{ $g }}">{{ $g }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
-                                            <label class="mb-2">Kelas</label>
-                                            <select class="form-control select2" id="classSelect" name="class" required
+                                            <label class="mb-2">Status</label>
+                                            <select class="form-control select2" name="status" required
                                                 onchange="handleChangeFilter(this)">
-                                                @foreach ($classes as $class)
-                                                    @foreach ($class as $item)
-                                                        @if ($request->class === $item)
-                                                            <option value="{{ $item }}" selected>
-                                                                {{ $item }}
-                                                            </option>
-                                                        @else
-                                                            <option value="{{ $item }}">{{ $item }}
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach --}}
+                                                <option value="available" selected>Tersedia</option>
+                                                <option value="blank">Tidak Tersedia</option>
                                             </select>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="form-group mb-2">
-                                            <label class="mb-2">Point</label>
-                                            <select class="form-control select2" name="point" required
-                                                onchange="handleChangeFilter(this)">
-                                                <option value="terbanyak" selected>Terbanyak</option>
-                                                <option value="sedikit">Sedikit</option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="" class="btn btn-danger ml-2">Reset</a>
+                                    <a href="{{route("loan")}}" class="btn btn-danger ml-2">Reset</a>
                                     <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                                 </div>
                             </form>
@@ -147,13 +138,14 @@
                                                 </div>
                                             </td>
                                             <td>{{ $book->writer }}</td>
-                                            <td class="{{ $book->status === 'blank' ? 'text-warning' : 'text-success' }}">
+                                            <td>
                                                 @if ($book->status === 'blank')
-                                                    Tidak Tersedia
+                                                    <span class="badge badge-warning">Tidak Tersedia</span>
                                                 @else
-                                                    Tersedia
+                                                    <span class="badge badge-success">Tersedia</span>
                                                 @endif
                                             </td>
+
                                             <td>
                                                 <div class="d-flex items-center">
                                                     <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"

@@ -18,6 +18,8 @@ class BookController extends Controller
         $bookQueryTitle = $request->query("search");
         // mendapatkan value dari query status
         $bookQueryStatus = $request->query("status");
+        // mendapatkan value dari query genre
+        $bookQueryGenre = $request->query("genre");
 
         // query ke database
         $books = Books::query();
@@ -26,6 +28,8 @@ class BookController extends Controller
             $books->where("title", 'LIKE', "%$bookQueryTitle%");
         } else if ($request->has('status')) {
             $books->where("status", 'LIKE', "%$bookQueryStatus%");
+        } else if ($request->has("genre")) {
+            $books->where("genre", 'LIKE', "%$bookQueryGenre%");
         }
 
         // Menggunakan nullish coalescing untuk memberikan nilai default
@@ -75,7 +79,8 @@ class BookController extends Controller
         return redirect()->back();
     }
 
-    public function update($id, Request $request){
+    public function update($id, Request $request)
+    {
 
         $updateBook = Books::find($id)->update([
             "title" => $request->title,
@@ -97,8 +102,6 @@ class BookController extends Controller
         // jika buku gagal di update
         Session::flash("error", "Buku gagal di update");
         return redirect()->back();
-
-
     }
 
 
