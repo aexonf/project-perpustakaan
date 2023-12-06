@@ -176,49 +176,31 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Buku</h5>
+                    <h5 class="modal-title">Tambah Pinjaman</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('book.create') }}"
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('loan.book.index') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label>Judul Buku<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="title" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>No Inventory<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="no_inventory" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Genre<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="genre" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Penulis<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="writer" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Status<span class="text-danger">*</span></label>
-                            <select class="form-control" name="status" id="generation" required>
-                                <option value="available" selected>Tersedia</option>
-                                <option value="blank">Tidak tersedia</option>
+                            <label for="student">Siswa<span class="text-danger">*</span></label>
+                            <select class="form-control" name="student" id="student" required>
+                                @foreach ($students as $student)
+                                <option value="{{$student->id}}">{{$student->name}}</option>
+                                @endforeach
                             </select>
                         </div>
+                        {{-- buku --}}
                         <div class="form-group mb-2">
-                            <label>Tahun<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="tahun" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Stock<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="stock" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label>Lokasi<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="location" required>
+                            <label for="book">Buku<span class="text-danger">*</span></label>
+                            <select class="form-control" name="book" id="book" required>
+                                @foreach ($books as $book)
+                                <option value="{{$book->id}}">{{$book->title}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
