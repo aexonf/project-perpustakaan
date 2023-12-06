@@ -22,19 +22,19 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(HomeController::class)->group(function () {
-    Route::get("/", "index")->middleware('auth');
+    Route::get("/", "index");
     Route::get("/{id}/detail", "detail");
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::get("/login", "index")->name("login")->middleware("guest");
     Route::post("/login", "login");
-    Route::post("/logout", "logout");
+    Route::post("/logout", "logout")->name("logout");
 });
 
 
 
-Route::prefix("/admin")->middleware("auth")->group(function () {
+Route::prefix("/admin")->middleware("")->group(function () {
 
     Route::get("/", function () {
         return view("pages.index", [
@@ -64,6 +64,7 @@ Route::prefix("/admin")->middleware("auth")->group(function () {
             Route::put("/{id}/returned", "returnedBook")->name("loan.returned");
             Route::put("/{id}/returned/all", "returnedAllBook")->name("loan.returned.all");
             Route::post("/{id}/loan", "loan")->name("loan.book");
+            Route::post("/loan", "loanIndex")->name("loan.book.index");
             // Route::delete("/delete/{id}", "delete")->name("loan.delete");
         });
     });
