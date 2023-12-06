@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
@@ -32,9 +33,8 @@ export default function Login({ message }) {
                         <div className="my-2">
                             <Label
                                 htmlFor="username"
-                                className={`${
-                                    errors.username ? "text-destructive" : ""
-                                }`}
+                                className={`${errors.username ? "text-destructive" : ""
+                                    }`}
                             >
                                 Email
                             </Label>
@@ -48,11 +48,10 @@ export default function Login({ message }) {
                                     setData("username", e.target.value);
                                     setError("username", null);
                                 }}
-                                className={`${
-                                    errors.username
+                                className={`${errors.username
                                         ? "border-destructive border text-destructive"
                                         : ""
-                                }`}
+                                    }`}
                             />
                             {errors.username && (
                                 <p className="text-destructive text-sm">
@@ -63,9 +62,8 @@ export default function Login({ message }) {
                         <div className="my-2">
                             <Label
                                 htmlFor="password"
-                                className={`${
-                                    errors.password ? "text-destructive" : ""
-                                }`}
+                                className={`${errors.password ? "text-destructive" : ""
+                                    }`}
                             >
                                 Password
                             </Label>
@@ -79,11 +77,10 @@ export default function Login({ message }) {
                                     setData("password", e.target.value);
                                     setError("password", null);
                                 }}
-                                className={`w-full ${
-                                    errors.password
+                                className={`w-full ${errors.password
                                         ? "text-destructive border border-destructive"
                                         : ""
-                                }`}
+                                    }`}
                             />
                             {errors.password && (
                                 <p className="text-destructive text-sm">
@@ -104,3 +101,5 @@ export default function Login({ message }) {
         </div>
     );
 }
+
+
