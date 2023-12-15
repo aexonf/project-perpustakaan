@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Simaku Admin - Buku')
+@section('title', 'Pinjaman - SMK N 1 Kasreman')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>List Pinjaman</h1>
+                <h1>Daftar Pinjaman</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -153,7 +153,9 @@
                             <select class="form-control" name="student" id="student" required>
                                 <option value="" selected></option>
                                 @foreach ($students as $student)
+
                                     <option value="{{ $student->student->id }}">{{ $student->student->name }}</option>
+
                                 @endforeach
                             </select>
                         </div>
