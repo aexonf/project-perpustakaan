@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActiveStudents;
 use App\Models\Books;
 use App\Models\LogBookLoan;
 use App\Models\Students;
@@ -19,7 +20,7 @@ class LoanController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         /**
          * Get the view for displaying the index page of book loans.
@@ -27,12 +28,28 @@ class LoanController extends Controller
          * @param void
          * @return \Illuminate\View\View
          */
+
+        $activeStudent = ActiveStudents::with('student');
+        $peminjam = LogBookLoan::query();
+
+        if ($request->has("class")) {
+            $activeStudent->where("class", $request->query("class"));
+        }
+
+        if($request->has("status")) {
+            $peminjam->where("status", $request->query("status"));
+        }
+
+        $activeStudentResults = $activeStudent->get();
+        $peminjamResults = $peminjam->get();
+
         return view("pages.loan.index", [
-            "loan" => LogBookLoan::all(),
+            "loan" => $peminjamResults,
             "books" => Books::where("status", "available")->get(),
-            "students" => Students::all()
+            "students" => $activeStudentResults
         ]);
     }
+
 
 
     /**

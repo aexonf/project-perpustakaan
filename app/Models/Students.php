@@ -17,4 +17,9 @@ class Students extends Model
         return $this->belongsTo(LogBookLoan::class);
     }
 
+    public function activeStudent(): BelongsTo
+    {
+        return $this->belongsTo(ActiveStudents::class);
+    }
+
 }

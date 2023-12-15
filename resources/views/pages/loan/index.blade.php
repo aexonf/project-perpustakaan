@@ -54,66 +54,15 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
-                                            <label class="mb-2">Tahun Pelajaran</label>
-                                            <select class="form-control select2" name="school_year" required
+                                            <label class="mb-2">Status</label>
+                                            <select class="form-control select2" name="status" required
                                                 onchange="handleChangeFilter(this)">
-                                                {{-- @foreach ($school_years as $school_year)
-                                                    @if ($request->school_year === $school_year || $setting->school_years === $school_year)
-                                                        <option value="{{ $school_year }}" id="schoolYearSelect" selected>
-                                                            {{ $school_year }}</option>
-                                                    @else
-                                                        <option value="{{ $school_year }}">{{ $school_year }}</option>
-                                                    @endif
-                                                @endforeach
+                                                <option value="" selected></option>
+                                                <option value="returned" {{ request('status') == 'returned' ? 'selected' : '' }}>Di kembalikan</option>
+                                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Meminjam</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="form-group mb-2">
-                                            <label class="mb-2">Tingkat</label>
-                                            <select class="form-control select2" id="generationSelect" name="generation"
-                                                required onchange="handleChangeFilter(this)">
-                                                @foreach ($generations as $generation)
-                                                    @if ($request->generation === $generation)
-                                                        <option value="{{ $generation }}" selected>
-                                                            {{ $generation }}</option>
-                                                    @else
-                                                        <option value="{{ $generation }}">{{ $generation }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="form-group mb-2">
-                                            <label class="mb-2">Kelas</label>
-                                            <select class="form-control select2" id="classSelect" name="class" required
-                                                onchange="handleChangeFilter(this)">
-                                                @foreach ($classes as $class)
-                                                    @foreach ($class as $item)
-                                                        @if ($request->class === $item)
-                                                            <option value="{{ $item }}" selected>
-                                                                {{ $item }}
-                                                            </option>
-                                                        @else
-                                                            <option value="{{ $item }}">{{ $item }}
-                                                            </option>
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach --}}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="form-group mb-2">
-                                            <label class="mb-2">Point</label>
-                                            <select class="form-control select2" name="point" required
-                                                onchange="handleChangeFilter(this)">
-                                                <option value="terbanyak" selected>Terbanyak</option>
-                                                <option value="sedikit">Sedikit</option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <a href="" class="btn btn-danger ml-2">Reset</a>
@@ -137,10 +86,11 @@
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
-                                                {{$value->student->name}}
+                                                {{ $value->student->name }}
                                             </td>
                                             <td>{{ $value->book->title }}</td>
-                                            <td class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
+                                            <td
+                                                class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
                                                 @if ($value->status === 'pending')
                                                     Meminjam
                                                 @else
@@ -185,11 +135,25 @@
                     <form class="needs-validation" novalidate="" method="POST" action="{{ route('loan.book.index') }}"
                         enctype="multipart/form-data">
                         @csrf
+                        {{-- kelas --}}
+                        <div class="form-group mb-2">
+                            <label for="class">Kelas<span class="text-danger">*</span></label>
+                            <select class="form-control select" name="class" id="class"
+                                onchange="handleChangeFilter(this)" required>
+                                <option value="" selected></option>
+                                @foreach ($class as $c)
+                                    <option value="{{ $c }}" {{ request('class') == $c ? 'selected' : '' }}>
+                                        {{ $c }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- siswa --}}
                         <div class="form-group mb-2">
                             <label for="student">Siswa<span class="text-danger">*</span></label>
                             <select class="form-control" name="student" id="student" required>
+                                <option value="" selected></option>
                                 @foreach ($students as $student)
-                                <option value="{{$student->id}}">{{$student->name}}</option>
+                                    <option value="{{ $student->student->id }}">{{ $student->student->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -198,7 +162,7 @@
                             <label for="book">Buku<span class="text-danger">*</span></label>
                             <select class="form-control" name="book" id="book" required>
                                 @foreach ($books as $book)
-                                <option value="{{$book->id}}">{{$book->title}}</option>
+                                    <option value="{{ $book->id }}">{{ $book->title }}</option>
                                 @endforeach
                             </select>
                         </div>
