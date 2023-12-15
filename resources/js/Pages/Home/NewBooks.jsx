@@ -7,7 +7,7 @@ export default function NewBooks({
 }) {
     return (
         <div className="h-[512px] rounded-md border p-4">
-            <h3 className="text-2xl font-semibold tracking-tight">
+            <h3 className="text-xl md:text-2xl font-semibold tracking-tight">
                 Buku Terbaru
             </h3>
             <div className="space-y-4 mt-4">
@@ -17,7 +17,7 @@ export default function NewBooks({
                         key={book?.id}
                     >
                         <h4
-                            className="text-primary text-xl font-semibold tracking-tight mb-2 truncate cursor-pointer"
+                            className="text-primary text-lg md:text-xl font-semibold tracking-tight mb-2 truncate cursor-pointer"
                             onClick={() => {
                                 setIsOpenInfo(true);
                                 setSelectedBook(book);
@@ -25,10 +25,10 @@ export default function NewBooks({
                         >
                             {book?.title}
                         </h4>
-                        <p className="text-lg">
+                        <p className="text-base md:text-lg">
                             Penulis : <b>{book?.writer}</b>
                         </p>
-                        <p className="text-lg">
+                        <p className="text-base md:text-lg">
                             Lokasi : <b>{book?.location}</b>
                         </p>
                     </div>

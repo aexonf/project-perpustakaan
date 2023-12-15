@@ -116,7 +116,7 @@ export default function BookTable({
                             )}
                         </TableBody>
                     </Table>
-                    <div className="flex justify-end mt-3 absolute bottom-5 right-5">
+                    <div className="flex justify-end mt-3">
                         <div className="flex items-center justify-end mt-2 gap-x-1.5">
                             <Button
                                 size="icon"
