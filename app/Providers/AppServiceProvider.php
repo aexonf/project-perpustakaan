@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\ActiveStudents;
 use App\Models\Books;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer("*", function($view){
             $view->with('genre', Books::all()->pluck("genre")->unique());
+            $view->with("class", ActiveStudents::all()->pluck("class")->unique());
         });
     }
 }
