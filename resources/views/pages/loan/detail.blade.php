@@ -61,18 +61,18 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h2>Log Peminjaman</h2>
+                            <h2>Aktifitas Peminjaman</h2>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2" data-toggle="modal"
                                     data-target="#modal-create"><i class="fas fa-plus"></i>
-                                    Tambah</button>
-                                    <form action="{{ route('loan.returned.all', $student->id) }}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                    <button type="submit"  class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                        ><i class="fas fa-download"></i>
+                                    Tambah Pinjaman</button>
+                                <form action="{{ route('loan.returned.all', $student->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
+                                            class="fas fa-download"></i>
                                         Mengembalikan semua</button>
                                 </form>
                             </div>

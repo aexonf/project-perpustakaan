@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Simaku Admin - Buku')
+@section('title', 'Buku - - SMK N 1 Kasreman')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>List Buku</h1>
+                <h1>Daftar Buku</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -49,7 +49,7 @@
                     </div>
                     <div class="card-body">
                         <div class="collapse mb-3 pb-3 border-bottom show" id="section-filter">
-                            <form class="needs-validation" novalidate="" method="GET" action="{{route("book")}}"
+                            <form class="needs-validation" novalidate="" method="GET" action="{{ route('book') }}"
                                 enctype="multipart/form-data">
                                 <div class="row">
                                     {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -90,8 +90,8 @@
                                             <select class="form-control select2" id="classSelect" name="genre" required
                                                 onchange="handleChangeFilter(this)">
                                                 @foreach ($genre as $g)
-                                                <option value="{{ $g }}">{{ $g }}</option>
-                                            @endforeach
+                                                    <option value="{{ $g }}">{{ $g }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="{{route("loan")}}" class="btn btn-danger ml-2">Reset</a>
+                                    <a href="{{ route('loan') }}" class="btn btn-danger ml-2">Reset</a>
                                     <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                                 </div>
                             </form>
@@ -250,21 +250,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST"
-                        action="{{route("book.import")}}" enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('book.import') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label>File </label>
                             <input type="file" class="form-control" name="book" required>
                         </div>
                         <div>
-                            <a href="{{route('book.download.template')}}" class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
+                            <a href="{{ route('book.download.template') }}"
+                                class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
                                 Unduh Template</a>
                         </div>
-                    <div class="mt-5 d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary ml-2">Kirim</button>
-                    </div>
+                        <div class="mt-5 d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary ml-2">Kirim</button>
+                        </div>
                     </form>
                 </div>
             </div>

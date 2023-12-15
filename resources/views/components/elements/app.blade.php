@@ -41,7 +41,8 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, User</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item has-icon text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#" class="dropdown-item has-icon text-danger"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt">Logout</i>
                             </a>
                         </div>
@@ -63,7 +64,7 @@
             <!-- Footer -->
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; {{ date('Y') }} Simaku
+                    Copyright &copy; {{ date('Y') }} Perpustakaan - SMK N 1 Kasreman
                 </div>
             </footer>
 

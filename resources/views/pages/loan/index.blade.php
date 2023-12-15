@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Simaku Admin - Buku')
+@section('title', 'Pinjaman - SMK N 1 Kasreman')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>List Pinjaman</h1>
+                <h1>Daftar Pinjaman</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -137,10 +137,11 @@
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
-                                                {{$value->student->name}}
+                                                {{ $value->student->name }}
                                             </td>
                                             <td>{{ $value->book->title }}</td>
-                                            <td class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
+                                            <td
+                                                class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
                                                 @if ($value->status === 'pending')
                                                     Meminjam
                                                 @else
@@ -189,7 +190,7 @@
                             <label for="student">Siswa<span class="text-danger">*</span></label>
                             <select class="form-control" name="student" id="student" required>
                                 @foreach ($students as $student)
-                                <option value="{{$student->id}}">{{$student->name}}</option>
+                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -198,7 +199,7 @@
                             <label for="book">Buku<span class="text-danger">*</span></label>
                             <select class="form-control" name="book" id="book" required>
                                 @foreach ($books as $book)
-                                <option value="{{$book->id}}">{{$book->title}}</option>
+                                    <option value="{{ $book->id }}">{{ $book->title }}</option>
                                 @endforeach
                             </select>
                         </div>
