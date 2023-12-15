@@ -41,9 +41,10 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, User</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item has-icon text-danger"
+                            <a href="#" class="dropdown-item has-icon text-danger d-flex align-items-center"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt">Logout</i>
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Keluar</span>
                             </a>
                         </div>
                     </li>
