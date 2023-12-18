@@ -51,6 +51,16 @@ class LoanController extends Controller
     }
 
 
+    public function storeView(Request $request){
+       return view("pages.loan.add-loan", [
+           "request" => $request,
+           "angkatan" => ActiveStudents::where("school_year", $request->school_year)->pluck("generation")->unique(),
+           "kelas" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->pluck("class")->unique(),
+           "students" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->where("class", $request->class)->get(),
+           "books" => Books::all()
+       ]);
+    }
+
 
     /**
      * create loan book
@@ -71,7 +81,7 @@ class LoanController extends Controller
         $loan = LogBookLoan::create([
             "student_id" => $request->student,
             "book_id" => $request->book,
-            "librarian_id" => "1",
+            "librarian_id" => Auth::user()->id,
             "loan_date" => Carbon::now(),
             "return_date" => "",
         ]);
@@ -193,7 +203,7 @@ class LoanController extends Controller
         $loan = LogBookLoan::create([
             "student_id" => $id,
             "book_id" => $request->book,
-            "librarian_id" => "1",
+            "librarian_id" => Auth::user()->id,
             "loan_date" => Carbon::now(),
             "return_date" => "",
         ]);

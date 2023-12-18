@@ -61,10 +61,11 @@ Route::prefix("/admin")->middleware("auth")->group(function () {
         Route::controller(LoanController::class)->group(function () {
             Route::get("/", "index")->name("loan");
             Route::get("/{id}/detail", "detail")->name("loan.detail");
-            Route::put("/{id}/returned", "returnedBook")->name("loan.returned");
-            Route::put("/{id}/returned/all", "returnedAllBook")->name("loan.returned.all");
-            Route::post("/{id}/loan", "loan")->name("loan.book");
-            Route::post("/loan", "loanIndex")->name("loan.book.index");
+            Route::put("/{id}/kemabali", "returnedBook")->name("loan.returned");
+            Route::put("/{id}/returned/kembali-semua", "returnedAllBook")->name("loan.returned.all");
+            Route::post("/{id}/tambah-pinjam", "loan")->name("loan.book");
+            Route::get("/tambah", "storeView")->name("tambah.book.index");
+            Route::post("/tambah", "loanIndex")->name("tambah.book.loan");
             // Route::delete("/delete/{id}", "delete")->name("loan.delete");
         });
     });
