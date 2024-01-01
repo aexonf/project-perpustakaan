@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\ActiveStudents;
 use App\Models\Books;
+use App\Models\Librarian;
 use App\Models\LogBookLoan;
 use App\Models\Students;
 use Carbon\Carbon;
@@ -81,7 +82,7 @@ class LoanController extends Controller
         $loan = LogBookLoan::create([
             "student_id" => $request->student,
             "book_id" => $request->book,
-            "librarian_id" => Auth::user()->id,
+            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first(),
             "loan_date" => Carbon::now(),
             "return_date" => "",
         ]);
