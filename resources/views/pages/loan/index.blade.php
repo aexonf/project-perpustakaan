@@ -33,10 +33,10 @@
                     <div class="card-header">
                         <div class="w-100 d-flex justify-content-between flex-wrap">
                             <div class="d-flex align-items-center flex-wrap">
-                                <a href="{{route("tambah.book.index")}}">
-                                    <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                 ><i class="fas fa-plus"></i>
-                                    Tambah</button></a>
+                                <a href="{{ route('tambah.book.index') }}">
+                                    <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
+                                            class="fas fa-plus"></i>
+                                        Tambah</button></a>
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
                                     data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
                                     Import</button>
@@ -59,8 +59,11 @@
                                             <select class="form-control select2" name="status" required
                                                 onchange="handleChangeFilter(this)">
                                                 <option value="" selected></option>
-                                                <option value="returned" {{ request('status') == 'returned' ? 'selected' : '' }}>Di kembalikan</option>
-                                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Meminjam</option>
+                                                <option value="returned"
+                                                    {{ request('status') == 'returned' ? 'selected' : '' }}>Di kembalikan
+                                                </option>
+                                                <option value="pending"
+                                                    {{ request('status') == 'pending' ? 'selected' : '' }}>Meminjam</option>
                                             </select>
                                         </div>
                                     </div>
@@ -154,9 +157,7 @@
                             <select class="form-control" name="student" id="student" required>
                                 <option value="" selected></option>
                                 @foreach ($students as $student)
-
                                     <option value="{{ $student->student->id }}">{{ $student->student->name }}</option>
-
                                 @endforeach
                             </select>
                         </div>

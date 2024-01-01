@@ -69,10 +69,10 @@
 
 @endsection
 
-{{-- @push('scripts')
-@if (session('success'))
-<script>
-    document.getElementById('route-admin').click();
-</script>
-@endif --}}
-{{-- @endpush --}}
+@push('scripts')
+    @if (session('success'))
+        <script>
+            document.getElementById('route-admin').click();
+        </script>
+    @endif
+@endpush

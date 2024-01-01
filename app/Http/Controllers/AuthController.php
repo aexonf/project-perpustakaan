@@ -23,9 +23,11 @@ class AuthController extends Controller
 
         // Coba autentikasi
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->role == "librarian") {
+            if (Auth::user()->role !== "student") {
                 return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
+
+            Auth::logout();
             return redirect('/');
         }
 
@@ -39,4 +41,3 @@ class AuthController extends Controller
         return redirect('/login');
     }
 }
-
