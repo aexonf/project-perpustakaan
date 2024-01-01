@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="" class="btn btn-danger ml-2">Reset</a>
+                                    <a href="{{route('loan')}}" class="btn btn-danger ml-2">Reset</a>
                                     <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                                 </div>
                             </form>
