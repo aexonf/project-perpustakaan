@@ -133,7 +133,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('loan.book.index') }}"
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('tambah.book.index') }}"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- kelas --}}
