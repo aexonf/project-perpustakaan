@@ -18,4 +18,9 @@ class Librarian extends Model
     {
         return $this->belongsTo(LogBookLoan::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
