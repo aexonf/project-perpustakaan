@@ -44,7 +44,7 @@
                                         onchange="handleChangeFilter(this)">
                                         <option value=""></option>
                                         @foreach ($school_years as $school_year)
-                                            @if ($request->school_year === $school_year)
+                                            @if ($request->school_year === $school_year ||  $setting->school_years === $school_year)
                                                 <option value="{{ $school_year }}" selected>
                                                     {{ $school_year }}</option>
                                             @else
