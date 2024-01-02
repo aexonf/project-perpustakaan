@@ -50,9 +50,8 @@ class LibrarianController extends Controller
 
         // update role
         $user = User::find($validasi["user_id"]);
-        $user->update([
-            "role" => "librarian"
-        ]);
+        $user->role = "librarian";
+        $user->save();
 
         $librarianCreate = Librarian::create([
             "name" => $validasi["name"],
@@ -74,7 +73,7 @@ class LibrarianController extends Controller
     {
         $findLibrarian = Librarian::find($id);
 
-        $update =  $findLibrarian->update([
+        $update = $findLibrarian->update([
             "name" => $request->name,
             "user_id" => $request->user_id,
             "status" => $request->status ?? "active"
@@ -95,7 +94,7 @@ class LibrarianController extends Controller
     {
         $findLibrarian = Librarian::find($id);
 
-        $delete =  $findLibrarian->delete();
+        $delete = $findLibrarian->delete();
 
         // jika berhasil menghapus penjaga
         if ($delete) {
