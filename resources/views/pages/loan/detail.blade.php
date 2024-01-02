@@ -83,6 +83,7 @@
                                             <th class="text-center" style="width: 80px;">#</th>
                                             <th>Tanggal</th>
                                             <th>Judul</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -92,6 +93,14 @@
                                                 <td class="text-center">{{ $index + 1 }}</td>
                                                 <td>{{ $value->created_at }}</td>
                                                 <td>{{ $value->book->title }}</td>
+                                                <td
+                                                    class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
+                                                    @if ($value->status === 'pending')
+                                                        Meminjam
+                                                    @else
+                                                        Dikembalikan
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <!-- Tombol Modal Detail -->
                                                     <button type="button" class="btn btn-icon btn-info mr-2 mb-2"
@@ -104,6 +113,7 @@
                                                     $('#modal-detail #form-detail #librarian').attr('value', '{{ $value->librarian_id != null ? $value->librarian->name : 'admin' }}');
                                                     $('#modal-detail #form-detail #return_date').attr('value', '{{ $value->return_date != null ? $value->return_date : 'Masih di pinjam' }}');
                                                     $('#modal-detail #form-detail #status').attr('value', '{{ $value->status == 'pending' ? 'Meminjam' : 'Di Kembalikan' }}');
+                                                    $('#modal-detail #form-detail #button_return #dikembalikan').prop('disabled', '{{ $value->status == 'returned' }}');
                                                     ">
                                                         <i class="fas fa-info-circle"></i>
                                                     </button>
@@ -156,9 +166,9 @@
                                 <label for="status">Status</label>
                                 <input type="text" id="status" class="form-control" name="status" readonly>
                             </div>
-                            <div class="mt-5 d-flex justify-content-end">
+                            <div class="mt-5 d-flex justify-content-end" id="button_return">
                                 <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
-                                <button type="submit" class="btn btn-primary ml-2">Di Kembalikan</button>
+                                <button type="submit" class="btn btn-primary ml-2" id="dikembalikan">Di Kembalikan</button>
                             </div>
                         </form>
                     </div>
