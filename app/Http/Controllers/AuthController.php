@@ -27,13 +27,13 @@ class AuthController extends Controller
             // status
             $librarian = Librarian::where("user_id", Auth::user()->id)->first();
 
-            if (Auth::user()->role === "admin" || (Auth::user()->role === "librarian" && $librarian->status === "active")) {
+            if (Auth::user()->role === "admin" || ($librarian && $librarian->status === "active")) {
                 return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
             if ($librarian && $librarian->status === "inactive") {
                 return Inertia::render("Login", ["message" => "Akun anda tidak aktif"]);
             }
-            return redirect('/');
+            return redirect('/admin')->with('success', 'Masuk berhasil!');
         }
 
         return Inertia::render("Login", ["message" => "Akun atau kata sandi tidak ditemukan"]);
