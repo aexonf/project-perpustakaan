@@ -24,7 +24,7 @@
                     <span>Pinjaman</span></a>
             </li>
 
-            <li class="{{ Request::is('penjaga') ? 'active' : '' }}">
+            <li class="{{ Request::is('admin/penjaga') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('penjaga') }}" id="route-admin"><i class="fa fa-user-circle"></i>
                     <span>Penjaga</span></a>
             </li>

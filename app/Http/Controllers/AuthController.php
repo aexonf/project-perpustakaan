@@ -15,7 +15,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validasi data yang diterima dari request
         $credentials = $request->validate([
             "username" => "required|string",
             "password" => "required",
@@ -23,7 +22,8 @@ class AuthController extends Controller
 
         // Coba autentikasi
         if (Auth::attempt($credentials)) {
-            if (Auth::user()->role !== "student") {
+            $userSelected = Auth::user()->librarian;
+            if (Auth::user()->role === "admin" || ($userSelected ? $userSelected->status === "active" : null)) {
                 return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
 

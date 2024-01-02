@@ -37,9 +37,7 @@
                                     <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
                                             class="fas fa-plus"></i>
                                         Tambah</button></a>
-                                <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                    data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
-                                    Import</button>
+
                             </div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <button type="button" class="btn btn-icon icon-left btn-info mr-2 mb-2"
@@ -69,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="{{route('loan')}}" class="btn btn-danger ml-2">Reset</a>
+                                    <a href="{{ route('loan') }}" class="btn btn-danger ml-2">Reset</a>
                                     <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                                 </div>
                             </form>

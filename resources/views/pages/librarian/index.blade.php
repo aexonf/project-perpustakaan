@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Penjaga - - SMK N 1 Kasreman')
+@section('title', 'Penjaga - SMK N 1 Kasreman')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -92,9 +92,9 @@
                                             <td>{{ $librarian->user->username }}</td>
                                             <td>
                                                 @if ($librarian->status === 'active')
-                                                    <span class="badge badge-warning">Aktif</span>
+                                                    <span class="badge badge-success">Aktif</span>
                                                 @else
-                                                    <span class="badge badge-success">Tidak Aktif</span>
+                                                    <span class="badge badge-warning">Tidak Aktif</span>
                                                 @endif
                                             </td>
 
@@ -134,7 +134,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Buku</h5>
+                    <h5 class="modal-title">Tambah Penjaga</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -221,20 +221,20 @@
                         <div class="form-group mb-2">
                             <label>User<span class="text-danger">*</span></label>
                             <select class="form-control" name="user_id" id="user_id">
-                                <option value="active">Aktif</option>
-                                <option value="inactive">Tidak Aktif</option>
+                                <option value="" selected id="coba"></option>
+                                @foreach ($users as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->username }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group mb-2">
-                            <label>User<span class="text-danger">*</span></label>
-                            <select class="form-control" name="user_id" id="user_id">
-                                <option value="" selected id="coba"></option>
-                                @foreach ($users as $item)
-                                    <option value="{{ $item->id }}" @if ($item->id == $librarian->user->id) selected @endif>
-                                        {{ $item->username }}
-                                    </option>
-                                @endforeach
+                            <label>Status<span class="text-danger">*</span></label>
+                            <select class="form-control" name="status" id="status">
+                                <option value="active">Aktif</option>
+                                <option value="inactive">Tidak Aktif</option>
                             </select>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">

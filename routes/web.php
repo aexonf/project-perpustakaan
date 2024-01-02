@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Back\BookController;
+use App\Http\Controllers\Back\LibrarianController;
 use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\HomeController;
 use App\Models\Books;
@@ -67,6 +68,18 @@ Route::prefix("/admin")->middleware('auth')->group(function () {
             Route::get("/tambah", "storeView")->name("tambah.book.index");
             Route::post("/tambah", "loanIndex")->name("tambah.book.loan");
             // Route::delete("/delete/{id}", "delete")->name("loan.delete");
+        });
+    });
+
+    Route::prefix("/penjaga")->group(function () {
+
+        Route::controller(LibrarianController::class)->group(function () {
+            Route::get("/", "index")->name("penjaga");
+            Route::post("/", "create")->name("penjaga.create");
+            Route::put("/{id}/update", "update")->name("penjaga.update");
+            Route::delete("/delete/{id}", "delete")->name("penjaga.delete");
+            Route::get("/download-template", "downloadTemplate")->name("penjaga.download.template");
+            Route::post("/import", "import")->name("penjaga.import");
         });
     });
 });

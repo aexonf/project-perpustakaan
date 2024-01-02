@@ -82,7 +82,7 @@ export default function Login({ message }) {
                                     errors.username ? "text-destructive" : ""
                                 }`}
                             >
-                                Email
+                                Username
                             </Label>
                             <Input
                                 placeholder="example@username.com"
