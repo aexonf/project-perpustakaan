@@ -57,7 +57,7 @@ Route::prefix("/admin")->middleware("auth")->group(function () {
         });
     });
 
-    Route::prefix("/pinjaman")->middelware("librarian")->group(function () {
+    Route::prefix("/pinjaman")->middleware("librarian")->group(function () {
 
         Route::controller(LoanController::class)->group(function () {
             Route::get("/", "index")->name("loan");

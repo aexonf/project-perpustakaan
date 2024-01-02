@@ -38,7 +38,7 @@ class LoanController extends Controller
             $activeStudent->where("class", $request->query("class"));
         }
 
-        if($request->has("status")) {
+        if ($request->has("status")) {
             $peminjam->where("status", $request->query("status"));
         }
 
@@ -48,20 +48,23 @@ class LoanController extends Controller
         return view("pages.loan.index", [
             "loan" => $peminjamResults,
             "books" => Books::where("status", "available")->get(),
-            "students" => $activeStudentResults,
+            "students" => $activeStudentResults
         ]);
     }
 
 
-    public function storeView(Request $request){
-       return view("pages.loan.add-loan", [
-           "request" => $request,
-           "angkatan" => ActiveStudents::where("school_year", $request->school_year)->pluck("generation")->unique(),
-           "kelas" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->pluck("class")->unique(),
-           "students" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->where("class", $request->class)->get(),
-           "books" => Books::all(),
-           "setting" => Settings::first()
-       ]);
+    public function storeView(Request $request)
+    {
+        $angkatan = ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->pluck("generation")->unique();
+
+        return view("pages.loan.add-loan", [
+            "request" => $request,
+            "angkatan" => $angkatan,
+            "kelas" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->pluck("class")->unique(),
+            "students" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->where("class", $request->class)->get(),
+            "books" => Books::all(),
+            'setting' => Settings::first()
+        ]);
     }
 
 
@@ -84,7 +87,7 @@ class LoanController extends Controller
         $loan = LogBookLoan::create([
             "student_id" => $request->student,
             "book_id" => $request->book,
-            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first(),
+            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
             "loan_date" => Carbon::now(),
             "return_date" => "",
         ]);
@@ -115,7 +118,7 @@ class LoanController extends Controller
          * @return \Illuminate\View\View
          */
 
-         $studentId = LogBookLoan::find($id);
+        $studentId = LogBookLoan::find($id);
         return view("pages.loan.detail", [
             "student" => Students::find($studentId->student_id),
             "loan" => LogBookLoan::where("student_id", $studentId->student_id)->get(),
@@ -138,7 +141,7 @@ class LoanController extends Controller
          * @return \Illuminate\Http\RedirectResponse
          */
         $returned = LogBookLoan::where("student_id", $id)->where("status", "pending")->get();
-        foreach($returned as $value){
+        foreach ($returned as $value) {
             $value->update([
                 "status" => "returned",
                 "return_date" => Carbon::now("Asia/Jakarta"),
@@ -206,7 +209,7 @@ class LoanController extends Controller
         $loan = LogBookLoan::create([
             "student_id" => $id,
             "book_id" => $request->book,
-            "librarian_id" => Auth::user()->id,
+            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
             "loan_date" => Carbon::now(),
             "return_date" => "",
         ]);
