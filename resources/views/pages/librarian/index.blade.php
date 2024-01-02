@@ -66,6 +66,16 @@
                                         </select>
                                     </div>
                                 </div>
+
+            <div class="section-body">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="w-100 d-flex justify-content-between flex-wrap">
+                            <div class="d-flex align-items-center flex-wrap">
+                                <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
+                                    data-toggle="modal" data-target="#modal-create"><i class="fas fa-plus"></i>
+                                    Tambah</button>
+
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="{{ route('penjaga') }}" class="btn btn-danger ml-2">Reset</a>
