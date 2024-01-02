@@ -61,17 +61,23 @@ export default function Home({ books, latestBooks }) {
         });
     };
     return (
-        <div className="bg-muted ">
+        <div className="bg-muted min-h-screen">
             <div className="relative w-full h-[100px] md:h-[150px] flex items-center">
                 <div
                     className="absolute inset-0 bg-cover bg-center brightness-50"
                     style={{ backgroundImage: "url('img/book.jpg')" }}
                 ></div>
                 <div className="relative text-white container mx-auto z-10 flex items-center space-x-5">
-                    <img src="img/logo_skanka.png" alt="logo_skanka" className="w-auto h-20 md:h-full" />
+                    <img
+                        src="img/logo_skanka.png"
+                        alt="logo_skanka"
+                        className="w-auto h-20 md:h-full"
+                    />
                     <div className="space-y-3">
-                        <h1 className="text-2xl md:text-5xl font-bold">SMK 1 KASREMAN</h1>
-                        <p className="text-base md:text-xl">
+                        <h1 className="text-xl md:text-5xl font-bold">
+                            SMK 1 KASREMAN
+                        </h1>
+                        <p className="text-sm md:text-xl">
                             Katalog Buku Online yang Terintegrasi pada Koleksi
                             Perpustakaan.
                         </p>
@@ -82,15 +88,15 @@ export default function Home({ books, latestBooks }) {
                 <div className="grid grid-cols-6 gap-10">
                     <div className="col-span-6 md:col-span-4 bg-white p-5 rounded-lg min-h-full max-h-full">
                         <h3 className="text-2xl font-bold">Pencarian Buku</h3>
-                        <div className="grid grid-cols-8 gap-x-5 my-5 space-y-1">
+                        <div className="grid grid-cols-8 gap-x-5 my-5">
                             <div className="col-span-2">
-                                <Label className="font-semibold text-base">
+                                <Label className="font-semibold text-sm md:text-base">
                                     Type Kunci
                                 </Label>
                             </div>
                             <div className="col-span-6">
                                 <Label
-                                    className="font-semibold text-base"
+                                    className="font-semibold text-sm md:text-base"
                                     htmlFor="kata_kunci"
                                 >
                                     Kata Kunci
@@ -137,7 +143,7 @@ export default function Home({ books, latestBooks }) {
                             </div>
                             <div className="col-span-2">
                                 <Button
-                                    className="w-full h-full text-base md:text-lg font-semibold tracking-widest"
+                                    className="w-full h-full text-sm md:text-lg font-semibold tracking-widest"
                                     onClick={handleSearch}
                                     disabled={processing}
                                 >

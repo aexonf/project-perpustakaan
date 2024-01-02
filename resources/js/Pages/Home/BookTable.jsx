@@ -15,6 +15,7 @@ import {
     ChevronsLeft,
     ChevronsRight,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function BookTable({
     setOpenInfo,
@@ -30,27 +31,34 @@ export default function BookTable({
                 <p>no data</p>
             ) : (
                 <>
-                    <Table className="border border-black">
-                        <TableHeader>
-                            <TableRow className="border border-black bg-primary hover:bg-primary">
-                                <TableHead className="border border-black text-white font-semibold w-[25px] text-center">
-                                    No
-                                </TableHead>
-                                <TableHead className="border border-black text-white font-semibold">
-                                    Buku
-                                </TableHead>
-                                <TableHead className="border border-black text-white font-semibold text-start w-[100px]">
-                                    Lokasi
-                                </TableHead>
-                            </TableRow>
-                        </TableHeader>
+                    <Table
+                        className={cn(
+                            "w-full",
+                            data?.data?.length > 0 && "border border-black"
+                        )}
+                    >
+                        {data?.data?.length > 0 && (
+                            <TableHeader>
+                                <TableRow className="border border-black bg-primary hover:bg-primary">
+                                    <TableHead className="border border-black text-white text-sm md:text-base font-semibold w-[25px] text-center">
+                                        No
+                                    </TableHead>
+                                    <TableHead className="border border-black text-white text-sm md:text-base font-semibold">
+                                        Buku
+                                    </TableHead>
+                                    <TableHead className="border border-black text-white text-sm md:text-base font-semibold text-start w-[100px]">
+                                        Lokasi
+                                    </TableHead>
+                                </TableRow>
+                            </TableHeader>
+                        )}
                         <TableBody>
                             {data?.data?.length == 0 ? (
-                                <TableRow className="border border-black">
+                                <TableRow>
                                     <TableCell
                                         align="center"
                                         colSpan={3}
-                                        className="font-semibold"
+                                        className="font-semibold text-sm md:text-base"
                                     >
                                         Tidak ada data
                                     </TableCell>
@@ -64,7 +72,7 @@ export default function BookTable({
                                         <TableCell className="border border-black font-semibold text-center">
                                             {data?.from + i}
                                         </TableCell>
-                                        <TableCell className="flex justify-between ">
+                                        <TableCell className="flex justify-between">
                                             <div>
                                                 <h5
                                                     className="text-lg text-primary font-bold cursor-pointer break-all max-w-prose truncate"
@@ -116,45 +124,55 @@ export default function BookTable({
                             )}
                         </TableBody>
                     </Table>
-                    <div className="flex justify-end mt-3">
-                        <div className="flex items-center justify-end mt-2 gap-x-1.5">
-                            <Button
-                                size="icon"
-                                disabled={currentPage == 1 || processing}
-                                onClick={() => setCurrentPage(1)}
-                            >
-                                <ChevronsLeft />
-                            </Button>
-                            <Button
-                                size="icon"
-                                disabled={currentPage == 1 || processing}
-                                onClick={() => setCurrentPage(currentPage - 1)}
-                            >
-                                <ChevronLeft />
-                            </Button>
-                            <strong className="mx-4 select-none text-sm font-medium">
-                                {currentPage} / {data?.last_page}
-                            </strong>
-                            <Button
-                                size="icon"
-                                disabled={
-                                    currentPage >= data?.last_page || processing
-                                }
-                                onClick={() => setCurrentPage(currentPage + 1)}
-                            >
-                                <ChevronRight />
-                            </Button>
-                            <Button
-                                size="icon"
-                                disabled={
-                                    currentPage >= data?.last_page || processing
-                                }
-                                onClick={() => setCurrentPage(data?.last_page)}
-                            >
-                                <ChevronsRight />
-                            </Button>
+                    {data?.data?.length > 0 && (
+                        <div className="flex justify-end mt-3">
+                            <div className="flex items-center justify-end mt-2 gap-x-1.5">
+                                <Button
+                                    size="icon"
+                                    disabled={currentPage == 1 || processing}
+                                    onClick={() => setCurrentPage(1)}
+                                >
+                                    <ChevronsLeft />
+                                </Button>
+                                <Button
+                                    size="icon"
+                                    disabled={currentPage == 1 || processing}
+                                    onClick={() =>
+                                        setCurrentPage(currentPage - 1)
+                                    }
+                                >
+                                    <ChevronLeft />
+                                </Button>
+                                <strong className="mx-4 select-none text-sm font-medium">
+                                    {currentPage} / {data?.last_page}
+                                </strong>
+                                <Button
+                                    size="icon"
+                                    disabled={
+                                        currentPage >= data?.last_page ||
+                                        processing
+                                    }
+                                    onClick={() =>
+                                        setCurrentPage(currentPage + 1)
+                                    }
+                                >
+                                    <ChevronRight />
+                                </Button>
+                                <Button
+                                    size="icon"
+                                    disabled={
+                                        currentPage >= data?.last_page ||
+                                        processing
+                                    }
+                                    onClick={() =>
+                                        setCurrentPage(data?.last_page)
+                                    }
+                                >
+                                    <ChevronsRight />
+                                </Button>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </>
             )}
         </>
