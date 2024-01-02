@@ -48,6 +48,12 @@ class LibrarianController extends Controller
             "user_id" => "required"
         ]);
 
+        // update role
+        $user = User::find($validasi["user_id"]);
+        $user->update([
+            "role" => "librarian"
+        ]);
+
         $librarianCreate = Librarian::create([
             "name" => $validasi["name"],
             "user_id" => $validasi["user_id"],
