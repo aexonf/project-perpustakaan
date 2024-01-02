@@ -75,9 +75,9 @@ class LibrarianController extends Controller
         $findLibrarian = Librarian::find($id);
 
         $update = $findLibrarian->update([
-            "name" => $request->name,
             "user_id" => $request->user_id,
-            "status" => $request->status ?? "active"
+            "status" => $request->status ?? "active",
+            "name" => User::find($request->user_id)->username,
         ]);
 
         // jika berhasil memperbarui penjaga
