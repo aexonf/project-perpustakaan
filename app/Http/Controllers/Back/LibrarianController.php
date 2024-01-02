@@ -13,7 +13,6 @@ class LibrarianController extends Controller
 
     public function index(Request $request)
     {
-
         $statusQuery = $request->query("status");
 
         // query ke database
@@ -24,15 +23,22 @@ class LibrarianController extends Controller
             $librarian->where("status", $statusQuery);
         }
 
+        // Get the librarians collection
+        $librarians = $librarian->get();
 
-        // Menggunakan nullish coalescing untuk memberikan nilai default
-        $librarians = $librarian->get() ?? Librarian::all();
+        // Check if the collection is empty
+        if (empty($librarians)) {
+            // If empty, fallback to fetching all records
+            $librarians = Librarian::all();
+        }
 
         // check users
         $librarianUserCheck = Librarian::pluck("user_id")->toArray();
 
-        $users = User::whereNotIn("id", $librarianUserCheck)->get();
-
+        $users = User::whereNotIn("id", $librarianUserCheck)
+            ->where("role", "!=", "student")
+            ->where("role", "!=", "admin")
+            ->get();
 
         return view("pages.librarian.index", [
             "librarians" => $librarians,
@@ -41,20 +47,15 @@ class LibrarianController extends Controller
         ]);
     }
 
+
     public function create(Request $request)
     {
         $validasi = $request->validate([
-            "name" => "string|required",
             "user_id" => "required"
         ]);
 
-        // update role
-        $user = User::find($validasi["user_id"]);
-        $user->role = "librarian";
-        $user->save();
-
         $librarianCreate = Librarian::create([
-            "name" => $validasi["name"],
+            "name" => User::find($validasi["user_id"])->username,
             "user_id" => $validasi["user_id"],
             "status" => "active"
         ]);
