@@ -208,10 +208,6 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="form-group mb-2">
-                        <label>Nama Penjaga<span class="text-danger">*</span></label>
-                        <input type="text" id="name" class="form-control" name="name">
-                    </div>
 
                     <div class="form-group mb-2">
                         <label>User<span class="text-danger">*</span></label>
