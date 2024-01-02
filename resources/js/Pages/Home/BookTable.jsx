@@ -43,7 +43,7 @@ export default function BookTable({
                                     <TableHead className="border border-black text-white text-sm md:text-base font-semibold w-[25px] text-center">
                                         No
                                     </TableHead>
-                                    <TableHead className="border border-black text-white text-sm md:text-base font-semibold">
+                                    <TableHead className="border border-black text-white text-sm md:text-base font-semibold min-w-[250px]">
                                         Buku
                                     </TableHead>
                                     <TableHead className="border border-black text-white text-sm md:text-base font-semibold text-start w-[100px]">
@@ -99,7 +99,7 @@ export default function BookTable({
                                                     "available" && (
                                                     <Badge
                                                         variant={"success"}
-                                                        className="text-lg"
+                                                        className="text-xs md:text-lg"
                                                     >
                                                         Tersedia
                                                     </Badge>
@@ -107,7 +107,7 @@ export default function BookTable({
                                                 {book?.status == "blank" && (
                                                     <Badge
                                                         variant={"destructive"}
-                                                        className="text-lg"
+                                                        className="text-xs md:text-lg"
                                                     >
                                                         Kosong
                                                     </Badge>
@@ -115,7 +115,7 @@ export default function BookTable({
                                             </div>
                                         </TableCell>
                                         <TableCell className="border border-black">
-                                            <span className="text-lg font-semibold">
+                                            <span className="text-base md:text-lg font-semibold">
                                                 <b>{book?.location}</b>
                                             </span>
                                         </TableCell>
@@ -124,7 +124,7 @@ export default function BookTable({
                             )}
                         </TableBody>
                     </Table>
-                    {data?.data?.length > 0 && (
+                    {data?.data?.length > 0 && data?.last_page > 1 && (
                         <div className="flex justify-end mt-3">
                             <div className="flex items-center justify-end mt-2 gap-x-1.5">
                                 <Button

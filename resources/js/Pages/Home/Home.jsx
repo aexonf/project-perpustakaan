@@ -62,7 +62,7 @@ export default function Home({ books, latestBooks }) {
     };
     return (
         <div className="bg-muted min-h-screen">
-            <div className="relative w-full h-[100px] md:h-[150px] flex items-center">
+            <div className="relative w-full h-[125px] md:h-[150px] flex items-center">
                 <div
                     className="absolute inset-0 bg-cover bg-center brightness-50"
                     style={{ backgroundImage: "url('img/book.jpg')" }}
@@ -77,7 +77,7 @@ export default function Home({ books, latestBooks }) {
                         <h1 className="text-xl md:text-5xl font-bold">
                             SMK 1 KASREMAN
                         </h1>
-                        <p className="text-sm md:text-xl">
+                        <p className="text-xs md:text-xl">
                             Katalog Buku Online yang Terintegrasi pada Koleksi
                             Perpustakaan.
                         </p>
@@ -87,8 +87,10 @@ export default function Home({ books, latestBooks }) {
             <div className="w-full p-9">
                 <div className="grid grid-cols-6 gap-10">
                     <div className="col-span-6 md:col-span-4 bg-white p-5 rounded-lg min-h-full max-h-full">
-                        <h3 className="text-2xl font-bold">Pencarian Buku</h3>
-                        <div className="grid grid-cols-8 gap-x-5 my-5">
+                        <h3 className="text-lg md:text-2xl font-bold">
+                            Pencarian Buku
+                        </h3>
+                        <div className="hidden md:grid grid-cols-8 gap-x-5 my-5">
                             <div className="col-span-2">
                                 <Label className="font-semibold text-sm md:text-base">
                                     Type Kunci
@@ -142,6 +144,65 @@ export default function Home({ books, latestBooks }) {
                                 />
                             </div>
                             <div className="col-span-2">
+                                <Button
+                                    className="w-full h-full text-sm md:text-lg font-semibold tracking-widest"
+                                    onClick={handleSearch}
+                                    disabled={processing}
+                                >
+                                    Cari
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="grid-cols-8 block md:hidden mt-3 space-y-2">
+                            <div>
+                                <Label className="font-semibold text-sm md:text-base">
+                                    Type Kunci
+                                </Label>
+                                <Select
+                                    defaultValue={selectedType}
+                                    onValueChange={setSelectedType}
+                                >
+                                    <SelectTrigger className="h-full w-full">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="title">
+                                            Judul
+                                        </SelectItem>
+                                        <SelectItem value="genre">
+                                            Genre
+                                        </SelectItem>
+                                        <SelectItem value="year">
+                                            Tahun
+                                        </SelectItem>
+                                        <SelectItem value="location">
+                                            Lokasi
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div>
+                                <Label
+                                    className="font-semibold text-sm md:text-base"
+                                    htmlFor="kata_kunci"
+                                >
+                                    Kata Kunci
+                                </Label>
+                                <Input
+                                    name="kata_kunci"
+                                    id="kata_kunci"
+                                    type="text"
+                                    placeholder="Ketikkan Pencarian"
+                                    className="border-2 w-full h-full"
+                                    value={data?.search}
+                                    onChange={(e) => {
+                                        setSearch(e.target.value);
+                                        setIsOpenInfo(false);
+                                        setSelectedBook(null);
+                                    }}
+                                />
+                            </div>
+                            <div>
                                 <Button
                                     className="w-full h-full text-sm md:text-lg font-semibold tracking-widest"
                                     onClick={handleSearch}
