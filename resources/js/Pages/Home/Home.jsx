@@ -68,9 +68,15 @@ export default function Home({ books, latestBooks }) {
                     style={{ backgroundImage: "url('img/book.jpg')" }}
                 ></div>
                 <div className="relative text-white container mx-auto z-10 flex items-center space-x-5">
-                    <img src="img/logo_skanka.png" alt="logo_skanka" className="w-auto h-20 md:h-full" />
+                    <img
+                        src="img/logo_skanka.png"
+                        alt="logo_skanka"
+                        className="w-auto h-20 md:h-full"
+                    />
                     <div className="space-y-3">
-                        <h1 className="text-2xl md:text-5xl font-bold">SMK 1 KASREMAN</h1>
+                        <h1 className="text-2xl md:text-5xl font-bold">
+                            SMK 1 KASREMAN
+                        </h1>
                         <p className="text-base md:text-xl">
                             Katalog Buku Online yang Terintegrasi pada Koleksi
                             Perpustakaan.
@@ -85,7 +91,7 @@ export default function Home({ books, latestBooks }) {
                         <div className="grid grid-cols-8 gap-x-5 my-5 space-y-1">
                             <div className="col-span-2">
                                 <Label className="font-semibold text-base">
-                                    Type Kunci
+                                    Tipe Kunci
                                 </Label>
                             </div>
                             <div className="col-span-6">
