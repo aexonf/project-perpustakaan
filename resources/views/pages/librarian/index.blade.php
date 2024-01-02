@@ -144,11 +144,6 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-2">
-                        <label>Nama Penjaga<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-
-                    <div class="form-group mb-2">
                         <label>User<span class="text-danger">*</span></label>
                         <select class="form-control" name="user_id" id="user_id" required>
                             <option value="" selected></option>

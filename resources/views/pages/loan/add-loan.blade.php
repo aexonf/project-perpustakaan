@@ -30,7 +30,7 @@
             <div class="section-body">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Informasi Sekolah</h4>
+                        <h4>Pinjam Buku</h4>
                     </div>
                     <div class="card-body">
                         <form id="form-edit" class="needs-validation" method="POST" action="{{route("tambah.book.loan")}}" enctype="multipart/form-data">
@@ -44,7 +44,7 @@
                                         onchange="handleChangeFilter(this)">
                                         <option value=""></option>
                                         @foreach ($school_years as $school_year)
-                                            @if ($request->school_year === $school_year)
+                                            @if ($request->school_year === $school_year ||  $setting->school_years === $school_year)
                                                 <option value="{{ $school_year }}" selected>
                                                     {{ $school_year }}</option>
                                             @else

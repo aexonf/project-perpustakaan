@@ -7,6 +7,7 @@ use App\Models\ActiveStudents;
 use App\Models\Books;
 use App\Models\Librarian;
 use App\Models\LogBookLoan;
+use App\Models\Settings;
 use App\Models\Students;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class LoanController extends Controller
         return view("pages.loan.index", [
             "loan" => $peminjamResults,
             "books" => Books::where("status", "available")->get(),
-            "students" => $activeStudentResults
+            "students" => $activeStudentResults,
         ]);
     }
 
@@ -58,7 +59,8 @@ class LoanController extends Controller
            "angkatan" => ActiveStudents::where("school_year", $request->school_year)->pluck("generation")->unique(),
            "kelas" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->pluck("class")->unique(),
            "students" => ActiveStudents::where("school_year", $request->school_year)->where("generation", $request->generation)->where("class", $request->class)->get(),
-           "books" => Books::all()
+           "books" => Books::all(),
+           "setting" => Settings::first()
        ]);
     }
 
