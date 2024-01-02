@@ -36,9 +36,7 @@
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
                                     data-toggle="modal" data-target="#modal-create"><i class="fas fa-plus"></i>
                                     Tambah</button>
-                                <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                    data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
-                                    Import</button>
+
                             </div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <button type="button" class="btn btn-icon icon-left btn-info mr-2 mb-2"
