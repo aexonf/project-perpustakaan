@@ -33,7 +33,9 @@ class AuthController extends Controller
             if ($librarian && $librarian->status === "inactive") {
                 return Inertia::render("Login", ["message" => "Akun anda tidak aktif"]);
             }
-            return redirect('/admin')->with('success', 'Masuk berhasil!');
+
+            Auth::logout();
+            return redirect('/');
         }
 
         return Inertia::render("Login", ["message" => "Akun atau kata sandi tidak ditemukan"]);
