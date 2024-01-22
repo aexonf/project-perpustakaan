@@ -14,7 +14,7 @@
                     <span>Dashboard</span></a>
             </li>
 
-            @if (Auth::user()->role == 'admin')
+            @if (Auth::user()->role == 'admin' || \App\Models\Librarian::where('user_id', auth()->user()->id)->exists())
                 <li class="{{ Request::is('admin/buku') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('book') }}" id="route-admin"><i class="fa-solid fa-book"></i>
                         <span>Buku</span></a>

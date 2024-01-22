@@ -69,8 +69,12 @@
                                             <label class="mb-2">Status</label>
                                             <select class="form-control select2" name="status" required
                                                 onchange="handleChangeFilter(this)">
-                                                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia</option>
-                                                <option value="blank" {{ request('status') == 'blank' ? 'selected' : '' }}>Tidak Tersedia</option>
+                                                <option value="available"
+                                                    {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia
+                                                </option>
+                                                <option value="blank"
+                                                    {{ request('status') == 'blank' ? 'selected' : '' }}>Tidak Tersedia
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -169,7 +173,7 @@
                             <input type="text" class="form-control" name="title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>No Inventory<span class="text-danger">*</span></label>
+                            <label>No Inventori<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="no_inventory" required>
                         </div>
                         <div class="form-group mb-2">
@@ -192,7 +196,7 @@
                             <input type="text" class="form-control" name="tahun" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Stock<span class="text-danger">*</span></label>
+                            <label>Stok<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="stock" required>
                         </div>
                         <div class="form-group mb-2">
@@ -260,7 +264,7 @@
                             <input type="text" class="form-control" name="title" id="title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="no_inventory">No Inventory<span class="text-danger">*</span></label>
+                            <label for="no_inventory">No Inventori<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="no_inventory" id="no_inventory" required>
                         </div>
                         <div class="form-group mb-2">
@@ -283,7 +287,7 @@
                             <input type="text" class="form-control" name="tahun" id="tahun" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="stock">Stock<span class="text-danger">*</span></label>
+                            <label for="stock">Stok<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="stock" id="stock" required>
                         </div>
                         <div class="form-group mb-2">

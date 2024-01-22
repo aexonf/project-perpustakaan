@@ -229,7 +229,7 @@
                             <input type="text" class="form-control" name="title" id="title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="no_inventory">No Inventory<span class="text-danger">*</span></label>
+                            <label for="no_inventory">No Inventori<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="no_inventory" id="no_inventory" required>
                         </div>
                         <div class="form-group mb-2">
@@ -252,7 +252,7 @@
                             <input type="text" class="form-control" name="tahun" id="tahun" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="stock">Stock<span class="text-danger">*</span></label>
+                            <label for="stock">Stok<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="stock" id="stock" required>
                         </div>
                         <div class="form-group mb-2">

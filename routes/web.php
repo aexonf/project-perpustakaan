@@ -35,7 +35,7 @@ Route::controller(AuthController::class)->group(function () {
 
 
 
-Route::prefix("/admin")->middleware('auth')->group(function () {
+Route::prefix("/admin")->middleware("auth")->group(function () {
 
     Route::get("/", function () {
         return view("pages.index", [
@@ -57,7 +57,7 @@ Route::prefix("/admin")->middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix("/pinjaman")->group(function () {
+    Route::prefix("/pinjaman")->middleware("librarian")->group(function () {
 
         Route::controller(LoanController::class)->group(function () {
             Route::get("/", "index")->name("loan");
@@ -71,7 +71,7 @@ Route::prefix("/admin")->middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix("/penjaga")->group(function () {
+    Route::prefix("/penjaga")->middleware("admin")->group(function () {
 
         Route::controller(LibrarianController::class)->group(function () {
             Route::get("/", "index")->name("penjaga");

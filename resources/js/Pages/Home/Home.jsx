@@ -74,10 +74,10 @@ export default function Home({ books, latestBooks }) {
                         className="w-auto h-20 md:h-full"
                     />
                     <div className="space-y-3">
-                        <h1 className="text-xl md:text-5xl font-bold">
+                        <h1 className="text-2xl md:text-5xl font-bold">
                             SMK 1 KASREMAN
                         </h1>
-                        <p className="text-xs md:text-xl">
+                        <p className="text-base md:text-xl">
                             Katalog Buku Online yang Terintegrasi pada Koleksi
                             Perpustakaan.
                         </p>
@@ -92,8 +92,8 @@ export default function Home({ books, latestBooks }) {
                         </h3>
                         <div className="hidden md:grid grid-cols-8 gap-x-5 my-5">
                             <div className="col-span-2">
-                                <Label className="font-semibold text-sm md:text-base">
-                                    Type Kunci
+                                <Label className="font-semibold text-base">
+                                    Tipe Kunci
                                 </Label>
                             </div>
                             <div className="col-span-6">

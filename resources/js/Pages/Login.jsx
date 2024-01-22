@@ -85,7 +85,7 @@ export default function Login({ message }) {
                                 Username
                             </Label>
                             <Input
-                                placeholder="example@username.com"
+                                placeholder=""
                                 type="text"
                                 name="username"
                                 id="username"
@@ -120,7 +120,7 @@ export default function Login({ message }) {
                                 name="password"
                                 id="password"
                                 value={data.password}
-                                placeholder="password"
+                                placeholder=""
                                 onChange={(e) => {
                                     setData("password", e.target.value);
                                     setError("password", null);
