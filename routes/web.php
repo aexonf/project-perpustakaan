@@ -9,6 +9,7 @@ use App\Models\Books;
 use App\Models\LogBookLoan;
 use App\Models\Students;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-
+Route::controller(\App\Http\Controllers\BookController::class)->group(function () {
+    Route::get("/books", "index")->name("books");
+    Route::post("/books", "index")->name("books");
+});
 
 Route::prefix("/admin")->middleware("auth")->group(function () {
 

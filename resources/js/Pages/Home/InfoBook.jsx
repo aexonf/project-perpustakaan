@@ -21,43 +21,43 @@ export default function InfoBook({ book, setSelectedBook, setIsOpenInfo }) {
             <div className="mt-2 space-y-2">
                 <div>
                     <p className="text-lg">Judul</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight break-words">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight break-words">
                         {book?.title}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">Penulis</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.writer}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">Genre</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.genre}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">Tahun</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.year}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">No. Inventaris</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.no_inventory}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">Stok</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.stock}
                     </h4>
                 </div>
                 <div>
                     <p className="text-lg">Lokasi</p>
-                    <h4 className="text-xl md:text-2xl font-semibold tracking-tight">
+                    <h4 className="text-lg md:text-2xl font-semibold tracking-tight">
                         {book?.location}
                     </h4>
                 </div>
