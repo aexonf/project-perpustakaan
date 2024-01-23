@@ -1,31 +1,19 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 
-export default function NewBooks({ setIsOpenInfo, data, setSelectedBook }) {
+export default function NewBooks({ data }) {
     return (
-        <div
-            className={cn(
-                "rounded-md border p-4",
-                data.length > 0 ? "h-[512px]" : "h-full"
-            )}
-        >
-            <h3 className="text-xl md:text-2xl font-semibold tracking-tight">
+        <div className="rounded-md p-4">
+            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-center">
                 Buku Terbaru
             </h3>
-            <div className="space-y-4 my-4">
-                {data.length > 0 ? (
+            <div className="gap-4 my-4 grid md:grid-cols-4 grid-cols-2">
+                {data?.length > 0 ? (
                     data?.map((book) => (
                         <div
-                            className="border-black border-2 p-5 rounded-lg"
+                            className="border-black border-2 p-5 rounded-lg col-span-1"
                             key={book?.id}
                         >
-                            <h4
-                                className="text-primary text-lg md:text-xl font-semibold tracking-tight mb-2 truncate cursor-pointer"
-                                onClick={() => {
-                                    setIsOpenInfo(true);
-                                    setSelectedBook(book);
-                                }}
-                            >
+                            <h4 className="text-primary text-lg md:text-xl font-semibold tracking-tight mb-2 ">
                                 {book?.title}
                             </h4>
                             <p className="text-base md:text-lg">

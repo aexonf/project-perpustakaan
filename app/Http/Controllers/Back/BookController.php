@@ -26,9 +26,9 @@ class BookController extends Controller
 
         if ($request->has('search')) {
             $books->where("title", 'LIKE', "%$bookQueryTitle%");
-        } else if ($request->has('status')) {
+        } elseif ($request->has('status')) {
             $books->where("status", 'LIKE', "%$bookQueryStatus%");
-        } else if ($request->has("genre")) {
+        } elseif ($request->has("genre")) {
             $books->where("genre", 'LIKE', "%$bookQueryGenre%");
         }
 
