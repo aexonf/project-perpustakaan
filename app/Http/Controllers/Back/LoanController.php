@@ -90,6 +90,7 @@ class LoanController extends Controller
             "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
             "loan_date" => Carbon::now(),
             "return_date" => "",
+            "loan_end_date" => $request->loan_end_date,
         ]);
 
         // jika peminjaman berhasil

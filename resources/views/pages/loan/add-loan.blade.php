@@ -116,6 +116,27 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group row mb-2 mb-md-3">
+                                <label class="col-sm-4 col-form-label">Tanggal Awal</label>
+                                <div class="col-sm-8">
+                                    <div class="custom-file">
+                                      <input type="date" name="loan_date" class="form-control">
+</div>
+        <small class="form-text text-danger">Optional</small>
+                                </div>
+                            </div>
+
+ <div class="form-group row mb-2 mb-md-3">
+                                <label class="col-sm-4 col-form-label">Tanggal Akhir</label>
+                                <div class="col-sm-8">
+                                    <div class="custom-file">
+                                      <input type="date" name="loan_end_date" class="form-control">
+                                </div>
+                                </div>
+                            </div>
+
+
                             <div class="mt-5 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                             </div>
@@ -136,6 +157,7 @@
             currentURL.searchParams.set(e.name, e.value);
             window.history.pushState({}, '', currentURL);
             location.reload();
-        }
+}
+
     </script>
 @endpush
