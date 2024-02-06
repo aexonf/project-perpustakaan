@@ -3,8 +3,8 @@
 @section('title', 'Pinjaman - SMK N 1 Kasreman')
 
 @push('style')
-    <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+ <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
 @endpush
 
 @section('main')
@@ -107,12 +107,13 @@
                                 <label class="col-sm-4 col-form-label">Buku</label>
                                 <div class="col-sm-8">
                                     <div class="custom-file">
-                                        <select class="form-control select2" name="book" required >
+                                        <select class="select2" name="book[]" required  multiple="multiple">
                                             <option value=""></option>
                                             @foreach ($books as $book)
                                                     <option value="{{ $book->id }}">{{ $book->title }}</option>
                                             @endforeach
                                         </select>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +137,6 @@
                                 </div>
                             </div>
 
-
                             <div class="mt-5 d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                             </div>
@@ -150,6 +150,7 @@
 
 @push('scripts')
     <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
         const handleChangeFilter = (e) => {
@@ -159,5 +160,8 @@
             location.reload();
 }
 
+$(document).ready(function() {
+    $('.select2').select2();
+});
     </script>
 @endpush

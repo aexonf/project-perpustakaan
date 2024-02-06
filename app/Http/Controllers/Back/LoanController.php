@@ -84,11 +84,18 @@ class LoanController extends Controller
          * @param \Illuminate\Http\Request $request
          * @return \Illuminate\Http\RedirectResponse
          */
+
+         $bookId = null;
+
+         foreach ($request->book as  $value) {
+            $bookId = $value;
+        }
+
         $loan = LogBookLoan::create([
             "student_id" => $request->student,
-            "book_id" => $request->book,
+            "book_id" => $bookId,
             "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
-            "loan_date" => Carbon::now(),
+            "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
             "loan_end_date" => $request->loan_end_date,
         ]);
@@ -207,12 +214,19 @@ class LoanController extends Controller
          * @param \Illuminate\Http\Request $request
          * @return \Illuminate\Http\RedirectResponse
          */
+
+         $bookId = null;
+
+         foreach ($request->book as  $value) {
+            $bookId = $value;
+        }
         $loan = LogBookLoan::create([
             "student_id" => $id,
-            "book_id" => $request->book,
+            "book_id" => $bookId,
             "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
-            "loan_date" => Carbon::now(),
+            "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
+            "loan_end_date" => $request->loan_end_date,
         ]);
 
         // jika peminjaman berhasil
