@@ -106,6 +106,7 @@
                                             data-toggle="modal" data-target="#modal-detail"
                                             data-value="{{ $value->id }}" onclick="
                                                     $('#modal-detail #form-detail').attr('action', '{{ route('loan.returned', $value->id) }}');
+                                                    $('#modal-detail #form-detail #loan_end_date').attr('value', '{{ $value->loan_end_date }}');
                                                     $('#modal-detail #form-detail #loan_date').attr('value', '{{ $value->loan_date }}');
                                                     $('#modal-detail #form-detail #title').attr('value', '{{ $value->book->title }}');
                                                     $('#modal-detail #form-detail #librarian').attr('value', '{{ $value->librarian_id != null ? $value->librarian->name : 'admin' }}');
@@ -117,6 +118,8 @@
                                         </button>
 
                                     </td>
+
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -164,6 +167,14 @@
                         <label for="status">Status</label>
                         <input type="text" id="status" class="form-control" name="status" readonly>
                     </div>
+                    <div class="form-group mb-2">
+                        <label for="loan_end_date">Batas Pinjaman</label>
+                        <input type="text" id="loan_end_date" class="form-control" name="loan_end_date" readonly>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="bill">Denda</label>
+                        <input type="text" id="bill" class="form-control" name="bill" readonly>
+                    </div>
                     <div class="mt-5 d-flex justify-content-end" id="button_return">
                         <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
                         <button type="submit" class="btn btn-primary ml-2" id="dikembalikan">Di Kembalikan</button>
@@ -180,7 +191,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Siswa</h5>
+                <h5 class="modal-title">Tambah Pinjaman</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -235,6 +246,30 @@
     $(document).ready(function() {
     $('.select2').select2();
 });
+
+
+
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+const day = String(currentDate.getDate()).padStart(2, '0');
+const formattedDate = `${year}-${month}-${day}`;
+console.log(formattedDate)
+
+let batasPinjaman = new Date(document.getElementById('loan_end_date').value);
+console.log(document.getElementById('loan_end_date').value);
+
+// Mengecek jika batas pinjaman melebihi waktu saat ini
+if (batasPinjaman > currentDate) {
+    document.getElementById('bill').removeAttribute('readonly');
+} else {
+    document.getElementById('bill').setAttribute('readonly', 'readonly');
+}
+
+let dendaInput = document.getElementById('bill');
+
+
+
 </script>
 @endpush
 `
