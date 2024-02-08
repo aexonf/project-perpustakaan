@@ -58,6 +58,7 @@ Route::prefix("/admin")->group(function () {
             Route::delete("/delete/{id}", "delete")->name("book.delete");
             Route::get("/download-template", "downloadTemplate")->name("book.download.template");
             Route::post("/import", "import")->name("book.import");
+            Route::get("/export", "export")->name("book.export");
         });
     });
 

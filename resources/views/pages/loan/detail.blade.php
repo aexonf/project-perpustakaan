@@ -204,7 +204,6 @@
                     <div class="form-group mb-2">
                         <label for="buku">Buku<span class="text-danger">*</span></label>
                         <select class="form-control select2" name="book[]" id="buku"  multiple="multiple" required>
-                            <option value="" selected></option>
                             @foreach ($book as $value)
                             <option value="{{ $value->id }}">
                                 {{ $value->title }}

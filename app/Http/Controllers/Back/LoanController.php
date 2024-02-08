@@ -55,13 +55,25 @@ class LoanController extends Controller
 
     public function storeView(Request $request)
     {
-        $angkatan = ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->pluck("generation")->unique();
+
+        // Mengambil tahun sekarang
+        $currentYear = Carbon::now()->year;
+        $nextYear = $currentYear + 1;
+
+        // Format tahun dalam format yang diinginkan (misalnya 2023/2024)
+        $schoolYear = "$currentYear/$nextYear";
+
+        // Gunakan nilai default jika $request->school_year adalah null
+        $schoolYear = $request->school_year ?? $schoolYear;
+
+        // Ambil data angkatan
+        $angkatan = ActiveStudents::where("school_year", $schoolYear)->pluck("generation")->unique();
 
         return view("pages.loan.add-loan", [
             "request" => $request,
             "angkatan" => $angkatan,
-            "kelas" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->pluck("class")->unique(),
-            "students" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->where("class", $request->class)->get(),
+            "kelas" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->pluck("class")->unique(),
+            "students" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->where("class", $request->class)->get(),
             "books" => Books::all(),
             'setting' => Settings::first()
         ]);
@@ -85,9 +97,9 @@ class LoanController extends Controller
          * @return \Illuminate\Http\RedirectResponse
          */
 
-         $bookId = null;
+        $bookId = null;
 
-         foreach ($request->book as  $value) {
+        foreach ($request->book as $value) {
             $bookId = $value;
         }
 
@@ -215,9 +227,9 @@ class LoanController extends Controller
          * @return \Illuminate\Http\RedirectResponse
          */
 
-         $bookId = null;
+        $bookId = null;
 
-         foreach ($request->book as  $value) {
+        foreach ($request->book as $value) {
             $bookId = $value;
         }
         $loan = LogBookLoan::create([
