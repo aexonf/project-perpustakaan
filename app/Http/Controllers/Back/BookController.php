@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Exports\BookExport;
 use App\Http\Controllers\Controller;
 use App\Imports\BookImport;
 use App\Imports\TemplateImport;
 use App\Models\Books;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BookController extends Controller
 {
@@ -138,4 +141,11 @@ class BookController extends Controller
             return redirect()->route('book')->with('error', "Data Buku gagal diimport!");
         }
     }
+
+    public function export()
+    {
+        $qrCode = QrCode::size(50)->generate("a");
+        $pdf = Pdf::loadview('pages.book.format-export',['data'=> Books::all(), "qr" => $qrCode]);
+    	return $pdf->download('book.pdf');
+     }
 }

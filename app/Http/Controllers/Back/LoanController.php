@@ -55,13 +55,25 @@ class LoanController extends Controller
 
     public function storeView(Request $request)
     {
-        $angkatan = ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->pluck("generation")->unique();
+
+        // Mengambil tahun sekarang
+        $currentYear = Carbon::now()->year;
+        $nextYear = $currentYear + 1;
+
+        // Format tahun dalam format yang diinginkan (misalnya 2023/2024)
+        $schoolYear = "$currentYear/$nextYear";
+
+        // Gunakan nilai default jika $request->school_year adalah null
+        $schoolYear = $request->school_year ?? $schoolYear;
+
+        // Ambil data angkatan
+        $angkatan = ActiveStudents::where("school_year", $schoolYear)->pluck("generation")->unique();
 
         return view("pages.loan.add-loan", [
             "request" => $request,
             "angkatan" => $angkatan,
-            "kelas" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->pluck("class")->unique(),
-            "students" => ActiveStudents::where("school_year", $request->school_year ?? Settings::first()->school_years)->where("generation", $request->generation)->where("class", $request->class)->get(),
+            "kelas" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->pluck("class")->unique(),
+            "students" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->where("class", $request->class)->get(),
             "books" => Books::all(),
             'setting' => Settings::first()
         ]);
@@ -84,12 +96,20 @@ class LoanController extends Controller
          * @param \Illuminate\Http\Request $request
          * @return \Illuminate\Http\RedirectResponse
          */
+
+        $bookId = null;
+
+        foreach ($request->book as $value) {
+            $bookId = $value;
+        }
+
         $loan = LogBookLoan::create([
             "student_id" => $request->student,
-            "book_id" => $request->book,
+            "book_id" => $bookId,
             "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
-            "loan_date" => Carbon::now(),
+            "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
+            "loan_end_date" => $request->loan_end_date,
         ]);
 
         // jika peminjaman berhasil
@@ -206,12 +226,19 @@ class LoanController extends Controller
          * @param \Illuminate\Http\Request $request
          * @return \Illuminate\Http\RedirectResponse
          */
+
+        $bookId = null;
+
+        foreach ($request->book as $value) {
+            $bookId = $value;
+        }
         $loan = LogBookLoan::create([
             "student_id" => $id,
-            "book_id" => $request->book,
+            "book_id" => $bookId,
             "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
-            "loan_date" => Carbon::now(),
+            "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
+            "loan_end_date" => $request->loan_end_date,
         ]);
 
         // jika peminjaman berhasil
