@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Str;
+
 
 class BookController extends Controller
 {
@@ -58,6 +60,15 @@ class BookController extends Controller
         ]);
 
 
+        if ($request->hasFile('image')) {
+            $rand = str::random(8);
+            $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move('storage/upload/book/', $file_name);
+            $validasi["image"] = $file_name;
+        }else{
+            $validasi["image"] = "";
+        }
+
         // create buku
         $createBook = Books::create([
             "title" => $validasi["title"],
@@ -68,6 +79,8 @@ class BookController extends Controller
             "stock" => $validasi["stock"],
             "location" => $validasi["location"],
             "no_inventory" => $validasi["no_inventory"],
+            "image" => $validasi["image"],
+            "user_id" => 1,
         ]);
 
 
@@ -94,6 +107,7 @@ class BookController extends Controller
             "stock" =>  $request->stock,
             "location" =>  $request->location,
             "no_inventory" =>  $request->no_inventory,
+            "user_id" => 1,
         ]);
 
         // jika buku berhasil di update

@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('log_book_loan', function (Blueprint $table) {
-            $table->string("loan_end_date");
+             // relasi ke book
+             $table->unsignedBigInteger('book_id');
+
+             $table->foreign('book_id')
+                 ->references('id')
+                 ->on('books')
+                 ->onDelete('cascade')
+                 ->onUpdate('cascade');
+
         });
     }
 
@@ -22,7 +30,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('log_book_loan', function (Blueprint $table) {
-            $table->dropColumn('loan_end_date');
+            $table->dropColumn('book_id');
         });
     }
 };

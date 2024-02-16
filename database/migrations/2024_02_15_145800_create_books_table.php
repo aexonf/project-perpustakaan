@@ -20,8 +20,17 @@ return new class extends Migration
             $table->string('year');
             $table->integer('no_inventory');
             $table->integer('stock');
+            $table->string('image')->nullable(true);
             $table->string('location');
             $table->enum('status', ['available', 'blank']);
+            // relasi ke users
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->timestamps();
         });

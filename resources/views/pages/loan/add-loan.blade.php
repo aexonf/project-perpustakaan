@@ -38,75 +38,13 @@
                         @csrf
                         @method('POST')
                         <div class="form-group row mb-2 mb-md-3">
-                            <label class="col-sm-4 col-form-label">Tahun Pelajaran<span
-                                    class="text-danger">*</span></label>
-                            <div class="col-sm-8">
-                                <select class="form-control select2" name="school_year" required
-                                    onchange="handleChangeFilter(this)">
-                                    <option value=""></option>
-                                    @php
-                                    $schoolYears = $school_years ?? [];
-                                    $setting = $setting ?? null;
-                                    @endphp
-                                    @foreach ($schoolYears as $school_year)
-                                    @if ($request->school_year === $school_year || optional($setting)->school_years ===
-                                    $school_year)
-                                    <option value="{{ $school_year }}" selected>{{ $school_year }}</option>
-                                    @else
-                                    <option value="{{ $school_year }}">{{ $school_year }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="form-group row mb-2 mb-md-3">
-                            <label class="col-sm-4 col-form-label">Tingkat<span class="text-danger">*</span></label>
-                            <div class="col-sm-8">
-                                <select class="form-control select2" name="generation" required
-                                    onchange="handleChangeFilter(this)">
-                                    <option value=""></option>
-                                    @foreach ($angkatan as $generation)
-                                    @if ($request->generation === $generation)
-                                    <option value="{{ $generation }}" selected>
-                                        {{ $generation }}</option>
-                                    @else
-                                    <option value="{{ $generation }}">{{ $generation }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-2 mb-md-3">
-                            <label class="col-sm-4 col-form-label">Kelas</label>
-                            <div class="col-sm-8">
-                                <div class="custom-file">
-                                    <select class="form-control select2" name="class" required
-                                        onchange="handleChangeFilter(this)">
-                                        <option value=""></option>
-                                        @foreach ($kelas as $class)
-                                        @if ($request->class === $class)
-                                        <option value="{{ $class }}" selected>
-                                            {{ $class }}</option>
-                                        @else
-                                        <option value="{{ $class }}">{{ $class }}</option>
-                                        @endif
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-2 mb-md-3">
                             <label class="col-sm-4 col-form-label">Siswa</label>
                             <div class="col-sm-8">
                                 <div class="custom-file">
-                                    <select class="form-control select2" name="student" required>
+                                    <select class="form-control select2" name="user_id" required>
                                         <option value=""></option>
-                                        @foreach ($students as $siswa)
-                                        <option value="{{ $siswa->student_id }}">{{ $siswa->student->name }}</option>
+                                        @foreach ($user as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

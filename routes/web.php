@@ -2,14 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Back\BookController;
-use App\Http\Controllers\Back\LibrarianController;
 use App\Http\Controllers\Back\LoanController;
-use App\Http\Controllers\HomeController;
-use App\Models\Books;
-use App\Models\LogBookLoan;
-use App\Models\Students;
+use App\Http\Controllers\Back\UserManagementController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +18,7 @@ use Inertia\Inertia;
 */
 
 
-Route::controller(HomeController::class)->group(function () {
-    Route::get("/", "index");
-    Route::get("/{id}/detail", "detail");
-});
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::get("/login", "index")->name("login")->middleware("guest");
@@ -34,19 +26,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::controller(\App\Http\Controllers\BookController::class)->group(function () {
-    Route::get("/books", "index")->name("books");
-    Route::post("/books", "index")->name("books");
-});
 
 Route::prefix("/admin")->group(function () {
 
     Route::get("/", function () {
-        return view("pages.index", [
-            "books" => Books::all(),
-            "student" => Students::all(),
-            "loan" => LogBookLoan::all(),
-        ]);
+        return view("pages.index");
     })->name("admin");
 
     Route::prefix("/buku")->group(function () {
@@ -76,15 +60,18 @@ Route::prefix("/admin")->group(function () {
         });
     });
 
-    Route::prefix("/penjaga")->group(function () {
+    Route::prefix("/user/management")->group(function () {
 
-        Route::controller(LibrarianController::class)->group(function () {
-            Route::get("/", "index")->name("penjaga");
-            Route::post("/", "create")->name("penjaga.create");
-            Route::put("/{id}/update", "update")->name("penjaga.update");
-            Route::delete("/delete/{id}", "delete")->name("penjaga.delete");
-            Route::get("/download-template", "downloadTemplate")->name("penjaga.download.template");
-            Route::post("/import", "import")->name("penjaga.import");
+        Route::controller(UserManagementController::class)->group(function () {
+
+            Route::get("/", "studentIndex")->name("student.management");
+            Route::post("/", "studentCreate")->name("student.create");
+            Route::put("/edit/student/{id}", "studentEdit")->name("student.edit");
+            Route::delete("/delete/student/{id}", "studentDelete")->name("student.delete");
+
         });
+
     });
+
+
 });

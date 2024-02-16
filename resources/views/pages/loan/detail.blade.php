@@ -35,15 +35,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="student-id">NIS Siswa</label>
-                                <input type="text" class="form-control" id="student-id" value="{{ $student->nis }}"
+                                <label for="student-id">Email</label>
+                                <input type="text" class="form-control" id="student-id" value="{{ $user->email }}"
                                     readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="student-name">Status</label>
-                                <input type="text" class="form-control" id="student-name" value="{{ $student->status }}"
+                                <input type="text" class="form-control" id="student-name" value="{{ $user->status }}"
                                     readonly>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="student-class">Nama Siswa</label>
-                                <input type="text" class="form-control" id="student-class" value="{{ $student->name }}"
+                                <label for="student-class">Nama</label>
+                                <input type="text" class="form-control" id="student-class" value="{{ $user->name }}"
                                     readonly>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2" data-toggle="modal"
                             data-target="#modal-create"><i class="fas fa-plus"></i>
                             Tambah Pinjaman</button>
-                        <form action="{{ route('loan.returned.all', $student->id) }}" method="post">
+                        <form action="{{ route('loan.returned.all', $user->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
@@ -119,7 +119,7 @@
 
                                     </td>
 
-                                    
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -198,7 +198,7 @@
             </div>
             <div class="modal-body">
                 <form class="needs-validation" novalidate="" method="POST"
-                    action="{{ route('loan.book', $student->id) }}" enctype="multipart/form-data">
+                    action="{{ route('loan.book', $user->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="form-group mb-2">

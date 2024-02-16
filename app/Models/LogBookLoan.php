@@ -18,13 +18,8 @@ class LogBookLoan extends Model
     {
         return $this->belongsTo(Books::class, 'book_id');
     }
-    public function librarian(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Librarian::class, 'librarian_id');
-    }
-
-    public function student(): BelongsTo
-    {
-        return $this->belongsTo(Students::class);
+        return $this->belongsTo(User::class);
     }
 }

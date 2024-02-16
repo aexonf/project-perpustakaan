@@ -60,7 +60,7 @@
                                 enctype="multipart/form-data">
                                 <div class="row">
 
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
                                             <label class="mb-2">Genre</label>
                                             <select class="form-control select2" id="classSelect" name="genre" required
@@ -70,7 +70,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
                                             <label class="mb-2">Status</label>
@@ -98,6 +98,7 @@
                                     <tr>
                                         <th class="text-center" style="width: 80px;">#</th>
                                         <th style="min-width: 240px;">Judul</th>
+                                        <th style="min-width: 240px;">Genre</th>
                                         <th style="min-width: 160px;">Penulis</th>
                                         <th style="min-width: 160px;">Status</th>
                                         <th style="min-width: 160px;">Aksi</th>
@@ -109,14 +110,15 @@
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
                                                 <div class="media">
+                                                    <img alt="image" class="mr-3 rounded-circle" width="48" src="{{ asset('storage/upload/book/'. $book->image) }}">
                                                     <div class="media-body">
                                                         <div class="media-title">
-                                                            {{ $book->title }}</div>
-                                                        <div class="text-job text-muted">
-                                                            {{ $book->genre }}</div>
+                                                            {{ $book->title }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>{{ $book->genre }}</td>
                                             <td>{{ $book->writer }}</td>
                                             <td>
                                                 @if ($book->status === 'blank')
@@ -140,6 +142,7 @@
                                                     $('#modal-edit #form-edit #tahun').attr('value', '{{ $book->year }}');
                                                     $('#modal-edit #form-edit #stock').attr('value', '{{ $book->stock }}');
                                                     $('#modal-edit #form-edit #location').attr('value', '{{ $book->location }}');
+                                                    $('#modal-edit #form-edit #image').attr('src', '{{ asset('storage/upload/book/' .$book->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('book.update', $book->id) }}');
                                                         "><i
                                                             class="fas fa-edit"></i></button>
@@ -209,6 +212,10 @@
                         <div class="form-group mb-2">
                             <label>Lokasi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="location" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Image</label>
+                            <input type="file" class="form-control" name="image">
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
@@ -300,6 +307,17 @@
                         <div class="form-group mb-2">
                             <label for="location">Lokasi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="location" id="location" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Image</label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" name="image">
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            <div class="d-flex align-items-center">
+                                <img alt="image" class="mr-3" width="100" src="" id="image">
+                            </div>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>

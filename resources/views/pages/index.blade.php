@@ -7,6 +7,9 @@
 @endpush
 
 @section('main')
+
+<h5>Hello World</h5>
+
     <div class="main-content mx-auto">
         <section class="section">
             <div class="section-header">
@@ -25,7 +28,7 @@
                                     <h4>Total Buku</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{ $books->count() }}
+                                    {{-- {{ $books->count() }} --}}
                                 </div>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                                     <h4>Total Siswa</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{ $student->count() }}
+                                    {{-- {{ $student->count() }} --}}
                                 </div>
                             </div>
                         </div>
@@ -55,7 +58,7 @@
                                     <h4>Total Peminjam</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{ $loan->count() }}
+                                    {{-- {{ $loan->count() }} --}}
                                 </div>
                             </div>
                         </div>

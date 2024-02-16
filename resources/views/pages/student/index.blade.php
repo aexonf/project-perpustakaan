@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Pinjaman - SMK N 1 Kasreman')
+@section('title', 'Daftar Siswa')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Daftar Pinjaman</h1>
+                <h1>Daftar Siswa</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -33,11 +33,19 @@
                     <div class="card-header">
                         <div class="w-100 d-flex justify-content-between flex-wrap">
                             <div class="d-flex align-items-center flex-wrap">
-                                <a href="{{ route('tambah.book.index') }}">
-                                    <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
-                                            class="fas fa-plus"></i>
-                                        Tambah</button></a>
-
+                                <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
+                                    data-toggle="modal" data-target="#modal-create"><i class="fas fa-plus"></i>
+                                    Tambah</button>
+                                <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
+                                    data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
+                                    Import</button>
+                                    <form action="{{route('book.export')}}" method="get">
+                                        @csrf
+                                        @method("GET")
+                                        <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
+                                      ><i class="fas fa-upload"></i>
+                                        Export</button>
+                                    </form>
                             </div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <button type="button" class="btn btn-icon icon-left btn-info mr-2 mb-2"
@@ -48,26 +56,38 @@
                     </div>
                     <div class="card-body">
                         <div class="collapse mb-3 pb-3 border-bottom show" id="section-filter">
-                            <form class="needs-validation" novalidate="" method="GET" action=""
+                            <form class="needs-validation" novalidate="" method="GET" action="{{ route('book') }}"
                                 enctype="multipart/form-data">
                                 <div class="row">
+
+                                    {{-- <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                        <div class="form-group mb-2">
+                                            <label class="mb-2">Genre</label>
+                                            <select class="form-control select2" id="classSelect" name="genre" required
+                                                onchange="handleChangeFilter(this)">
+                                                @foreach ($genre as $g)
+                                                    <option value="{{ $g }}">{{ $g }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-group mb-2">
                                             <label class="mb-2">Status</label>
                                             <select class="form-control select2" name="status" required
                                                 onchange="handleChangeFilter(this)">
-                                                <option value="" selected></option>
-                                                <option value="returned"
-                                                    {{ request('status') == 'returned' ? 'selected' : '' }}>Di kembalikan
+                                                <option value="available"
+                                                    {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia
                                                 </option>
-                                                <option value="pending"
-                                                    {{ request('status') == 'pending' ? 'selected' : '' }}>Meminjam</option>
+                                                <option value="blank"
+                                                    {{ request('status') == 'blank' ? 'selected' : '' }}>Tidak Tersedia
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <a href="{{ route('loan') }}" class="btn btn-danger ml-2">Reset</a>
+                                    <a href="{{ route('book') }}" class="btn btn-danger ml-2">Reset</a>
                                     <button type="submit" class="btn btn-primary ml-2">Kirim</button>
                                 </div>
                             </form>
@@ -77,38 +97,42 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 80px;">#</th>
-                                        <th style="min-width: 240px;">Peminjam</th>
-                                        <th style="min-width: 160px;">Buku</th>
+                                        <th style="min-width: 240px;">Username</th>
+                                        <th style="min-width: 240px;">Gmail</th>
                                         <th style="min-width: 160px;">Status</th>
                                         <th style="min-width: 160px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($loan as $index => $value)
+                                    @foreach ($student as $index => $data)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->email }}</td>
                                             <td>
-                                                {{ $value->user->name }}
-                                            </td>
-                                            <td>{{ $value->book->title }}</td>
-                                            <td
-                                                class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
-                                                @if ($value->status === 'pending')
-                                                    Meminjam
+                                                @if ($data->status === 'not_active')
+                                                    <span class="badge badge-warning">Tidak Aktif</span>
                                                 @else
-                                                    Dikembalikan
+                                                    <span class="badge badge-success">Aktif</span>
                                                 @endif
                                             </td>
 
                                             <td>
                                                 <div class="d-flex items-center">
-                                                    <a href="{{ route('loan.detail', $value->id) }}"
-                                                        style="text-decoration: none;">
-                                                        <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"
-                                                            data-toggle="modal">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                    </a>
+                                                    <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"
+                                                        data-toggle="modal" data-target="#modal-edit"
+                                                        onclick="
+                                                    $('#modal-edit #form-edit');
+                                                    $('#modal-edit #form-edit #name').attr('value', '{{ $data->name }}');
+                                                    $('#modal-edit #form-edit #email').attr('value', '{{ $data->email }}');
+                                                    $('#modal-edit #form-edit #status').val('{{ $data->status }}');
+                                                    $('#modal-edit #form-edit').attr('action', '{{ route('student.edit', $data->id) }}');
+                                                    "><i
+                                                            class="fas fa-edit"></i></button>
+                                                    <button type="button" class="btn btn-icon btn-danger mr-2 mb-2"
+                                                        data-toggle="modal" data-target="#modal-delete"
+                                                        onclick="$('#modal-delete #form-delete').attr('action', '{{ route('student.delete', $data->id) }}')"><i
+                                                            class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -128,32 +152,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Pinjaman</h5>
+                    <h5 class="modal-title">Tambah Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('tambah.book.index') }}"
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('student.create') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="student">User<span class="text-danger">*</span></label>
-                            <select class="form-control" name="student" id="student" required>
-                                <option value="" selected></option>
-                                {{$user}}
-                                @foreach ($user as $data)
-                                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                                @endforeach
-                            </select>
+                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="name" id="name" required>
                         </div>
-                        {{-- buku --}}
                         <div class="form-group mb-2">
-                            <label for="book">Buku<span class="text-danger">*</span></label>
-                            <select class="form-control" name="book" id="book" required>
-                                @foreach ($books as $book)
-                                    <option value="{{ $book->id }}">{{ $book->title }}</option>
-                                @endforeach
+                            <label for="email">Gmail<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="status">Status<span class="text-danger">*</span></label>
+                            <select class="form-control" name="status" id="status" required>
+                                <option value="active">Aktif</option>
+                                <option value="not_active">Tidak Aktif</option>
                             </select>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
@@ -170,28 +190,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Import Siswa Aktif</h5>
+                    <h5 class="modal-title">Import Buku</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{-- <form class="needs-validation" novalidate="" method="POST"
-                        action="{{route("active-student.import")}}" enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('book.import') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label>File </label>
-                            <input type="file" class="form-control" name="books" required>
+                            <input type="file" class="form-control" name="book" required>
                         </div>
                         <div>
-                            <a href="{{ route('active-student.export') }}"
+                            <a href="{{ route('book.download.template') }}"
                                 class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
                                 Unduh Template</a>
-                        </div> --}}
-                    <div class="mt-5 d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary ml-2">Kirim</button>
-                    </div>
+                        </div>
+                        <div class="mt-5 d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary ml-2">Kirim</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -202,7 +222,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ubah Siswa Aktif</h5>
+                    <h5 class="modal-title">Ubah Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -213,39 +233,19 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
-                            <label for="title">Judul Buku<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="title" id="title" required>
+                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="no_inventory">No Inventori<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="no_inventory" id="no_inventory" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="genre">Genre<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="genre" id="genre" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="writer">Penulis<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="writer" id="writer" required>
+                            <label for="email">Gmail<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="form-group mb-2">
                             <label for="status">Status<span class="text-danger">*</span></label>
                             <select class="form-control" name="status" id="status" required>
-                                <option value="available">Tersedia</option>
-                                <option value="blank">Tidak tersedia</option>
+                                <option value="active">Aktif</option>
+                                <option value="not_active">Tidak Aktif</option>
                             </select>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="tahun">Tahun<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="tahun" id="tahun" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="stock">Stok<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="stock" id="stock" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="location">Lokasi<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="location" id="location" required>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
@@ -261,7 +261,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Hapus Siswa Aktif</h5>
+                    <h5 class="modal-title">Hapus Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>

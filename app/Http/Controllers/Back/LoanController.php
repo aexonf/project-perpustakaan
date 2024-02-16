@@ -9,6 +9,7 @@ use App\Models\Librarian;
 use App\Models\LogBookLoan;
 use App\Models\Settings;
 use App\Models\Students;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,24 +32,18 @@ class LoanController extends Controller
          * @return \Illuminate\View\View
          */
 
-        $activeStudent = ActiveStudents::with('student');
         $peminjam = LogBookLoan::query();
-
-        if ($request->has("class")) {
-            $activeStudent->where("class", $request->query("class"));
-        }
 
         if ($request->has("status")) {
             $peminjam->where("status", $request->query("status"));
         }
 
-        $activeStudentResults = $activeStudent->get();
-        $peminjamResults = $peminjam->get();
+        $peminjamResults = $peminjam->get()->unique('user_id');
 
         return view("pages.loan.index", [
             "loan" => $peminjamResults,
             "books" => Books::where("status", "available")->get(),
-            "students" => $activeStudentResults
+            "user" => User::distinct()->get()
         ]);
     }
 
@@ -67,15 +62,11 @@ class LoanController extends Controller
         $schoolYear = $request->school_year ?? $schoolYear;
 
         // Ambil data angkatan
-        $angkatan = ActiveStudents::where("school_year", $schoolYear)->pluck("generation")->unique();
+        // $angkatan = ActiveStudents::where("school_year", $schoolYear)->pluck("generation")->unique();
 
         return view("pages.loan.add-loan", [
-            "request" => $request,
-            "angkatan" => $angkatan,
-            "kelas" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->pluck("class")->unique(),
-            "students" => ActiveStudents::where("school_year", $schoolYear)->where("generation", $request->generation)->where("class", $request->class)->get(),
+            "user" => User::all(),
             "books" => Books::all(),
-            'setting' => Settings::first()
         ]);
     }
 
@@ -104,18 +95,18 @@ class LoanController extends Controller
         }
 
         $loan = LogBookLoan::create([
-            "student_id" => $request->student,
+            "user_id" => $request->user_id,
             "book_id" => $bookId,
-            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
             "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
+            "bill" => "",
             "loan_end_date" => $request->loan_end_date,
         ]);
 
         // jika peminjaman berhasil
         if ($loan) {
             Session::flash("success", "Berhasil meminjam buku");
-            return redirect()->back();
+            return redirect("/admin/pinjaman");
         }
         // jika gagal meminjam
         Session::flash("error", "Gagal meminjam buku");
@@ -138,10 +129,10 @@ class LoanController extends Controller
          * @return \Illuminate\View\View
          */
 
-        $studentId = LogBookLoan::find($id);
+        $data = LogBookLoan::find($id);
         return view("pages.loan.detail", [
-            "student" => Students::find($studentId->student_id),
-            "loan" => LogBookLoan::where("student_id", $studentId->student_id)->get(),
+            "user" => User::find($data->user_id),
+            "loan" => LogBookLoan::where("user_id", $data->user_id)->get(),
             "book" => Books::where("status", "available")->get(),
         ]);
     }
@@ -160,7 +151,7 @@ class LoanController extends Controller
          * @param int $id Student ID
          * @return \Illuminate\Http\RedirectResponse
          */
-        $returned = LogBookLoan::where("student_id", $id)->where("status", "pending")->get();
+        $returned = LogBookLoan::where("user_id", $id)->where("status", "pending")->get();
         foreach ($returned as $value) {
             $value->update([
                 "status" => "returned",
@@ -233,9 +224,8 @@ class LoanController extends Controller
             $bookId = $value;
         }
         $loan = LogBookLoan::create([
-            "student_id" => $id,
+            "user_id" => $id,
             "book_id" => $bookId,
-            "librarian_id" => Librarian::where("user_id", Auth::user()->id)->first()->id,
             "loan_date" => $request->loan_date != null ? $request->loan_date : Carbon::now(),
             "return_date" => "",
             "loan_end_date" => $request->loan_end_date,

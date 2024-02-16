@@ -44,8 +44,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function librarian(): BelongsTo
-    {
-        return $this->belongsTo(Librarian::class);
-    }
 }

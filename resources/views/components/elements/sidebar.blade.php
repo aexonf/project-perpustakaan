@@ -14,29 +14,36 @@
                     <span>Dashboard</span></a>
             </li>
 
-            {{-- @if (Auth::user()->role == 'admin' || \App\Models\Librarian::where('user_id', auth()->user()->id)->exists()) --}}
                 <li class="{{ Request::is('admin/buku') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('book') }}" id="route-admin"><i class="fa-solid fa-book"></i>
                         <span>Buku</span></a>
                 </li>
-            {{-- @endif --}}
 
-            {{-- @if (\App\Models\Librarian::where('user_id', auth()->user()->id)->exists()) --}}
                 <li class="{{ Request::is('admin/pinjaman') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('loan') }}" id="route-admin">
                         <i class="fa fa-tasks"></i>
                         <span>Pinjaman</span>
                     </a>
                 </li>
-            {{-- @endif --}}
+
+                <li
+                class="nav-item dropdown {{ request()->path() === 'admin/user/management' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
+                    <span>User Management</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ request()->path() === 'admin/user/management' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('student.management') }}">
+                            <span>User</span></a>
+                    </li>
+                    {{-- <li class="{{ request()->path() === 'admin/active-student' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('active-student.view') }}">
+                            <span>Aktif</span></a>
+                    </li> --}}
+                </ul>
+            </li>
 
 
-            {{-- @if (Auth::user()->role == 'admin') --}}
-                <li class="{{ Request::is('admin/penjaga') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('penjaga') }}" id="route-admin"><i class="fa fa-user-circle"></i>
-                        <span>Penjaga</span></a>
-                </li>
-            {{-- @endif --}}
+
         </ul>
 
     </aside>
