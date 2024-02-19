@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Librarian;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -24,16 +25,11 @@ class AuthController extends Controller
         // Coba autentikasi
         if (Auth::attempt($credentials)) {
 
-            // status
-            $librarian = Librarian::where("user_id", Auth::user()->id)->first();
+            $user = Auth::user();
 
-            if (Auth::user()->role === "admin" || ($librarian && $librarian->status === "active")) {
+            if (Auth::user()->role === "librarian" || ($user && $user->status === "active")) {
                 return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
-            if ($librarian && $librarian->status === "inactive") {
-                return Inertia::render("Login", ["message" => "Akun anda tidak aktif"]);
-            }
-
             Auth::logout();
             return redirect('/');
         }

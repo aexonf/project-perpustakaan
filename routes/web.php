@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Back\BookController;
 use App\Http\Controllers\Back\LoanController;
+use App\Http\Controllers\Back\TeacherManagementController;
 use App\Http\Controllers\Back\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,15 +64,26 @@ Route::prefix("/admin")->group(function () {
     Route::prefix("/user/management")->group(function () {
 
         Route::controller(UserManagementController::class)->group(function () {
-
-            Route::get("/", "studentIndex")->name("student.management");
-            Route::post("/", "studentCreate")->name("student.create");
+            // CRUD for students
+            Route::get("/student", "studentIndex")->name("student.management");
+            Route::post("/student", "studentCreate")->name("student.create");
             Route::put("/edit/student/{id}", "studentEdit")->name("student.edit");
             Route::delete("/delete/student/{id}", "studentDelete")->name("student.delete");
+            Route::get("/student/export", "exportPdfStudent")->name("student.export");
 
+            // CRUD for teachers
+            Route::get("/teacher", "teacherIndex")->name("teacher.management");
+            Route::post("/teacher", "teacherCreate")->name("teacher.create");
+            Route::put("/edit/teacher/{id}", "teacherEdit")->name("teacher.edit");
+            Route::delete("/delete/teacher/{id}", "teacherDelete")->name("teacher.delete");
+            Route::post("/teacher/export", "exportPdfTeacher")->name("teacher.export");
+
+            // CRUD for librarians
+            Route::get("/librarian", "librarianIndex")->name("librarian.management");
+            Route::post("/librarian", "librarianCreate")->name("librarian.create");
+            Route::put("/edit/librarian/{id}", "librarianEdit")->name("librarian.edit");
+            Route::delete("/delete/librarian/{id}", "librarianDelete")->name("librarian.delete");
+            Route::get("/librarian", "exportPdfLibrarian")->name("librarian.export");
         });
-
     });
-
-
 });

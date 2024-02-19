@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('image')->nullable(true);
             $table->string('location');
-            $table->enum('status', ['available', 'blank']);
+            $table->enum('statu s', ['available', 'blank']);
             // relasi ke users
             $table->unsignedBigInteger('user_id');
 

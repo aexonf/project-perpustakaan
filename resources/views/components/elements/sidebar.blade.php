@@ -31,14 +31,18 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>User Management</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->path() === 'admin/user/management' ? 'active' : '' }}">
+                    <li class="{{ request()->path() === 'admin/user/management/student' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('student.management') }}">
                             <span>User</span></a>
                     </li>
-                    {{-- <li class="{{ request()->path() === 'admin/active-student' ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('active-student.view') }}">
-                            <span>Aktif</span></a>
-                    </li> --}}
+                    <li class="{{ request()->path() === 'admin/user/management/teacher' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('teacher.management') }}">
+                            <span>Guru</span></a>
+                    </li>
+                    <li class="{{ request()->path() === 'admin/user/management/librarian' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('librarian.management') }}">
+                            <span>Perpustakawan</span></a>
+                    </li>
                 </ul>
             </li>
 

@@ -15,6 +15,11 @@ class BookImport implements ToModel
         return null;
     }
 
+    if (!is_numeric($row[0])) {
+        return null;
+    }
+
+
     return Books::create([
         "no_inventory" => $row[0],
         "title" => $row[1],
@@ -24,6 +29,7 @@ class BookImport implements ToModel
         "stock" => $row[5],
         "location" => $row[6],
         "status" => $row[7],
+        "user_id" => 1,
     ]);
     }
 }
