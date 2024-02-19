@@ -52,6 +52,7 @@ class BookController extends Controller
             "title" => "required",
             "no_inventory" => "required|integer",
             "genre" => "required",
+            "category" => "required",
             "writer" => "required",
             "status" => "required",
             "tahun" => "required",
@@ -80,6 +81,7 @@ class BookController extends Controller
             "location" => $validasi["location"],
             "no_inventory" => $validasi["no_inventory"],
             "image" => $validasi["image"],
+            "category" => $validasi["category"],
             "user_id" => 1,
         ]);
 

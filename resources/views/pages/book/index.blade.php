@@ -142,6 +142,7 @@
                                                     $('#modal-edit #form-edit #tahun').attr('value', '{{ $book->year }}');
                                                     $('#modal-edit #form-edit #stock').attr('value', '{{ $book->stock }}');
                                                     $('#modal-edit #form-edit #location').attr('value', '{{ $book->location }}');
+                                                    $('#modal-edit #form-edit #category').attr('value', '{{ $book->category }}');
                                                     $('#modal-edit #form-edit #image').attr('src', '{{ asset('storage/upload/book/' .$book->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('book.update', $book->id) }}');
                                                         "><i
@@ -212,6 +213,10 @@
                         <div class="form-group mb-2">
                             <label>Lokasi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="location" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="category">Category<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="category" id="category" required>
                         </div>
                         <div class="form-group mb-2">
                             <label>Image</label>
@@ -307,6 +312,10 @@
                         <div class="form-group mb-2">
                             <label for="location">Lokasi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="location" id="location" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="category">Category<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="category" id="category" required>
                         </div>
                         <div class="form-group mb-2">
                             <label>Image</label>
