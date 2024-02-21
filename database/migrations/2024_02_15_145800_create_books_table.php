@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('contetn_type');
             $table->string('media_type');
             $table->string('carrier_type');
+            $table->string('stock');
             $table->string('edition');
             $table->string('subject');
             $table->string('specific_details_info');

@@ -5,6 +5,8 @@ use App\Http\Controllers\Back\BookController;
 use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\Back\TeacherManagementController;
 use App\Http\Controllers\Back\UserManagementController;
+use App\Http\Controllers\HomeController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,4 +88,17 @@ Route::prefix("/admin")->group(function () {
             Route::get("/librarian", "exportPdfLibrarian")->name("librarian.export");
         });
     });
+});
+
+
+
+Route::Controller(HomeController::class)->group(function () {
+    Route::get("/", "index")->name("home");
+    Route::get("/detail/{id}", "detail")->name("book.detail");
+});
+
+Route::get("/pustakawan", function() {
+    return view("pustakawna", [
+        "data" => User::where("role", "librarian")->get()
+    ]);
 });

@@ -39,13 +39,13 @@
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
                                     data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
                                     Import</button>
-                                    <form action="{{route('book.export')}}" method="get">
-                                        @csrf
-                                        @method("GET")
-                                        <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                      ><i class="fas fa-upload"></i>
-                                        Export</    button>
-                                    </form>
+                                <form action="{{ route('book.export') }}" method="get">
+                                    @csrf
+                                    @method('GET')
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
+                                            class="fas fa-upload"></i>
+                                        Export</ button>
+                                </form>
                             </div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <button type    ="button" class="btn btn-icon icon-left btn-info mr-2 mb-2"
@@ -79,8 +79,8 @@
                                                 <option value="available"
                                                     {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia
                                                 </option>
-                                                <option value="blank"
-                                                    {{ request('status') == 'blank' ? 'selected' : '' }}>Tidak Tersedia
+                                                <option value="blank" {{ request('status') == 'blank' ? 'selected' : '' }}>
+                                                    Tidak Tersedia
                                                 </option>
                                             </select>
                                         </div>
@@ -98,8 +98,8 @@
                                     <tr>
                                         <th class="text-center" style="width: 80px;">#</th>
                                         <th style="min-width: 240px;">Judul</th>
-                                        <th style="min-width: 240px;">Genre</th>
-                                        <th style="min-width: 160px;">Penulis</th>
+                                        <th style="min-width: 240px;">Penerbit</th>
+                                        <th style="min-width: 160px;">Stock</th>
                                         <th style="min-width: 160px;">Status</th>
                                         <th style="min-width: 160px;">Aksi</th>
                                     </tr>
@@ -110,7 +110,8 @@
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
                                                 <div class="media">
-                                                    <img alt="image" class="mr-3 rounded-circle" width="48" src="{{ asset('storage/upload/book/'. $book->image) }}">
+                                                    <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                        src="{{ asset('storage/upload/book/' . $book->image) }}">
                                                     <div class="media-body">
                                                         <div class="media-title">
                                                             {{ $book->title }}
@@ -118,8 +119,8 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ $book->genre }}</td>
-                                            <td>{{ $book->writer }}</td>
+                                            <td>{{ $book->publisher }}</td>
+                                            <td>{{ $book->stock }}</td>
                                             <td>
                                                 @if ($book->status === 'blank')
                                                     <span class="badge badge-warning">Tidak Tersedia</span>
@@ -133,17 +134,26 @@
                                                     <button type="button" class="btn btn-icon btn-primary mr-2 mb-2"
                                                         data-toggle="modal" data-target="#modal-edit"
                                                         onclick="
-                                                    $('#modal-edit #form-edit');
-                                                    $('#modal-edit #form-edit #title').attr('value', '{{ $book->title }}');
-                                                    $('#modal-edit #form-edit #no_inventory').attr('value', '{{ $book->no_inventory }}');
-                                                    $('#modal-edit #form-edit #genre').attr('value', '{{ $book->genre }}');
-                                                    $('#modal-edit #form-edit #writer').attr('value', '{{ $book->writer }}');
-                                                    $('#modal-edit #form-edit #status').val('{{ $book->status }}');
-                                                    $('#modal-edit #form-edit #tahun').attr('value', '{{ $book->year }}');
-                                                    $('#modal-edit #form-edit #stock').attr('value', '{{ $book->stock }}');
-                                                    $('#modal-edit #form-edit #location').attr('value', '{{ $book->location }}');
-                                                    $('#modal-edit #form-edit #category').attr('value', '{{ $book->category }}');
-                                                    $('#modal-edit #form-edit #image').attr('src', '{{ asset('storage/upload/book/' .$book->image) }}');
+                                                    $('#modal-edit #title').val('{{ $book->title }}');
+                                                    $('#modal-edit #series_title').val('{{ $book->series_title }}');
+                                                    $('#modal-edit #call_no').val('{{ $book->call_no }}');
+                                                    $('#modal-edit #description').val('{{ $book->description }}');
+                                                    $('#modal-edit #publisher').val('{{ $book->publisher }}');
+                                                    $('#modal-edit #physical_description').val('{{ $book->physical_description }}');
+                                                    $('#modal-edit #language').val('{{ $book->language }}');
+                                                    $('#modal-edit #isbn_issn').val('{{ $book->isbn_issn }}');
+                                                    $('#modal-edit #classification').val('{{ $book->classification }}');
+                                                    $('#modal-edit #contetn_type').val('{{ $book->contetn_type }}');
+                                                    $('#modal-edit #media_type').val('{{ $book->media_type }}');
+                                                    $('#modal-edit #carrier_type').val('{{ $book->carrier_type }}');
+                                                    $('#modal-edit #edition').val('{{ $book->edition }}');
+                                                    $('#modal-edit #subject').val('{{ $book->subject }}');
+                                                    $('#modal-edit #specific_details_info').val('{{ $book->specific_details_info }}');
+                                                    $('#modal-edit #statement').val('{{ $book->statement }}');
+                                                    $('#modal-edit #responsibility').val('{{ $book->responsibility }}');
+                                                    $('#modal-edit #status').val('{{ $book->status }}');
+                                                    $('#modal-edit #stock').val('{{ $book->stock }}');
+                                                    $('#modal-edit #image').attr('src', '{{ asset('storage/upload/book/' . $book->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('book.update', $book->id) }}');
                                                         "><i
                                                             class="fas fa-edit"></i></button>
@@ -184,39 +194,79 @@
                             <input type="text" class="form-control" name="title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>No Inventori<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="no_inventory" required>
+                            <label>Series Title<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="series_title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Genre<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="genre" required>
+                            <label>Call No<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="call_no" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Penulis<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="writer" required>
+                            <label>Description<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="description" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Status<span class="text-danger">*</span></label>
-                            <select class="form-control" name="status" id="generation" required>
-                                <option value="available" selected>Tersedia</option>
-                                <option value="blank">Tidak tersedia</option>
-                            </select>
+                            <label>Publisher<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="publisher" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Tahun<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="tahun" required>
+                            <label>Physical Description<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="physical_description" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Stok<span class="text-danger">*</span></label>
+                            <label>Language<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="language" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>ISBN/ISSN<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="isbn_issn" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Classification<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="classification" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Content Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="content_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Media Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="media_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Carrier Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="carrier_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Edition<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="edition" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Subject<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="subject" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Specific Details Info<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="specific_details_info" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Statement<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="statement" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Responsibility<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="responsibility" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Stock<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="stock" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label>Lokasi<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="location" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="category">Category<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="category" id="category" required>
+                            <label>Status<span class="text-danger">*</span></label>
+                            <select class="form-control" name="status" required>
+                                <option value="available" selected>Tersedia</option>
+                                <option value="blank">Tidak tersedia</option>
+                            </select>
                         </div>
                         <div class="form-group mb-2">
                             <label>Image</label>
@@ -231,6 +281,7 @@
             </div>
         </div>
     </div>
+
     {{-- modal import --}}
     <div class="modal fade" id="modal-import" data-backdrop="static">
         <div class="modal-dialog">
@@ -279,49 +330,87 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
-                            <label for="title">Judul Buku<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="title" id="title" required>
+                            <label>Judul Buku<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="no_inventory">No Inventori<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="no_inventory" id="no_inventory" required>
+                            <label>Series Title<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="series_title" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="genre">Genre<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="genre" id="genre" required>
+                            <label>Call No<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="call_no" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="writer">Penulis<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="writer" id="writer" required>
+                            <label>Description<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="description" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="status">Status<span class="text-danger">*</span></label>
-                            <select class="form-control" name="status" id="status" required>
-                                <option value="available">Tersedia</option>
+                            <label>Publisher<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="publisher" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Physical Description<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="physical_description" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Language<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="language" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>ISBN/ISSN<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="isbn_issn" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Classification<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="classification" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Content Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="contetn_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Media Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="media_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Carrier Type<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="carrier_type" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Edition<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="edition" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Subject<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="subject" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Specific Details Info<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="specific_details_info" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Statement<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="statement" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Responsibility<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="responsibility" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Stock<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="stock" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Status<span class="text-danger">*</span></label>
+                            <select class="form-control" name="status" required>
+                                <option value="available" selected>Tersedia</option>
                                 <option value="blank">Tidak tersedia</option>
                             </select>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="tahun">Tahun<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="tahun" id="tahun" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="stock">Stok<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="stock" id="stock" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="location">Lokasi<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="location" id="location" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="category">Category<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="category" id="category" required>
-                        </div>
-                        <div class="form-group mb-2">
                             <label>Image</label>
-                            <div class="input-group">
-                                <input type="file" class="form-control" name="image">
-                            </div>
+                            <input type="file" class="form-control" name="image">
                         </div>
                         <div class="form-group mb-2">
                             <div class="d-flex align-items-center">

@@ -47,43 +47,42 @@ class BookController extends Controller
 
     public function create(Request $request)
     {
-        // validasi request
-        $validasi = $request->validate([
-            "title" => "required",
-            "no_inventory" => "required|integer",
-            "genre" => "required",
-            "category" => "required",
-            "writer" => "required",
-            "status" => "required",
-            "tahun" => "required",
-            "stock" => "required|integer",
-            "location" => "required",
-        ]);
 
+        $imageName = "";
 
         if ($request->hasFile('image')) {
             $rand = str::random(8);
             $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
             $request->file('image')->move('storage/upload/book/', $file_name);
-            $validasi["image"] = $file_name;
-        }else{
-            $validasi["image"] = "";
+            $imageName = $file_name;
+        } else {
+            $imageName = "";
         }
 
         // create buku
         $createBook = Books::create([
-            "title" => $validasi["title"],
-            "genre" => $validasi["genre"],
-            "writer" => $validasi["writer"],
-            "status" => $validasi["status"],
-            "year" => $validasi["tahun"],
-            "stock" => $validasi["stock"],
-            "location" => $validasi["location"],
-            "no_inventory" => $validasi["no_inventory"],
-            "image" => $validasi["image"],
-            "category" => $validasi["category"],
-            "user_id" => 1,
+            'series_title' => $request->input('series_title'),
+            'call_no' => $request->input('call_no'),
+            'description' => $request->input('description'),
+            'publisher' => $request->input('publisher'),
+            'physical_description' => $request->input('physical_description'),
+            'language' => $request->input('language'),
+            'isbn/issn' => $request->input('isbn_issn'),
+            'classification' => $request->input('classification'),
+            'content_type' => $request->input('content_type'),
+            'media_type' => $request->input('media_type'),
+            'carrier_type' => $request->input('carrier_type'),
+            'edition' => $request->input('edition'),
+            'subject' => $request->input('subject'),
+            'specific_details_info' => $request->input('specific_details_info'),
+            'statement' => $request->input('statement'),
+            'responsibility' => $request->input('responsibility'),
+            'image' => $imageName,
+            'status' => $request->input('status'),
+            'stock' => $request->input('stock'),
+            'user_id' => 1,
         ]);
+
 
 
         // cek jika create buku berhasil
@@ -100,16 +99,38 @@ class BookController extends Controller
     public function update($id, Request $request)
     {
 
+        $imageName = "";
+
+        if ($request->hasFile('image')) {
+            $rand = str::random(8);
+            $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move('storage/upload/book/', $file_name);
+            $imageName = $file_name;
+        } else {
+            $imageName = "";
+        }
+
         $updateBook = Books::find($id)->update([
-            "title" => $request->title,
-            "genre" =>  $request->genre,
-            "writer" =>  $request->writer,
-            "status" =>  $request->status,
-            "year" =>  $request->tahun,
-            "stock" =>  $request->stock,
-            "location" =>  $request->location,
-            "no_inventory" =>  $request->no_inventory,
-            "user_id" => 1,
+            'series_title' => $request->input('series_title'),
+            'call_no' => $request->input('call_no'),
+            'description' => $request->input('description'),
+            'publisher' => $request->input('publisher'),
+            'physical_description' => $request->input('physical_description'),
+            'language' => $request->input('language'),
+            'isbn_issn' => $request->input('isbn_issn'),
+            'classification' => $request->input('classification'),
+            'contetn_type' => $request->input('content_type'),
+            'media_type' => $request->input('media_type'),
+            'carrier_type' => $request->input('carrier_type'),
+            'edition' => $request->input('edition'),
+            'subject' => $request->input('subject'),
+            'specific_details_info' => $request->input('specific_details_info'),
+            'statement' => $request->input('statement'),
+            'responsibility' => $request->input('responsibility'),
+            'image' => $imageName,
+            'status' => $request->input('status'),
+            'stock' => $request->input('stock'),
+            'user_id' => $request->user()->id,
         ]);
 
         // jika buku berhasil di update
@@ -161,7 +182,7 @@ class BookController extends Controller
     public function export()
     {
         $qrCode = QrCode::size(50)->generate("a");
-        $pdf = Pdf::loadview('pages.book.format-export',['data'=> Books::all(), "qr" => $qrCode]);
-    	return $pdf->download('book.pdf');
-     }
+        $pdf = Pdf::loadview('pages.book.format-export', ['data' => Books::all(), "qr" => $qrCode]);
+        return $pdf->download('book.pdf');
+    }
 }

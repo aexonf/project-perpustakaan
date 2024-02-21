@@ -39,10 +39,10 @@
                         <a class="nav-link" href="{{ route('teacher.management') }}">
                             <span>Guru</span></a>
                     </li>
-                    <li class="{{ request()->path() === 'admin/user/management/librarian' ? 'active' : '' }}">
+                    {{-- <li class="{{ request()->path() === 'admin/user/management/librarian' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('librarian.management') }}">
                             <span>Perpustakawan</span></a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
 
