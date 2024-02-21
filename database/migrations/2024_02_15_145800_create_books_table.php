@@ -14,15 +14,24 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
-            $table->string('writer');
-            $table->string('genre');
-            $table->string('year');
-            $table->integer('no_inventory');
-            $table->integer('stock');
+            $table->string('series_title');
+            $table->string('call_no');
+            $table->string('description');
+            $table->string('publisher');
+            $table->string('physical_description');
+            $table->string('language');
+            $table->string('isbn/issn');
+            $table->string('classification');
+            $table->string('contetn_type');
+            $table->string('media_type');
+            $table->string('carrier_type');
+            $table->string('edition');
+            $table->string('subject');
+            $table->string('specific_details_info');
+            $table->string('statement');
+            $table->string('responsibility');
             $table->string('image')->nullable(true);
-            $table->string('location');
-            $table->enum('statu s', ['available', 'blank']);
+            $table->enum('status', ['available', 'blank']);
             // relasi ke users
             $table->unsignedBigInteger('user_id');
 
