@@ -4,39 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-
     // detail buku
-
-
     public function index(Request $request)
     {
 
         $bookQuery = Books::query();
 
-        // search by author
         // search by book title
-        $authorSearch = $request->query("author");
         $titleSearch = $request->query("title");
-
-        // search by author
-        if ($request->has("author")) {
-            $bookQuery->where("", "like", "%" . $authorSearch . "%");
-        }
+        $categorySearch = $request->query("category");
 
         // search by title
         if ($request->has("title")) {
-            $bookQuery->where("title", "like", "%" . $titleSearch . "%");
+            $bookQuery->where("series_title", "like", "%" . $titleSearch . "%")->get();
+        }
+        // search by category
+        if ($request->has("category")) {
+            $bookQuery->where("category", "like", "%" . $categorySearch . "%")->get();
         }
 
-
-        $book = $bookQuery->get();
-        $bookLatest = $bookQuery->latest();
-        $category = $bookQuery->pluck("category");
-
-        return view("home", [
+        $book = $bookQuery->take(10)->get();
+        $bookLatest = $bookQuery->latest()->take(10)->get();
+        $category = $bookQuery->orderBy('created_at', 'desc')->take(5)->pluck('category');
+        if ($request->query("title") || $request->query("category")) {
+            return Inertia::render("Find", [
+                "data" => $bookQuery->paginate(10),
+            ]);
+        }
+        return Inertia::render("Home", [
             "data" => $book,
             "bookLatest" => $bookLatest,
             "category" => $category
@@ -45,8 +44,8 @@ class HomeController extends Controller
 
     public function detail($id, Request $request)
     {
-        return view("detail", [
-            "book" => Books::find($id)
+        return Inertia::render("Detail", [
+            "book" => Books::find($id),
         ]);
     }
 }

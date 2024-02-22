@@ -7,18 +7,11 @@
     "config": "tailwind.config.js",
     "css": "resources/css/app.css",
     "baseColor": "slate",
-<<<<<<< HEAD
-    "cssVariables": true
-  },
-  "aliases": {
-    "components": "@/Components",
-=======
     "cssVariables": true,
     "prefix": ""
   },
   "aliases": {
     "components": "@/components",
->>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
     "utils": "@/lib/utils"
   }
 }

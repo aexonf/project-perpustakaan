@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('publisher');
             $table->string('physical_description');
             $table->string('language');
-            $table->string('isbn/issn');
+            $table->string('isbn_issn');
             $table->string('classification');
-            $table->string('contetn_type');
+            $table->string('content_type');
             $table->string('media_type');
             $table->string('carrier_type');
             $table->string('stock');

@@ -6,22 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-<<<<<<< HEAD
         "bacon/bacon-qr-code": "^2.0",
         "barryvdh/laravel-dompdf": "^2.0",
-=======
->>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.11",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-<<<<<<< HEAD
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^3.1",
         "simplesoftwareio/simple-qrcode": "^4.2"
-=======
-        "laravel/tinker": "^2.8"
->>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

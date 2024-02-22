@@ -15,34 +15,72 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
+        //     'role' => 'librarian',
+        //     'status' => 'active'
         // ]);
 
-        $faker = Faker::create();
+        // $faker = Faker::create();
 
         // Seed data for the 'books' table
-       $Book = Books::create([
-            'title' => $faker->sentence,
-            'writer' => $faker->name,
-            'genre' => $faker->word,
-            'year' => $faker->year,
-            'no_inventory' => $faker->unique()->randomNumber(5),
-            'stock' => $faker->numberBetween(1, 50),
-            'location' => $faker->city,
-            'status' => $faker->randomElement(['available', 'blank']),
-        ]);
+        // $table->string('series_title');
+        // $table->string('call_no');
+        // $table->string('description');
+        // $table->string('publisher');
+        // $table->string('physical_description');
+        // $table->string('language');
+        // $table->string('isbn/issn');
+        // $table->string('classification');
+        // $table->string('contetn_type');
+        // $table->string('media_type');
+        // $table->string('carrier_type');
+        // $table->string('stock');
+        // $table->string('edition');
+        // $table->string('subject');
+        // $table->string('specific_details_info');
+        // $table->string('statement');
+        // $table->string('responsibility');
+        // $table->string('image')->nullable(true);
+        // $table->enum('status', ['available', 'blank']);
+        // Books::create([
+        //     'series_title' => $faker->sentence,
+        //     'call_no' => $faker->sentence,
+        //     'description' => $faker->sentence,
+        //     'publisher' => $faker->sentence,
+        //     'physical_description' => $faker->sentence,
+        //     'language' => $faker->sentence,
+        //     'isbn_issn' => $faker->sentence,
+        //     'classification' => $faker->sentence,
+        //     'content_type' => $faker->sentence,
+        //     'media_type' => $faker->sentence,
+        //     'carrier_type' => $faker->sentence,
+        //     'stock' => $faker->numberBetween(1,4),
+        //     'edition' => $faker->sentence,
+        //     'subject' => $faker->sentence,
+        //     'specific_details_info' => $faker->sentence,
+        //     'statement' => $faker->sentence,
+        //     'responsibility' => $faker->sentence,
+        //     'image' => $faker->sentence,
+        //     'category' => $faker->sentence,
+        //     'status' => $faker->randomElement(['available', 'blank']),
+        //     'created_at' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+        //     'updated_at' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+        //     'user_id' => "1",
+        // ]);
 
-        LogBookLoan::create([
-            'student_id' => "9",
-            'librarian_id' => "1",
-            'book_id' => $Book->id,
-            'loan_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
-            'return_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
-            'status' => $faker->randomElement(['pending', 'returned']),
-        ]);
+
+
+        // LogBookLoan::create([
+        //     'student_id' => "9",
+        //     'librarian_id' => "1",
+        //     'book_id' => $book->id,
+        //     'loan_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+        //     'return_date' => $faker->dateTimeThisDecade->format('Y-m-d H:i:s'),
+        //     'status' => $faker->randomElement(['pending', 'returned']),
+        // ]);
     }
 }

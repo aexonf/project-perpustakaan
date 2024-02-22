@@ -1,10 +1,10 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 
-export default function Welcome() {
+export default function Welcome({ data, bookLatest, category }) {
     return (
         <>
             <Head title="Online Public Access Catalog (OPAC) | PERPUSTAKAAN" />
@@ -20,97 +20,62 @@ export default function Welcome() {
                             Pilih subjek yang menarik bagi Anda
                         </h1>
                         <div className="relative w-full h-full my-10">
-                            <div className="flex flex-wrap justify-center px-0">
-                                <div className="flex flex-col justify-center items-center m-2 border border-gray-300/80 w-[160px] h-[160px] rounded-md group">
-                                    <img
-                                        src="https://perpus.unpam.ac.id/template/default/assets/images/8-books.png"
-                                        width={80}
-                                        className="mb-3 mx-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                                        alt=""
-                                    />
-                                    <p>Kesastraan</p>
-                                </div>
-
-                                <div className="flex flex-col justify-center items-center m-2 border border-gray-300/80 w-[160px] h-[160px] rounded-md group">
-                                    <img
-                                        src="https://perpus.unpam.ac.id/template/default/assets/images/8-books.png"
-                                        width={80}
-                                        className="mb-3 mx-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                                        alt=""
-                                    />
-                                    <p>Kesastraan</p>
-                                </div>
-
-                                <div className="flex flex-col justify-center items-center m-2 border border-gray-300/80 w-[160px] h-[160px] rounded-md group">
-                                    <img
-                                        src="https://perpus.unpam.ac.id/template/default/assets/images/8-books.png"
-                                        width={80}
-                                        className="mb-3 mx-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                                        alt=""
-                                    />
-                                    <p>Kesastraan</p>
-                                </div>
-
-                                <div className="flex flex-col justify-center items-center m-2 border border-gray-300/80 w-[160px] h-[160px] rounded-md group">
-                                    <img
-                                        src="https://perpus.unpam.ac.id/template/default/assets/images/8-books.png"
-                                        width={80}
-                                        className="mb-3 mx-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                                        alt=""
-                                    />
-                                    <p>Kesastraan</p>
-                                </div>
-
-                                <div className="flex flex-col justify-center items-center m-2 border border-gray-300/80 w-[160px] h-[160px] rounded-md group">
-                                    <img
-                                        src="https://perpus.unpam.ac.id/template/default/assets/images/8-books.png"
-                                        width={80}
-                                        className="mb-3 mx-auto grayscale-[30%] group-hover:grayscale-0 transition-all duration-300"
-                                        alt=""
-                                    />
-                                    <p>Kesastraan</p>
-                                </div>
+                            <div className="flex flex-wrap justify-center px-0 gap-5">
+                                {category.map((item, index) => (
+                                    <Badge
+                                        className="cursor-pointer"
+                                        variant={"outline"}
+                                        key={index}
+                                    >
+                                        <Link href={`/?category=${item}`}>
+                                            {item}
+                                        </Link>
+                                    </Badge>
+                                ))}
                             </div>
                         </div>
                     </div>
                     <div className="w-full h-full">
-                        <h2 className="font-bold text-2xl">
-                            Yang populer di antara koleksi kami
-                        </h2>
+                        <h2 className="font-bold text-2xl">Koleksi Kami</h2>
                         <p className="font-normal text-xl">
                             Koleksi-koleksi kami yang dibaca oleh banyak
                             pengunjung perpustakaan. Cari. Pinjam. Kami harap
                             Anda menyukainya
                         </p>
-                        <div className="flex gap-5 my-4">
-                            <Badge className="px-10" variant={"outline"}>
-                                Psikologi
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Investasi
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Metode Pertanian
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Kuantitatif, Kualitatif Dan R&D
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Manajemen Pemasaran
-                            </Badge>
+                        <div className="flex gap-5 my-4 flex-wrap">
+                            {category.map((item, index) => (
+                                <Badge
+                                    className="truncate cursor-pointer"
+                                    variant={"outline"}
+                                    key={index + 1}
+                                >
+                                    <Link href={`/?category=${item}`}>
+                                        {item}
+                                    </Link>
+                                </Badge>
+                            ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            <div className="p-3 bg-[#f1f1f1] w-40 flex items-center justify-center flex-col hover:shadow-lg duration-300 rounded-lg">
-                                <img
-                                    src="/image/logo.png"
-                                    alt=""
-                                    className="h-40"
-                                />
-                                <p className="break-words text-lg">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Omnis, corrupti?
-                                </p>
-                            </div>
+                            {data.map((item, index) => (
+                                <Link
+                                    href={`/detail/${item.id}`}
+                                    className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg cursor-pointer"
+                                    key={index + 1}
+                                >
+                                    <img
+                                        src={
+                                            item.image
+                                                ? item.image
+                                                : "/image/notfound.jpg"
+                                        }
+                                        alt=""
+                                        className="h-40 mb-3"
+                                    />
+                                    <p className="break-words text-lg">
+                                        {item.series_title}
+                                    </p>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                     <div className="w-full h-full mt-20">
@@ -118,39 +83,44 @@ export default function Welcome() {
                             Koleksi baru dan diperbarui
                         </h2>
                         <p className="font-normal text-xl">
-                            Koleksi-koleksi kami yang dibaca oleh banyak
-                            pengunjung perpustakaan. Cari. Pinjam. Kami harap
-                            Anda menyukainya
+                            Merupakan daftar koleksi-koleksi terbaru kami. Tidak
+                            semuanya baru, adapula koleksi yang data-datanya
+                            sudah diperbaiki. Selamat menikmati
                         </p>
-                        <div className="flex gap-5 my-4">
-                            <Badge className="px-10" variant={"outline"}>
-                                Kepemimpinan
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Mesin
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Kalkulus
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Hukum Agraria
-                            </Badge>
-                            <Badge className="px-10" variant={"outline"}>
-                                Metodologi Penelitian
-                            </Badge>
+                        <div className="flex gap-5 my-4 flex-wrap">
+                            {category.map((item, index) => (
+                                <Badge
+                                    className="truncate cursor-pointer"
+                                    variant={"outline"}
+                                    key={index + 1}
+                                >
+                                    <Link href={`/?category=${item}`}>
+                                        {item}
+                                    </Link>
+                                </Badge>
+                            ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            <div className="p-3 bg-[#f1f1f1] w-40 flex items-center justify-center flex-col hover:shadow-lg duration-300 rounded-lg">
-                                <img
-                                    src="/image/logo.png"
-                                    alt=""
-                                    className="h-40"
-                                />
-                                <p className="break-words text-lg">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Omnis, corrupti?
-                                </p>
-                            </div>
+                            {bookLatest.map((item, index) => (
+                                <Link
+                                    href={`/detail/${item.id}`}
+                                    className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg"
+                                    key={index + 1}
+                                >
+                                    <img
+                                        src={
+                                            item.image
+                                                ? item.image
+                                                : "/image/notfound.jpg"
+                                        }
+                                        alt=""
+                                        className="h-40 mb-3"
+                                    />
+                                    <p className="break-words text-lg">
+                                        {item.series_title}
+                                    </p>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </section>

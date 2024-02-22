@@ -2,9 +2,9 @@ import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar({ className }) {
     return (
-        <nav className="h-[460px] relative">
+        <nav className={cn("h-[460px] max-h-[460px] relative", className)}>
             <div className="w-full block z-10">
                 <div className="sm:hidden md:flex items-center justify-between mx-auto p-4 md:px-20">
                     <Link
@@ -60,8 +60,11 @@ export default function Navbar() {
                 </div>
             </div>
             <img
-                className="max-h-[460px] h-[460px] w-screen bg-contain absolute top-0 z-[-1] brightness-50"
-                src="https://flowbite.com/docs/images/examples/image-1@2x.jpg"
+                className={cn(
+                    "h-full w-screen bg-contain absolute top-0 z-[-1] brightness-50",
+                    className
+                )}
+                src="/image/perpus.jpg"
                 alt="bg-cover"
             />
         </nav>

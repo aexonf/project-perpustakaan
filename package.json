@@ -6,7 +6,6 @@
         "build": "vite build"
     },
     "devDependencies": {
-<<<<<<< HEAD
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.1",
         "laravel-vite-plugin": "^0.8.0",
@@ -23,14 +22,6 @@
         "@radix-ui/react-select": "^2.0.0",
         "@radix-ui/react-separator": "^1.0.3",
         "@radix-ui/react-slot": "^1.0.2",
-        "class-variance-authority": "^0.7.0",
-        "clsx": "^2.0.0",
-        "lucide-react": "^0.292.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "tailwind-merge": "^2.0.0",
-=======
-        "@inertiajs/react": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
         "@types/node": "^18.13.0",
         "@types/react": "^18.0.28",
@@ -38,20 +29,16 @@
         "@vitejs/plugin-react": "^4.2.0",
         "autoprefixer": "^10.4.17",
         "axios": "^1.6.4",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.0.0",
         "laravel-vite-plugin": "^1.0.0",
+        "lucide-react": "^0.292.0",
         "postcss": "^8.4.35",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "tailwind-merge": "^2.0.0",
         "tailwindcss": "^3.4.1",
+        "tailwindcss-animate": "^1.0.7",
         "vite": "^5.0.0"
-    },
-    "dependencies": {
-        "@radix-ui/react-separator": "^1.0.3",
-        "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.0",
-        "lucide-react": "^0.331.0",
-        "tailwind-merge": "^2.2.1",
->>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
-        "tailwindcss-animate": "^1.0.7"
     }
 }

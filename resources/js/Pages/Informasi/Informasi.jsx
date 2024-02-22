@@ -8,7 +8,7 @@ export default function Informasi() {
     return (
         <>
             <Head title="Informasi Perpustakaan" />
-            <Navbar />
+            <Navbar className="h-[160px] max-h-[160px]" />
             <main className="w-full px-4">
                 <SearchBar />
                 <section

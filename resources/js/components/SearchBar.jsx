@@ -1,12 +1,20 @@
 import React from "react";
 
 export default function SearchBar() {
+    const url = new URL(window.location.href);
+    const param = url.searchParams.get("title");
     return (
         <section className="-mt-[30px] w-full" id="header">
             <div className="flex justify-center w-full">
-                <div className="relative max-w-[740px] w-full h-full">
+                <form
+                    className="relative max-w-[740px] w-full h-full"
+                    action="/"
+                    method="get"
+                >
                     <input
                         className="block w-full text-gray-900 placeholder:text-[#b8b8b8] border-none rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none p-5 text-2xl shadow-md"
+                        name="title"
+                        defaultValue={param}
                         placeholder="Masukkan kata kunci untuk mencari koleksi..."
                     />
                     <div className="absolute inset-y-0 end-0 flex items-center pe-5 pointer-events-none">
@@ -26,7 +34,7 @@ export default function SearchBar() {
                             />
                         </svg>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
     );
