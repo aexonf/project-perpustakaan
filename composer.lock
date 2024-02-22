@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "3c24765964f8df9a27f6c4a0d0e2ed04",
     "packages": [
         {
@@ -138,6 +139,11 @@
             "time": "2023-01-12T15:12:49+00:00"
         },
         {
+=======
+    "content-hash": "84dc38b6f7e91004d2193a25f294a080",
+    "packages": [
+        {
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "brick/math",
             "version": "0.11.0",
             "source": {
@@ -262,6 +268,7 @@
             "time": "2023-12-11T17:09:12+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "composer/semver",
             "version": "3.4.0",
             "source": {
@@ -393,6 +400,8 @@
             "time": "2023-08-25T16:18:39+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
             "source": {
@@ -636,6 +645,7 @@
             "time": "2024-02-05T11:56:58+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "dompdf/dompdf",
             "version": "v2.0.4",
             "source": {
@@ -698,6 +708,8 @@
             "time": "2023-12-12T20:19:39+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "dragonmantank/cron-expression",
             "version": "v3.3.3",
             "source": {
@@ -826,6 +838,7 @@
             "time": "2023-10-06T06:47:41+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "ezyang/htmlpurifier",
             "version": "v4.17.0",
             "source": {
@@ -887,6 +900,8 @@
             "time": "2023-11-17T15:01:25+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "fruitcake/php-cors",
             "version": "v1.3.0",
             "source": {
@@ -1504,6 +1519,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v10.43.0",
             "source": {
                 "type": "git",
@@ -1514,6 +1530,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/4f7802dfc9993cb57cf69615491ce1a7eb2e9529",
                 "reference": "4f7802dfc9993cb57cf69615491ce1a7eb2e9529",
+=======
+            "version": "v10.44.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1199dbe361787bbe9648131a79f53921b4148cf6",
+                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "shasum": ""
             },
             "require": {
@@ -1561,6 +1589,10 @@
             "conflict": {
                 "carbonphp/carbon-doctrine-types": ">=3.0",
                 "doctrine/dbal": ">=4.0",
+<<<<<<< HEAD
+=======
+                "phpunit/phpunit": ">=11.0.0",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "tightenco/collect": "<5.5.33"
             },
             "provide": {
@@ -1705,7 +1737,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2024-01-30T16:25:02+00:00"
+=======
+            "time": "2024-02-13T16:01:16+00:00"
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
         },
         {
             "name": "laravel/prompts",
@@ -2351,6 +2387,7 @@
             "time": "2024-01-28T23:22:08+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "maatwebsite/excel",
             "version": "3.1.53",
             "source": {
@@ -2687,6 +2724,8 @@
             "time": "2023-05-10T11:58:31+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "monolog/monolog",
             "version": "3.5.0",
             "source": {
@@ -3187,6 +3226,7 @@
             "time": "2023-02-08T01:06:31+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "phenx/php-font-lib",
             "version": "0.5.6",
             "source": {
@@ -3382,6 +3422,8 @@
             "time": "2023-06-14T22:48:31+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "phpoption/phpoption",
             "version": "1.9.2",
             "source": {
@@ -4173,6 +4215,7 @@
             "time": "2023-11-08T05:53:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "sabberworm/php-css-parser",
             "version": "8.5.0",
             "source": {
@@ -4299,6 +4342,8 @@
             "time": "2021-02-08T20:43:55+00:00"
         },
         {
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             "name": "symfony/console",
             "version": "v6.4.3",
             "source": {
@@ -6986,6 +7031,7 @@
         },
         {
             "name": "laravel/pint",
+<<<<<<< HEAD
             "version": "v1.13.10",
             "source": {
                 "type": "git",
@@ -6996,6 +7042,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/pint/zipball/e2b5060885694ca30ac008c05dc9d47f10ed1abf",
                 "reference": "e2b5060885694ca30ac008c05dc9d47f10ed1abf",
+=======
+            "version": "v1.13.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/pint.git",
+                "reference": "60a163c3e7e3346a1dec96d3e6f02e6465452552"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/60a163c3e7e3346a1dec96d3e6f02e6465452552",
+                "reference": "60a163c3e7e3346a1dec96d3e6f02e6465452552",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "shasum": ""
             },
             "require": {
@@ -7006,13 +7064,22 @@
                 "php": "^8.1.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "friendsofphp/php-cs-fixer": "^3.47.1",
                 "illuminate/view": "^10.41.0",
+=======
+                "friendsofphp/php-cs-fixer": "^3.49.0",
+                "illuminate/view": "^10.43.0",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "larastan/larastan": "^2.8.1",
                 "laravel-zero/framework": "^10.3.0",
                 "mockery/mockery": "^1.6.7",
                 "nunomaduro/termwind": "^1.15.1",
+<<<<<<< HEAD
                 "pestphp/pest": "^2.31.0"
+=======
+                "pestphp/pest": "^2.33.6"
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
             },
             "bin": [
                 "builds/pint"
@@ -7048,6 +7115,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
+<<<<<<< HEAD
             "time": "2024-01-22T09:04:15+00:00"
         },
         {
@@ -7062,6 +7130,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/7e01b345072c9604ead9d7aed175bf7ac1d80289",
                 "reference": "7e01b345072c9604ead9d7aed175bf7ac1d80289",
+=======
+            "time": "2024-02-13T17:20:13+00:00"
+        },
+        {
+            "name": "laravel/sail",
+            "version": "v1.27.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "3047e1a157fad968cc5f6e620d5cbe5c0867fffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/3047e1a157fad968cc5f6e620d5cbe5c0867fffd",
+                "reference": "3047e1a157fad968cc5f6e620d5cbe5c0867fffd",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "shasum": ""
             },
             "require": {
@@ -7080,9 +7164,12 @@
             ],
             "type": "library",
             "extra": {
+<<<<<<< HEAD
                 "branch-alias": {
                     "dev-master": "1.x-dev"
                 },
+=======
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "laravel": {
                     "providers": [
                         "Laravel\\Sail\\SailServiceProvider"
@@ -7113,7 +7200,11 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
             "time": "2024-01-30T03:03:59+00:00"
+=======
+            "time": "2024-02-08T15:24:21+00:00"
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
         },
         {
             "name": "mockery/mockery",
@@ -9017,6 +9108,7 @@
         },
         {
             "name": "spatie/laravel-ignition",
+<<<<<<< HEAD
             "version": "2.4.1",
             "source": {
                 "type": "git",
@@ -9027,6 +9119,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/005e1e7b1232f3b22d7e7be3f602693efc7dba67",
                 "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67",
+=======
+            "version": "2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-ignition.git",
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/351504f4570e32908839fc5a2dc53bf77d02f85e",
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e",
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
                 "shasum": ""
             },
             "require": {
@@ -9105,7 +9209,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2024-01-12T13:14:58+00:00"
+=======
+            "time": "2024-02-09T16:08:40+00:00"
+>>>>>>> bcd07b6ca9fda5c8d7a22514643d24f49da87aa5
         },
         {
             "name": "symfony/yaml",
