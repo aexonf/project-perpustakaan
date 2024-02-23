@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,6 +11,7 @@ import { Menu } from "lucide-react";
 import React from "react";
 
 export default function Navbar({ className }) {
+    const { user } = usePage().props;
     return (
         <nav className={cn("h-[460px] max-h-[460px] relative", className)}>
             <div className="w-full block z-10">
@@ -67,18 +68,34 @@ export default function Navbar({ className }) {
                                     Pustakawan
                                 </Link>
                             </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link
-                                    href="/login"
-                                    className={cn(
-                                        "text-xl px-4 font-semibold",
-                                        window.location.pathname == "/login" &&
-                                            "bg-primary text-white"
-                                    )}
-                                >
-                                    Login
-                                </Link>
-                            </DropdownMenuItem>
+                            {user.role == "librarian" &&
+                                user.status == "active" && (
+                                    <DropdownMenuItem asChild>
+                                        <Link
+                                            href="/admin"
+                                            className={cn(
+                                                "text-xl px-4 bg-slate-900 text-white"
+                                            )}
+                                        >
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuItem>
+                                )}
+                            {!user && (
+                                <DropdownMenuItem asChild>
+                                    <Link
+                                        href="/login"
+                                        className={cn(
+                                            "text-xl px-4 font-semibold",
+                                            window.location.pathname ==
+                                                "/login" &&
+                                                "bg-primary text-white"
+                                        )}
+                                    >
+                                        Login
+                                    </Link>
+                                </DropdownMenuItem>
+                            )}
                         </DropdownMenuContent>
                     </DropdownMenu>
                     <ul className="font-medium hidden md:flex flex-row items-center space-x-8 mt-0 border-0">
@@ -121,16 +138,31 @@ export default function Navbar({ className }) {
                                 Pustakawan
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href="/login"
-                                className={cn(
-                                    "block border-0 text-lg bg-primary text-white py-2 px-5 rounded-xl"
-                                )}
-                            >
-                                Login
-                            </Link>
-                        </li>
+                        {user.role == "librarian" &&
+                            user.status == "active" && (
+                                <li>
+                                    <a
+                                        href="/admin"
+                                        className={cn(
+                                            "block border-0 text-lg bg-primary text-white py-2 px-5 rounded-xl"
+                                        )}
+                                    >
+                                        Dashboard
+                                    </a>
+                                </li>
+                            )}
+                        {!user && (
+                            <li>
+                                <Link
+                                    href="/login"
+                                    className={cn(
+                                        "block border-0 text-lg bg-primary text-white py-2 px-5 rounded-xl"
+                                    )}
+                                >
+                                    Login
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

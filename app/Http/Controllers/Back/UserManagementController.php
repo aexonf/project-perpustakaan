@@ -80,15 +80,17 @@ class UserManagementController extends Controller
         return redirect()->back();
     }
 
-    public function exportPdfStudent(){
-        $pdf = Pdf::loadView('pages.student.format-export', ["data" => User::where("role","student")->get() ]);
+    public function exportPdfStudent()
+    {
+        $pdf = Pdf::loadView('pages.student.format-export', ["data" => User::where("role", "student")->get()]);
         return $pdf->download('Siswa.pdf');
     }
 
 
     // crud guru
-    public function exportPdfTeacher(){
-        $pdf = Pdf::loadView('pages.teacher.format-export', ["data" => User::where("role","teacher")->get() ]);
+    public function exportPdfTeacher()
+    {
+        $pdf = Pdf::loadView('pages.teacher.format-export', ["data" => User::where("role", "teacher")->get()]);
         return $pdf->download('Siswa.pdf');
     }
 
@@ -160,8 +162,9 @@ class UserManagementController extends Controller
 
     // crud librarian
 
-    public function exportPdfLibrarian(){
-        $pdf = Pdf::loadView('pages.librarian.format-export', ["data" => User::where("role","librarian")->get() ]);
+    public function exportPdfLibrarian()
+    {
+        $pdf = Pdf::loadView('pages.librarian.format-export', ["data" => User::where("role", "librarian")->get()]);
         return $pdf->download('Siswa.pdf');
     }
 
@@ -174,6 +177,7 @@ class UserManagementController extends Controller
 
     public function librarianCreate(Request $request)
     {
+        dd($request->all());
 
         $imageName = "";
 
@@ -182,10 +186,7 @@ class UserManagementController extends Controller
             $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
             $request->file('image')->move('storage/upload/user/', $file_name);
             $imageName = $file_name;
-        } else {
-            $imageName = "";
         }
-
 
         $validasi = $request->validate([
             "name" => "required",
@@ -214,20 +215,19 @@ class UserManagementController extends Controller
 
     public function librarianEdit(Request $request, $id)
     {
-
+        $user = User::find($id);
         $imageName = "";
 
         if ($request->hasFile('image')) {
-            $rand = str::random(8);
+            $rand = Str::random(8);
             $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
             $request->file('image')->move('storage/upload/user/', $file_name);
             $imageName = $file_name;
         } else {
-            $imageName = "";
+            $imageName = $user->image;
         }
 
-
-        $librarian = User::find($id)->update([
+        $librarian = $user->update([
             "name" => $request->name,
             "email" => $request->email,
             "role" => "librarian",

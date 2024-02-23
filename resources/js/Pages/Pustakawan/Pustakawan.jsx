@@ -34,7 +34,7 @@ export default function Pustakawan({ data }) {
                                         className="object-contain w-36 h-auto bg-[#f3f3f3] p-4 rounded-md"
                                         src={
                                             item.image
-                                                ? item.image
+                                                ? `storage/upload/user/${item.image}`
                                                 : "/image/blank-profile.png"
                                         }
                                         alt=""
@@ -47,16 +47,6 @@ export default function Pustakawan({ data }) {
                                         <h5 className="flex w-full font-semibold">
                                             Jabatan :&nbsp;
                                             <strong>{item.role}</strong>
-                                        </h5>
-                                        <h5 className="flex w-full font-semibold">
-                                            Surel :&nbsp;
-                                            <strong>{item.surel || "-"}</strong>
-                                        </h5>
-                                        <h5 className="flex w-full font-semibold">
-                                            Media Sosial :&nbsp;
-                                            <strong>
-                                                {item.medsos || "-"}
-                                            </strong>
                                         </h5>
                                     </div>
                                 </div>

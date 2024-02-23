@@ -6,8 +6,6 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 
 export default function DetailBookPage({ book }) {
-    console.log(book);
-
     return (
         <>
             <Head title={book.series_title || "DETAIL BUKU"} />
@@ -22,15 +20,15 @@ export default function DetailBookPage({ book }) {
                         <div className="p-5 bg-[#d9e0e6] mr-10 rounded-lg">
                             <img
                                 src={
-                                    book.image !== null
-                                        ? book.image
+                                    book.image
+                                        ? `/storage/upload/book/${book.image}`
                                         : "/image/notfound.jpg"
                                 }
-                                className={"w-[150px] h-[250px] object-cover"}
+                                className={"w-[150px] h-[250px] object-fill"}
                                 alt=""
                             />
                         </div>
-                        <div>
+                        <div className="w-full">
                             <div className="space-y-5 mb-4">
                                 <h1 className="text-3xl font-semibold">
                                     {book.series_title}
@@ -63,7 +61,7 @@ export default function DetailBookPage({ book }) {
                                     <h2 className="text-xl font-semibold">
                                         Stok
                                     </h2>
-                                    <p className="text-lg font-bold">
+                                    <p className="text-2xl font-bold">
                                         {book.stock}
                                     </p>
                                 </div>
@@ -145,7 +143,7 @@ export default function DetailBookPage({ book }) {
                                             </strong>
                                         </td>
                                         <td>
-                                            {book.specific_detail_info || "-"}
+                                            {book.specific_details_info || "-"}
                                         </td>
                                     </tr>
                                     <tr>

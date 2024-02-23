@@ -56,26 +56,32 @@ export default function Welcome({ data, bookLatest, category }) {
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            {data.map((item, index) => (
-                                <Link
-                                    href={`/detail/${item.id}`}
-                                    className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg cursor-pointer"
-                                    key={index + 1}
-                                >
-                                    <img
-                                        src={
-                                            item.image
-                                                ? item.image
-                                                : "/image/notfound.jpg"
-                                        }
-                                        alt=""
-                                        className="h-40 mb-3"
-                                    />
-                                    <p className="break-words text-lg">
-                                        {item.series_title}
-                                    </p>
-                                </Link>
-                            ))}
+                            {data.length == 0 ? (
+                                <h2 className="text-center font-semibold text-2xl font-jakarta">
+                                    Belum ada koleksi yang dibuat.
+                                </h2>
+                            ) : (
+                                data.map((item, index) => (
+                                    <Link
+                                        href={`/detail/${item.id}`}
+                                        className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg cursor-pointer"
+                                        key={index + 1}
+                                    >
+                                        <img
+                                            src={
+                                                item.image
+                                                    ? `/storage/upload/book/${item.image}`
+                                                    : "/image/notfound.jpg"
+                                            }
+                                            alt=""
+                                            className="h-40 mb-3"
+                                        />
+                                        <p className="break-words text-lg">
+                                            {item.series_title}
+                                        </p>
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </div>
                     <div className="w-full h-full mt-20">
@@ -101,26 +107,32 @@ export default function Welcome({ data, bookLatest, category }) {
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            {bookLatest.map((item, index) => (
-                                <Link
-                                    href={`/detail/${item.id}`}
-                                    className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg"
-                                    key={index + 1}
-                                >
-                                    <img
-                                        src={
-                                            item.image
-                                                ? item.image
-                                                : "/image/notfound.jpg"
-                                        }
-                                        alt=""
-                                        className="h-40 mb-3"
-                                    />
-                                    <p className="break-words text-lg">
-                                        {item.series_title}
-                                    </p>
-                                </Link>
-                            ))}
+                            {data.length == 0 ? (
+                                <h2 className="text-center font-semibold text-2xl font-jakarta">
+                                    Belum ada koleksi Baru yang dibuat.
+                                </h2>
+                            ) : (
+                                bookLatest.map((item, index) => (
+                                    <Link
+                                        href={`/detail/${item.id}`}
+                                        className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg"
+                                        key={index + 1}
+                                    >
+                                        <img
+                                            src={
+                                                item.image
+                                                    ? `/storage/upload/book/${item.image}`
+                                                    : "/image/notfound.jpg"
+                                            }
+                                            alt="img"
+                                            className="h-40 mb-3"
+                                        />
+                                        <p className="break-words text-lg">
+                                            {item.series_title}
+                                        </p>
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </div>
                 </section>

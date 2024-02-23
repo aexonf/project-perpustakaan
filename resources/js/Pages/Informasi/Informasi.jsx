@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import { Separator } from "@/components/ui/separator";
 
-export default function Informasi() {
+export default function Informasi({ data }) {
     return (
         <>
             <Head title="Informasi Perpustakaan" />
@@ -17,22 +17,33 @@ export default function Informasi() {
                 >
                     <h1 className="text-2xl font-bold">Library Information</h1>
                     <Separator />
-                    <div className="mx-10 pt-5">
-                        <div className="w-full">
-                            <h2 className="mb-3 text-2xl font-semibold">
-                                Informasi Kontak
-                            </h2>
-                            <p className="text-xl">
-                                Alamat: <br />
-                                <strong>
-                                    Jalan Raya Puspitek No. 11 Serpong, Kota
-                                    Tangerang Selatan
-                                </strong>{" "}
-                                <br />
-                                No. Telp : <strong>087725221016</strong>
-                            </p>
+                    {data ? (
+                        <div className="mx-10 pt-5">
+                            <div className="w-full">
+                                <h2 className="mb-3 text-2xl font-semibold">
+                                    Informasi Kontak
+                                </h2>
+                                <p className="text-xl">
+                                    Alamat: <br />
+                                    <strong>{data.address || "-"}</strong>{" "}
+                                    <br />
+                                    No. Telp :{" "}
+                                    <strong>{data.phone_number || "-"}</strong>
+                                </p>
+                                <img
+                                    src={`/storage/upload/setting/${data.image}`}
+                                    alt=""
+                                    className="w-auto h-96 rounded-md"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="text-center">
+                            <h2 className="text-4xl font-bold">
+                                Informasi Perpustakaan Tidak Ditemukan
+                            </h2>
+                        </div>
+                    )}
                 </section>
             </main>
         </>

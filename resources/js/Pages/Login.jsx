@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 export default function Login({ message }) {
-    console.log(message);
     const { data, setData, post, processing, errors, setError } = useForm({
         name: "",
         password: "",
