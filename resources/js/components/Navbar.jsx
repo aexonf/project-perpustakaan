@@ -67,9 +67,21 @@ export default function Navbar({ className }) {
                                     Pustakawan
                                 </Link>
                             </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <Link
+                                    href="/login"
+                                    className={cn(
+                                        "text-xl px-4 font-semibold",
+                                        window.location.pathname == "/login" &&
+                                            "bg-primary text-white"
+                                    )}
+                                >
+                                    Login
+                                </Link>
+                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
-                    <ul className="font-medium hidden md:flex flex-row space-x-8 rtl:space-x-reverse mt-0 border-0">
+                    <ul className="font-medium hidden md:flex flex-row items-center space-x-8 mt-0 border-0">
                         <li>
                             <Link
                                 href="/"
@@ -109,12 +121,22 @@ export default function Navbar({ className }) {
                                 Pustakawan
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href="/login"
+                                className={cn(
+                                    "block border-0 text-lg bg-primary text-white py-2 px-5 rounded-xl"
+                                )}
+                            >
+                                Login
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
             <img
                 className={cn(
-                    "h-full w-screen bg-contain absolute top-0 z-[-1] brightness-50",
+                    "h-full w-screen object-center absolute top-0 z-[-1] brightness-50",
                     className
                 )}
                 src="/image/perpus.jpg"

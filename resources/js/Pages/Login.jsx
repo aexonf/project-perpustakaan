@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -5,67 +6,121 @@ import {
     CardDescription,
     CardFooter,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Head, useForm } from "@inertiajs/react";
+import { cn } from "@/lib/utils";
+import React from "react";
 
-export function TabsDemo() {
+export default function Login({ message }) {
+    console.log(message);
+    const { data, setData, post, processing, errors, setError } = useForm({
+        name: "",
+        password: "",
+    });
+    function submit(e) {
+        e.preventDefault();
+        post("/login");
+    }
     return (
-        <Tabs defaultValue="account" className="w-[400px]">
-            <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
-            </TabsList>
-            <TabsContent value="account">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Account</CardTitle>
-                        <CardDescription>
-                            Make changes to your account here. Click save when
-                            you're done.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" defaultValue="Pedro Duarte" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="username">Username</Label>
-                            <Input id="username" defaultValue="@peduarte" />
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button>Save changes</Button>
-                    </CardFooter>
+        <>
+            <Head title="Login" />
+            <div className="w-full flex items-center justify-center h-screen overflow-hidden">
+                <Card className="w-full max-w-[500px] z-10 p-0 rounded-3xl md:p-[32px]">
+                    <form
+                        action="/login"
+                        method="post"
+                        onSubmit={submit}
+                        className="font-jakarta"
+                    >
+                        <CardHeader>
+                            <div>
+                                <div className="flex justify-center w-full space-x-4 mb-8">
+                                    <img
+                                        src="/image/logo.png"
+                                        alt="logo"
+                                        className="w-20 h-20"
+                                    />
+                                    <div className="flex justify-center flex-col">
+                                        <h2 className="font-semibold text-[20px] leading-8">
+                                            SMK NEGERI JATIPURO
+                                        </h2>
+                                    </div>
+                                </div>
+                                <h2 className="font-semibold text-2xl text-center tracking-wide">
+                                    Perpustakaan
+                                </h2>
+                            </div>
+                            {message && (
+                                <Badge
+                                    variant={"destructive"}
+                                    className="text-2xl text-center flex items-center justify-center"
+                                >
+                                    {message}
+                                </Badge>
+                            )}
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <div
+                                className={cn(
+                                    "space-y-2 mb-4",
+                                    errors.name && "text-destructive"
+                                )}
+                            >
+                                <Label
+                                    className="text-xl font-semibold"
+                                    htmlFor="name"
+                                >
+                                    Username
+                                </Label>
+                                <Input
+                                    type="text"
+                                    value={data.name}
+                                    onChange={(e) => {
+                                        setData("name", e.target.value);
+                                        setError("name", null);
+                                    }}
+                                    id="name"
+                                    placeholder="Masukkan name anda"
+                                    name="name"
+                                    className="p-7 text-xl placeholder:text-[#A0A0A0] rounded-[8px]"
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label
+                                    className="text-xl font-semibold"
+                                    htmlFor="password"
+                                >
+                                    Password
+                                </Label>
+                                <Input
+                                    type="password"
+                                    value={data.password}
+                                    onChange={(e) =>
+                                        setData("password", e.target.value)
+                                    }
+                                    id="name"
+                                    placeholder="Masukkan password"
+                                    name="password"
+                                    className="p-7 text-xl placeholder:text-[#A0A0A0] rounded-[8px]"
+                                />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button
+                                className="w-full p-6 mt-[32px] text-xl bg-[#0B96F7] "
+                                onClick={submit}
+                                disabled={
+                                    processing || !data.name || !data.password
+                                }
+                            >
+                                Login
+                            </Button>
+                        </CardFooter>
+                    </form>
                 </Card>
-            </TabsContent>
-            <TabsContent value="password">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Password</CardTitle>
-                        <CardDescription>
-                            Change your password here. After saving, you'll be
-                            logged out.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                        <div className="space-y-1">
-                            <Label htmlFor="current">Current password</Label>
-                            <Input id="current" type="password" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="new">New password</Label>
-                            <Input id="new" type="password" />
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button>Save password</Button>
-                    </CardFooter>
-                </Card>
-            </TabsContent>
-        </Tabs>
+            </div>
+        </>
     );
 }
