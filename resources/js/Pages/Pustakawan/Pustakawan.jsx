@@ -5,7 +5,6 @@ import SearchBar from "@/components/SearchBar";
 import { Separator } from "@/components/ui/separator";
 
 export default function Pustakawan({ data }) {
-    console.log(data);
     return (
         <>
             <Head title="Informasi Pustakawan" />

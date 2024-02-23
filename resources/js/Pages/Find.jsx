@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import NotFound from "../assets/not-found";
 
 export default function DetailBookPage({ data, category }) {
     const url = new URL(window.location.href);
@@ -35,9 +36,9 @@ export default function DetailBookPage({ data, category }) {
                                                 : "/image/notfound.jpg"
                                         }
                                         alt=""
-                                        className="h-44 w-36 mr-5"
+                                        className="min-h-44 min-w-36 mr-5"
                                     />
-                                    <div className="grow px-5">
+                                    <div className="grow ">
                                         <h2 className="break-words text-2xl font-semibold">
                                             {book.series_title}
                                         </h2>
@@ -107,7 +108,13 @@ export default function DetailBookPage({ data, category }) {
                                 </Link>
                             ))
                         ) : (
-                            <h1>No Books Found</h1>
+                            <div className="flex items-center justify-center w-full  flex-col">
+                                <NotFound className="size-[400px]" />
+                                <h3 className="text-destructive text-xl md:text-2xl">
+                                    <strong>Buku Tidak ditemukan</strong>.
+                                    Apakah kata kunci sudah benar?
+                                </h3>
+                            </div>
                         )}
                         {data.last_page > 1 && (
                             <div className="flex justify-center items-center w-full">

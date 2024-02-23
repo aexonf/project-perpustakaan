@@ -1,12 +1,20 @@
 import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu } from "lucide-react";
+
 import React from "react";
 
 export default function Navbar({ className }) {
     return (
         <nav className={cn("h-[460px] max-h-[460px] relative", className)}>
             <div className="w-full block z-10">
-                <div className="sm:hidden md:flex items-center justify-between mx-auto p-4 md:px-20">
+                <div className="flex items-center justify-between mx-auto p-4 md:px-20">
                     <Link
                         className="flex items-center space-x-4 text-white"
                         href="/"
@@ -16,7 +24,52 @@ export default function Navbar({ className }) {
                             PERPUSTAKAAN <strong>SMK NEGERI JATIPURO</strong>
                         </h4>
                     </Link>
-                    <ul className="font-medium flex flex-row space-x-8 rtl:space-x-reverse mt-0 border-0">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger className="md:hidden">
+                            <Menu className="text-white" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="md:hidden">
+                            <DropdownMenuItem asChild>
+                                <Link
+                                    href="/"
+                                    className={cn(
+                                        "text-xl px-4",
+                                        window.location.pathname == "/" &&
+                                            "bg-primary text-white"
+                                    )}
+                                >
+                                    Beranda
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <Link
+                                    href="/informasi"
+                                    className={cn(
+                                        "text-xl px-4",
+                                        window.location.pathname ==
+                                            "/informasi" &&
+                                            "bg-primary text-white"
+                                    )}
+                                >
+                                    Informasi
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <Link
+                                    href="/pustakawan"
+                                    className={cn(
+                                        "text-xl px-4",
+                                        window.location.pathname ==
+                                            "/pustakawan" &&
+                                            "bg-primary text-white"
+                                    )}
+                                >
+                                    Pustakawan
+                                </Link>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    <ul className="font-medium hidden md:flex flex-row space-x-8 rtl:space-x-reverse mt-0 border-0">
                         <li>
                             <Link
                                 href="/"
