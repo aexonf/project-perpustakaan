@@ -20,26 +20,26 @@
                             <tr>
                                 <td>
                                     <div>
-                                        <img src="data:image/png;base64,{!! base64_encode(QrCode::size(30)->generate($item->no_inventory)) !!}" width="100"
+                                        <img src="data:image/png;base64,{!! base64_encode(QrCode::size(30)->generate($item->id)) !!}" width="100"
                                             height="100" alt="QR Code">
                                     </div>
                                 </td>
                                 <td>
                                     <div style='padding: 8px;'>
                                         <div>
-                                            <p style='margin: 0;'>ID: <b>{{ $item->no_inventory }}</b></p>
+                                            <p style='margin: 0;'>ID: <b>{{ $item->id }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Judul: <b>{{ $item->title }}</b></p>
+                                            <p style='margin: 0;'>Judul: <b>{{ $item->series_title }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Penulis: <b>{{ $item->writer }}</b></p>
+                                            <p style='margin: 0;'>Penerbit: <b>{{ $item->publisher }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Genre: <b>{{ $item->genre }}</b></p>
+                                            <p style='margin: 0;'>ISBN/ISSN: <b>{{ $item->isbn_issn }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Tahun: <b>{{ $item->year }}</b></p>
+                                            <p style='margin: 0;'>Bahasa: <b>{{ $item->language }}</b></p>
                                         </div>
                                     </div>
                                 </td>

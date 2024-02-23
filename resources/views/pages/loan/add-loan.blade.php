@@ -56,7 +56,7 @@
                                 <div class="custom-file">
                                     <select class="select2" name="book[]" required multiple="multiple">
                                         @foreach ($books as $book)
-                                        <option value="{{ $book->id }}">{{ $book->title }}</option>
+                                        <option value="{{ $book->id }}">{{ $book->series_title }}</option>
                                         @endforeach
                                     </select>
 

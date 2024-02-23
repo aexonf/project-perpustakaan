@@ -90,7 +90,7 @@
                                             <td>
                                                 {{ $value->user->name }}
                                             </td>
-                                            <td>{{ $value->book->title }}</td>
+                                            <td>{{ $value->book->series_title }}</td>
                                             <td
                                                 class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
                                                 @if ($value->status === 'pending')
@@ -152,7 +152,7 @@
                             <label for="book">Buku<span class="text-danger">*</span></label>
                             <select class="form-control" name="book" id="book" required>
                                 @foreach ($books as $book)
-                                    <option value="{{ $book->id }}">{{ $book->title }}</option>
+                                    <option value="{{ $book->id }}">{{ $book->series_title }}</option>
                                 @endforeach
                             </select>
                         </div>

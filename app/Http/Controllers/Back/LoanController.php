@@ -94,9 +94,14 @@ class LoanController extends Controller
 
         foreach ($request->book as $value) {
             $bookId = $value;
-            $bookFInd = Books::find($bookId);
-            $bookFInd->stock -= 1;
-            $bookFInd->save();
+            $bookFind = Books::find($bookId);
+            $bookFind->stock -= 1;
+
+            if ($bookFind->stock <= 0) {
+                $bookFind->status = 'blank';
+            }
+
+            $bookFind->save();
         }
 
         $loan = LogBookLoan::create([

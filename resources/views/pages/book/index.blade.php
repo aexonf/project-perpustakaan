@@ -110,8 +110,13 @@
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
                                                 <div class="media">
-                                                    <img alt="image" class="mr-3 rounded-circle" width="48"
-                                                        src="{{ asset('storage/upload/book/' . $book->image) }}">
+                                                    @if ($book->image)
+                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                            src="{{ asset('storage/upload/book/' . $book->image) }}">
+                                                    @else
+                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                            src="https://w1.pngwing.com/pngs/536/984/png-transparent-book-logo-book-design-childrens-literature-cartoon-page-text-orange-line.png">
+                                                    @endif
                                                     <div class="media-body">
                                                         <div class="media-title">
                                                             {{ $book->title }}

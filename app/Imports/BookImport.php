@@ -4,32 +4,66 @@ namespace App\Imports;
 
 use App\Models\Books;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+
 
 class BookImport implements ToModel
 {
-
     public function model(array $row)
     {
-     if ($row[0] == 'Nomer Inventory' && $row[1] == 'Judul' && $row[2] == 'Penulis' && $row[3] == 'Genre' && $row[4] == 'Tahun' && $row[5] == 'Stock' && $row[6] == 'Location' && $row[7] == 'Status') {
-        return null;
-    }
-
-    if (!is_numeric($row[0])) {
-        return null;
-    }
+        if ($row[0] == 'Judul Seri' && $row[1] == 'No Panggil' && $row[2] == 'Description' && $row[3] == 'Penerbit' && $row[4] == 'Deskripsi Fisik' && $row[5] == 'Bahasa' && $row[6] == 'ISBN/ISSN' && $row[7] == 'klasifikasi' && $row[8] == 'Jenis konten' && $row[9] == 'Tipe Media' && $row[10] == 'Tipe Pembawa' && $row[11] == 'Staock' && $row[12] == 'Edition' && $row[13] == 'Subject' && $row[14] == 'Info Detail Spesifik' && $row[15] == 'Pernyataan' && $row[16] == "Tanggung Jawab" && $row[17] == "Status" && $row[18] == "Category") {
+            return null;
+        }
 
 
-    return Books::create([
-        "no_inventory" => $row[0],
-        "title" => $row[1],
-        "writer" => $row[2],
-        "genre" => $row[3],
-        "year" => $row[4],
-        "stock" => $row[5],
-        "location" => $row[6],
-        "status" => $row[7],
-        "user_id" => 1,
-    ]);
+
+        if (!empty($row[19])) {
+            $imageDirectory = 'storage/upload/book/';
+
+            $imagePath = $row[19]; // Assuming $row[19] contains the file path
+
+            Log::info("Image Path: " . $imagePath); // Tambahkan ini untuk melihat path gambar
+
+            if (File::exists($imagePath)) {
+                $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
+                $rand = Str::random(8);
+                $file_name = $rand . "-" . $row[0] . '.' . $imageExtension;
+
+                // Move the file to the destination directory
+                File::move($imagePath, public_path($imageDirectory . $file_name));
+
+                $row[19] = $file_name;
+            }
+        }
+
+        $status = in_array(strtolower($row[17]), ['available', 'blank']) ? strtolower($row[17]) : 'blank';
+
+        return Books::create([
+            "series_title" => $row[0],
+            "call_no" => $row[1],
+            "description" => $row[2],
+            "publisher" => $row[3],
+            "physical_description" => $row[4],
+            "language" => $row[5],
+            "isbn_issn" => $row[6],
+            "classification" => $row[7],
+            "content_type" => $row[8],
+            "media_type" => $row[9],
+            "carrier_type" => $row[10],
+            "stock" => $row[11],
+            "edition" => $row[12],
+            "subject" => $row[13],
+            "specific_details_info" => $row[14],
+            "statement" => $row[15],
+            "responsibility" => $row[16],
+            "status" => $status,
+            "category" => $row[18],
+            "image" => "",
+            "user_id" => 1,
+        ]);
     }
 }
