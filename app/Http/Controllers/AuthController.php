@@ -12,13 +12,13 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return inertia('Login');
+        return Inertia::render("Login");
     }
 
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            "username" => "required|string",
+            "name" => "required|string",
             "password" => "required",
         ]);
 

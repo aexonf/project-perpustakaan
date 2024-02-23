@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::prefix("/admin")->middleware('librarian')->group(function () {
+Route::prefix("/admin")->middleware(['librarian', 'auth'])->group(function () {
 
     Route::get("/", function () {
         return view("pages.index");
@@ -88,16 +88,10 @@ Route::prefix("/admin")->middleware('librarian')->group(function () {
         });
     });
 
-
-    Route::controller(SettingController::class)->group(function() {
-
+    Route::controller(SettingController::class)->group(function () {
         Route::get("/setting", "index")->name("admin.setting");
         Route::put("/setting", "store")->name("admin.setting.store");
     });
-
-
-
-
 });
 
 Route::controller(HomeController::class)->group(function () {
@@ -113,8 +107,8 @@ Route::get("/pustakawan", function () {
 
 Route::get("/informasi", function () {
 
- return Inertia::render("Informasi/Informasi", [
-    "data" => Setting::first()
- ]);
+    return Inertia::render("Informasi/Informasi", [
+        "data" => Setting::first()
+    ]);
 
 });

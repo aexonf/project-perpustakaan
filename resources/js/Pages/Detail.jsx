@@ -46,17 +46,27 @@ export default function DetailBookPage({ book }) {
                                 </h2>
                                 <Badge
                                     variant={
-                                        book.status == "available"
+                                        book.stock > 0 &&
+                                        book.status === "available"
                                             ? "default"
                                             : "destructive"
                                     }
                                     className="text-lg"
                                 >
-                                    {book.status === "available"
+                                    {book.stock > 0 &&
+                                    book.status === "available"
                                         ? "Tersedia"
                                         : "Tidak Tersedia"}
                                 </Badge>
                                 <Separator />
+                                <div>
+                                    <h2 className="text-xl font-semibold">
+                                        Stok
+                                    </h2>
+                                    <p className="text-lg font-bold">
+                                        {book.stock}
+                                    </p>
+                                </div>
                             </div>
                             <table className="text-lg font-jakarta">
                                 <tbody>
@@ -76,7 +86,9 @@ export default function DetailBookPage({ book }) {
                                         <td className="pr-20">
                                             <strong>Deskripsi Fisik</strong>
                                         </td>
-                                        <td>{book.physical_description || "-"}</td>
+                                        <td>
+                                            {book.physical_description || "-"}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td className="pr-20">
@@ -128,9 +140,13 @@ export default function DetailBookPage({ book }) {
                                     </tr>
                                     <tr>
                                         <td className="pr-20">
-                                            <strong>Info Detail Spesifik</strong>
+                                            <strong>
+                                                Info Detail Spesifik
+                                            </strong>
                                         </td>
-                                        <td>{book.specific_detail_info || "-"}</td>
+                                        <td>
+                                            {book.specific_detail_info || "-"}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td className="pr-20">
