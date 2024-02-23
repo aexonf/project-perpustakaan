@@ -39,7 +39,7 @@
                 <ul class="dropdown-menu">
                     <li class="{{ request()->path() === 'admin/user/management/student' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('student.management') }}">
-                            <span>User</span></a>
+                            <span>Siswa</span></a>
                     </li>
                     <li class="{{ request()->path() === 'admin/user/management/teacher' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('teacher.management') }}">

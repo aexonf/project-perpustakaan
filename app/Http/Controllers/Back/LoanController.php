@@ -95,6 +95,12 @@ class LoanController extends Controller
         foreach ($request->book as $value) {
             $bookId = $value;
             $bookFind = Books::find($bookId);
+
+            if($bookFind == 0) {
+                Session::flash("error", "Gagal meminjam buku");
+                return redirect()->back();
+            }
+
             $bookFind->stock -= 1;
 
             if ($bookFind->stock <= 0) {

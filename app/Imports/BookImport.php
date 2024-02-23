@@ -21,25 +21,6 @@ class BookImport implements ToModel
 
 
 
-        if (!empty($row[19])) {
-            $imageDirectory = 'storage/upload/book/';
-
-            $imagePath = $row[19]; // Assuming $row[19] contains the file path
-
-            Log::info("Image Path: " . $imagePath); // Tambahkan ini untuk melihat path gambar
-
-            if (File::exists($imagePath)) {
-                $imageExtension = pathinfo($imagePath, PATHINFO_EXTENSION);
-                $rand = Str::random(8);
-                $file_name = $rand . "-" . $row[0] . '.' . $imageExtension;
-
-                // Move the file to the destination directory
-                File::move($imagePath, public_path($imageDirectory . $file_name));
-
-                $row[19] = $file_name;
-            }
-        }
-
         $status = in_array(strtolower($row[17]), ['available', 'blank']) ? strtolower($row[17]) : 'blank';
 
         return Books::create([

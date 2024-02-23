@@ -14,7 +14,7 @@ class BookExport implements FromView, ShouldAutoSize
     public function view(): View
     {
         return view('pages.book.format-export', [
-            "data" => Books::all(),
+            "items" => Books::all(),
         ]);
     }
 }

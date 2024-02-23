@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::prefix("/admin")->group(function () {
+Route::prefix("/admin")->middleware(["librarian", "auth"])->group(function () {
 
     Route::get("/", function () {
         return view("pages.index");
@@ -70,14 +70,14 @@ Route::prefix("/admin")->group(function () {
             Route::post("/student", "studentCreate")->name("student.create");
             Route::put("/edit/student/{id}", "studentEdit")->name("student.edit");
             Route::delete("/delete/student/{id}", "studentDelete")->name("student.delete");
-            Route::get("/student/export", "exportPdfStudent")->name("student.export");
+            Route::get("/student/export", "exportStudent")->name("student.export");
 
             // CRUD for teachers
             Route::get("/teacher", "teacherIndex")->name("teacher.management");
             Route::post("/teacher", "teacherCreate")->name("teacher.create");
             Route::put("/edit/teacher/{id}", "teacherEdit")->name("teacher.edit");
             Route::delete("/delete/teacher/{id}", "teacherDelete")->name("teacher.delete");
-            Route::post("/teacher/export", "exportPdfTeacher")->name("teacher.export");
+            Route::get("/teacher/export", "exportTeacher")->name("teacher.export");
 
             // CRUD for librarians
             Route::get("/librarian", "librarianIndexs")->name("librarian.management");

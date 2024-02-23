@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Exports\StudentExport;
+use App\Exports\TeacherExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -9,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserManagementController extends Controller
 {
@@ -80,18 +82,16 @@ class UserManagementController extends Controller
         return redirect()->back();
     }
 
-    public function exportPdfStudent()
+    public function exportStudent()
     {
-        $pdf = Pdf::loadView('pages.student.format-export', ["data" => User::where("role", "student")->get()]);
-        return $pdf->download('Siswa.pdf');
+        return Excel::download(new StudentExport, "siswa.xlsx");
     }
 
 
     // crud guru
-    public function exportPdfTeacher()
+    public function exportTeacher()
     {
-        $pdf = Pdf::loadView('pages.teacher.format-export', ["data" => User::where("role", "teacher")->get()]);
-        return $pdf->download('Siswa.pdf');
+        return Excel::download(new TeacherExport, "guru.xlsx");
     }
 
     public function teacherIndex()

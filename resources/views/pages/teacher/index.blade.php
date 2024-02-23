@@ -39,7 +39,7 @@
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
                                     data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
                                     Import</button>
-                                    <form action="{{route('book.export')}}" method="get">
+                                    <form action="{{route('teacher.export')}}" method="get">
                                         @csrf
                                         @method("GET")
                                         <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
