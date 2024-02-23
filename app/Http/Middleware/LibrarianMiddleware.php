@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Librarian;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,13 @@ class LibrarianMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $librarian = Librarian::where("user_id", Auth::user()->id)->first();
-
-        if(!$librarian){
-            return abort(403);
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->role === 'librarian') {
+                return $next($request);
+            }
         }
-        return $next($request);
+
+        return abort(403);
     }
 }

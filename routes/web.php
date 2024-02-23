@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::prefix("/admin")->group(function () {
+Route::prefix("/admin")->middleware('librarian')->group(function () {
 
     Route::get("/", function () {
         return view("pages.index");
@@ -116,5 +116,5 @@ Route::get("/informasi", function () {
  return Inertia::render("Informasi/Informasi", [
     "data" => Setting::first()
  ]);
- 
+
 });
