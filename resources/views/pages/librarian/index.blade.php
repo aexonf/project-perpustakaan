@@ -90,7 +90,17 @@
                                     @foreach ($librarians as $index => $librarian)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
-                                            <td>{{ $librarian->name }}</td>
+                                            <td>
+                                                <div class="media">
+                                                    <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                        src="{{ asset('storage/upload/user/' . $librarian->image) }}">
+                                                    <div class="media-body">
+                                                        <div class="media-title">
+                                                            {{ $librarian->name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 @if ($librarian->status === 'active')
                                                     <span class="badge badge-success">Aktif</span>
@@ -108,6 +118,7 @@
                                                     $('#modal-edit #form-edit #name').attr('value', '{{ $librarian->name }}');
                                                     $('#modal-edit #form-edit #status').attr('value', '{{ $librarian->status }}');
                                                     $('#modal-edit #form-edit #email').attr('value', '{{ $librarian->email }}');
+                                                    $('#modal-edit #image').attr('src', '{{ asset('storage/upload/user/' . $librarian->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('librarian.edit', $librarian->id) }}');
                                                         "><i
                                                             class="fas fa-edit"></i></button>
@@ -157,6 +168,10 @@
                                 <option value="active">Aktif</option>
                                 <option value="not_active">Tidak Aktif</option>
                             </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Image</label>
+                            <input type="file" class="form-control" name="image">
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
@@ -228,6 +243,10 @@
                                 <option value="active">Aktif</option>
                                 <option value="not_active">Tidak Aktif</option>
                             </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Image</label>
+                            <input type="file" class="form-control" name="image">
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>

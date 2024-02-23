@@ -8,6 +8,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+
 
 class UserManagementController extends Controller
 {
@@ -172,6 +174,19 @@ class UserManagementController extends Controller
 
     public function librarianCreate(Request $request)
     {
+
+        $imageName = "";
+
+        if ($request->hasFile('image')) {
+            $rand = str::random(8);
+            $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move('storage/upload/user/', $file_name);
+            $imageName = $file_name;
+        } else {
+            $imageName = "";
+        }
+
+
         $validasi = $request->validate([
             "name" => "required",
             "email" => "required",
@@ -181,6 +196,7 @@ class UserManagementController extends Controller
             "name" => $validasi["name"],
             "email" => $validasi["email"],
             "role" => "librarian",
+            "image" => $imageName,
             "password" => Hash::make("password"),
             "status" => $request->status,
         ]);
@@ -198,10 +214,24 @@ class UserManagementController extends Controller
 
     public function librarianEdit(Request $request, $id)
     {
+
+        $imageName = "";
+
+        if ($request->hasFile('image')) {
+            $rand = str::random(8);
+            $file_name = $rand . "-" . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move('storage/upload/user/', $file_name);
+            $imageName = $file_name;
+        } else {
+            $imageName = "";
+        }
+
+
         $librarian = User::find($id)->update([
             "name" => $request->name,
             "email" => $request->email,
             "role" => "librarian",
+            "image" => $imageName,
             "password" => Hash::make($request->password),
             "status" => $request->status,
         ]);
