@@ -90,8 +90,13 @@ class LoanController extends Controller
 
         $bookId = null;
 
+
+
         foreach ($request->book as $value) {
             $bookId = $value;
+            $bookFInd = Books::find($bookId);
+            $bookFInd->stock -= 1;
+            $bookFInd->save();
         }
 
         $loan = LogBookLoan::create([
@@ -157,6 +162,10 @@ class LoanController extends Controller
                 "status" => "returned",
                 "return_date" => Carbon::now("Asia/Jakarta"),
             ]);
+
+            $book = Books::find($returned->book_id);
+            $book->stock += 1;
+            $book->save();
         }
 
         if ($returned) {
@@ -185,6 +194,13 @@ class LoanController extends Controller
          * @return \Illuminate\Http\RedirectResponse
          */
         $returned = LogBookLoan::find($id);
+
+
+        $book = Books::find($returned->book_id);
+        $book->stock += 1;
+        $book->save();
+
+
         $returned->update([
             "status" => "returned",
             "return_date" => Carbon::now("Asia/Jakarta"),

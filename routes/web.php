@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Back\BookController;
 use App\Http\Controllers\Back\LoanController;
+use App\Http\Controllers\Back\SettingController;
 use App\Http\Controllers\Back\UserManagementController;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
@@ -85,6 +86,17 @@ Route::prefix("/admin")->group(function () {
             Route::get("/librarian", "exportPdfLibrarian")->name("librarian.export");
         });
     });
+
+
+    Route::controller(SettingController::class)->group(function() {
+
+        Route::get("/setting", "index")->name("admin.setting");
+        Route::put("/setting", "store")->name("admin.setting.store");
+    });
+
+
+
+
 });
 
 Route::controller(HomeController::class)->group(function () {
@@ -99,5 +111,6 @@ Route::get("/pustakawan", function () {
 });
 
 Route::get("/informasi", function () {
-    return Inertia::render("Informasi/Informasi");
+
+ return Inertia::render("Informasi/Informasi");
 });

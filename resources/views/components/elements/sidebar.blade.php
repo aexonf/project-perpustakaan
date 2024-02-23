@@ -19,6 +19,13 @@
                         <span>Buku</span></a>
                 </li>
 
+                <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.setting') }}" id="route-admin">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+
                 <li class="{{ Request::is('admin/pinjaman') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('loan') }}" id="route-admin">
                         <i class="fa fa-tasks"></i>
@@ -45,6 +52,8 @@
                     </li> --}}
                 </ul>
             </li>
+
+
 
 
 
