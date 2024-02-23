@@ -6,6 +6,7 @@ use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\Back\SettingController;
 use App\Http\Controllers\Back\UserManagementController;
 use App\Http\Controllers\HomeController;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -112,5 +113,8 @@ Route::get("/pustakawan", function () {
 
 Route::get("/informasi", function () {
 
- return Inertia::render("Informasi/Informasi");
+ return Inertia::render("Informasi/Informasi", [
+    "data" => Setting::first()
+ ]);
+ 
 });
