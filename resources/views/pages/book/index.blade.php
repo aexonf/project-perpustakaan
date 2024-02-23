@@ -247,6 +247,10 @@
                             <input type="text" class="form-control" name="edition" required>
                         </div>
                         <div class="form-group mb-2">
+                            <label>Category<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="category" required>
+                        </div>
+                        <div class="form-group mb-2">
                             <label>Subject<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="subject" required>
                         </div>

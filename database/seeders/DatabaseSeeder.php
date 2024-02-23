@@ -15,37 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'role' => 'librarian',
-        //     'status' => 'active'
-        // ]);
+        \App\Models\User::factory()->create([
+            'name' => 'User',
+            'email' => 'test@example.com',
+            'role' => 'librarian',
+            'status' => 'active',
+        ]);
 
         // $faker = Faker::create();
 
-        // Seed data for the 'books' table
-        // $table->string('series_title');
-        // $table->string('call_no');
-        // $table->string('description');
-        // $table->string('publisher');
-        // $table->string('physical_description');
-        // $table->string('language');
-        // $table->string('isbn/issn');
-        // $table->string('classification');
-        // $table->string('contetn_type');
-        // $table->string('media_type');
-        // $table->string('carrier_type');
-        // $table->string('stock');
-        // $table->string('edition');
-        // $table->string('subject');
-        // $table->string('specific_details_info');
-        // $table->string('statement');
-        // $table->string('responsibility');
-        // $table->string('image')->nullable(true);
-        // $table->enum('status', ['available', 'blank']);
         // Books::create([
         //     'series_title' => $faker->sentence,
         //     'call_no' => $faker->sentence,

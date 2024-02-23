@@ -67,8 +67,9 @@ class BookController extends Controller
             'publisher' => $request->input('publisher'),
             'physical_description' => $request->input('physical_description'),
             'language' => $request->input('language'),
-            'isbn/issn' => $request->input('isbn_issn'),
+            'isbn_issn' => $request->input('isbn_issn'),
             'classification' => $request->input('classification'),
+            'category' => $request->input('category'),
             'content_type' => $request->input('content_type'),
             'media_type' => $request->input('media_type'),
             'carrier_type' => $request->input('carrier_type'),
@@ -80,7 +81,7 @@ class BookController extends Controller
             'image' => $imageName,
             'status' => $request->input('status'),
             'stock' => $request->input('stock'),
-            'user_id' => 1,
+            'user_id' => auth()->user()->id,
         ]);
 
 
@@ -121,6 +122,7 @@ class BookController extends Controller
             'classification' => $request->input('classification'),
             'contetn_type' => $request->input('content_type'),
             'media_type' => $request->input('media_type'),
+            'category' => $request->input('category'),
             'carrier_type' => $request->input('carrier_type'),
             'edition' => $request->input('edition'),
             'subject' => $request->input('subject'),
@@ -130,7 +132,7 @@ class BookController extends Controller
             'image' => $imageName,
             'status' => $request->input('status'),
             'stock' => $request->input('stock'),
-            'user_id' => $request->user()->id,
+            'user_id' => auth()->user()->id,
         ]);
 
         // jika buku berhasil di update

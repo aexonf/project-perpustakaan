@@ -31,12 +31,12 @@ export default function DetailBookPage({ data, category }) {
                                 >
                                     <img
                                         src={
-                                            book.image !== null
-                                                ? book.image
+                                            book.image
+                                                ? `/storage/upload/book/${book.image}`
                                                 : "/image/notfound.jpg"
                                         }
                                         alt=""
-                                        className="min-h-44 min-w-36 mr-5"
+                                        className="h-44 w-36 mr-5"
                                     />
                                     <div className="grow ">
                                         <h2 className="break-words text-2xl font-semibold">
@@ -59,7 +59,7 @@ export default function DetailBookPage({ data, category }) {
                                                         </strong>
                                                     </td>
                                                     <td>
-                                                        {book.isb_issn || "-"}
+                                                        {book.isbn_issn || "-"}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -135,7 +135,6 @@ export default function DetailBookPage({ data, category }) {
                                             {data.current_page} /{" "}
                                             {data.last_page}
                                         </p>
-                                        {console.log(data)}
                                         <Button
                                             disabled={
                                                 data.current_page ===
