@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::prefix("/admin")->middleware('librarian')->group(function () {
+Route::prefix("/admin")->group(function () {
 
     Route::get("/", function () {
         return view("pages.index");
@@ -80,24 +80,20 @@ Route::prefix("/admin")->middleware('librarian')->group(function () {
             Route::post("/teacher/export", "exportPdfTeacher")->name("teacher.export");
 
             // CRUD for librarians
-            Route::get("/librarian", "librarianIndex")->name("librarian.management");
+            Route::get("/librarian", "librarianIndexs")->name("librarian.management");
             Route::post("/librarian", "librarianCreate")->name("librarian.create");
             Route::put("/edit/librarian/{id}", "librarianEdit")->name("librarian.edit");
             Route::delete("/delete/librarian/{id}", "librarianDelete")->name("librarian.delete");
-            Route::get("/librarian", "exportPdfLibrarian")->name("librarian.export");
+            Route::get("/librarian/export", "exportPdfLibrarian")->name("librarian.export");
         });
     });
 
 
-    Route::controller(SettingController::class)->group(function() {
+    Route::controller(SettingController::class)->group(function () {
 
         Route::get("/setting", "index")->name("admin.setting");
         Route::put("/setting", "store")->name("admin.setting.store");
     });
-
-
-
-
 });
 
 Route::controller(HomeController::class)->group(function () {
@@ -113,8 +109,7 @@ Route::get("/pustakawan", function () {
 
 Route::get("/informasi", function () {
 
- return Inertia::render("Informasi/Informasi", [
-    "data" => Setting::first()
- ]);
-
+    return Inertia::render("Informasi/Informasi", [
+        "data" => Setting::first()
+    ]);
 });

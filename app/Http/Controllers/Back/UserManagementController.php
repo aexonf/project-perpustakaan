@@ -165,7 +165,7 @@ class UserManagementController extends Controller
         return $pdf->download('Siswa.pdf');
     }
 
-    public function librarianIndex()
+    public function librarianIndexs()
     {
         return view("pages.librarian.index", [
             "librarians" => User::where("role", "librarian")->get()
