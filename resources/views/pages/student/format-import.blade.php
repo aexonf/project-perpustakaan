@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th><b>Nama</b></th>
-            <th><b>Email</b></th>
-            <th><b>Password</b></th>
+            <th><b>Nomer Id</b></th>
+            <th><b>Nomer Telpon</b></th>
         </tr>
     </thead>
     <tbody>

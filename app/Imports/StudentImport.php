@@ -15,14 +15,14 @@ class StudentImport implements ToModel
     public function model(array $row)
     {
 
-        if ($row[0] == 'Nama' && $row[1] == 'Email' && $row[2] == 'Password') {
+        if ($row[0] == 'Nama' && $row[1] == 'Nomer Id' && $row[2] == 'Nomer Telpon') {
             return null;
         }
 
         return User::create([
             "name" => $row[0],
-            "email" => $row[1],
-            "password" => $row[2],
+            "id_number" => $row[1],
+            "phone_number" => $row[2],
             "role" => "student",
             "status" => "active",
         ]);
