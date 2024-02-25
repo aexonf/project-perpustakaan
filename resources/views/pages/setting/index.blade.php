@@ -32,8 +32,8 @@
                         <h4>Informasi Perpustakaan</h4>
                     </div>
                     <div class="card-body">
-                        <form id="form-edit" class="needs-validation" method="POST" action="{{ route("admin.setting.store") }}"
-                            enctype="multipart/form-data">
+                        <form id="form-edit" class="needs-validation" method="POST"
+                            action="{{ route('admin.setting.store') }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -42,7 +42,7 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="scholl_name" required
-                                        value={{ $setting->scholl_name ?? '' }}>
+                                        value="{{ $setting->scholl_name ?? '' }}">
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="address" required
-                                        value={{ $setting->address ?? '' }}>
+                                        value="{{ $setting->address ?? '' }}">
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="phone_number" required
-                                        value={{ $setting->phone_number ?? '' }}>
+                                        value="{{ $setting->phone_number ?? '' }}">
                                 </div>
                             </div>
 

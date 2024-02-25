@@ -24,10 +24,17 @@ export default function Informasi({ data }) {
                                     Informasi Kontak
                                 </h2>
                                 <p className="text-xl">
+                                    Nama Perpustakaan: <br />
+                                    <strong>
+                                        {data.scholl_name || "-"}
+                                    </strong>{" "}
+                                    <br />
+                                    <br />
                                     Alamat: <br />
                                     <strong>{data.address || "-"}</strong>{" "}
                                     <br />
-                                    No. Telp :{" "}
+                                    <br />
+                                    No. Telp : <br />
                                     <strong>{data.phone_number || "-"}</strong>
                                 </p>
                                 <img

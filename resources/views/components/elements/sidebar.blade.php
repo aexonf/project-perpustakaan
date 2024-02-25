@@ -14,16 +14,16 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <li class="{{ Request::is('admin/buku') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('book') }}" id="route-admin"><i class="fa-solid fa-book"></i>
-                    <span>Buku</span></a>
-            </li>
-
             <li class="{{ Request::is('admin/setting') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.setting') }}" id="route-admin">
                     <i class="fa-solid fa-gear"></i>
                     <span>Setting</span>
                 </a>
+            </li>
+
+            <li class="{{ Request::is('admin/buku') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('book') }}" id="route-admin"><i class="fa-solid fa-book"></i>
+                    <span>Buku</span></a>
             </li>
 
             <li class="{{ Request::is('admin/pinjaman') ? 'active' : '' }}">
@@ -33,7 +33,7 @@
                 </a>
             </li>
 
-            <li class="nav-item dropdown {{ Route::is("*.management") ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Route::is('*.management') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>User Management</span></a>
                 <ul class="dropdown-menu">
@@ -46,8 +46,8 @@
                             <span>Guru</span></a>
                     </li>
                     <li class="{{ request()->path() === 'admin/user/management/librarian' ? 'active' : '' }}">
-                        <a class="nav-link"  href="{{ route('librarian.management') }}">
-                            <span>Perpustakawan</span></a>
+                        <a class="nav-link" href="{{ route('librarian.management') }}">
+                            <span>Pustakawan</span></a>
                     </li>
                 </ul>
             </li>
