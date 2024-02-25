@@ -71,13 +71,18 @@ Route::prefix("/admin")->middleware(["librarian", "auth"])->group(function () {
             Route::put("/edit/student/{id}", "studentEdit")->name("student.edit");
             Route::delete("/delete/student/{id}", "studentDelete")->name("student.delete");
             Route::get("/student/export", "exportStudent")->name("student.export");
-
+            Route::post("/student/import", "importStudent")->name("student.import");
+            Route::get("/download-template/student", "downloadTemplateStudent")->name("student.download.template");
+            
             // CRUD for teachers
             Route::get("/teacher", "teacherIndex")->name("teacher.management");
             Route::post("/teacher", "teacherCreate")->name("teacher.create");
             Route::put("/edit/teacher/{id}", "teacherEdit")->name("teacher.edit");
             Route::delete("/delete/teacher/{id}", "teacherDelete")->name("teacher.delete");
             Route::get("/teacher/export", "exportTeacher")->name("teacher.export");
+            Route::get("/download-template/teacher", "downloadTemplateTeacher")->name("teacher.download.template");
+            Route::post("/teacher/import", "importTeacher")->name("teacher.import");
+
 
             // CRUD for librarians
             Route::get("/librarian", "librarianIndexs")->name("librarian.management");

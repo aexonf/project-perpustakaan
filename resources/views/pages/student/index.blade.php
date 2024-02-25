@@ -190,21 +190,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Import Buku</h5>
+                    <h5 class="modal-title">Import Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('book.import') }}"
+                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('student.import') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label>File </label>
-                            <input type="file" class="form-control" name="book" required>
+                            <input type="file" class="form-control" name="student" required>
                         </div>
                         <div>
-                            <a href="{{ route('book.download.template') }}"
+                            <a href="{{ route('student.download.template') }}"
                                 class="btn btn-icon icon-left btn-info mr-2 mb-2"><i class="fas fa-download"></i>
                                 Unduh Template</a>
                         </div>

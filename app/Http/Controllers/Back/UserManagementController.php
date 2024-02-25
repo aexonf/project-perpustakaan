@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Back;
 use App\Exports\StudentExport;
 use App\Exports\TeacherExport;
 use App\Http\Controllers\Controller;
+use App\Imports\StudentImport;
+use App\Imports\TeacherImport;
+use App\Imports\TeamplateStudentImport;
+use App\Imports\TeamplateTeacherImport;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -257,4 +261,40 @@ class UserManagementController extends Controller
         Session::flash("error", "Data pustakawan gagal dihapus");
         return redirect()->back();
     }
+
+
+    public function downloadTemplateStudent()
+    {
+        return Excel::download(new TeamplateStudentImport, 'siswa.xlsx');
+    }
+
+
+    public function downloadTemplateTeacher()
+    {
+        return Excel::download(new TeamplateTeacherImport, 'guru.xlsx');
+    }
+
+
+    public function importStudent()
+    {
+        try {
+            Excel::import(new StudentImport, request()->file('student'));
+            return redirect()->route('book')->with('success', 'Data Siswa berhasil diimport!');
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->route('book')->with('error', "Data Siswa gagal diimport!");
+        }
+    }
+
+    public function importTeacher()
+    {
+        try {
+            Excel::import(new TeacherImport, request()->file('teacher'));
+            return redirect()->route('book')->with('success', 'Data Guru berhasil diimport!');
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->route('book')->with('error', "Data Guru gagal diimport!");
+        }
+    }
+
 }
