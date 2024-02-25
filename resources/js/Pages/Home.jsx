@@ -74,7 +74,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     : "/image/notfound.jpg"
                                             }
                                             alt=""
-                                            className="h-40 mb-3"
+                                            className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
                                             {item.series_title}
@@ -125,7 +125,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     : "/image/notfound.jpg"
                                             }
                                             alt="img"
-                                            className="h-40 mb-3"
+                                            className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
                                             {item.series_title}
