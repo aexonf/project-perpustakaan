@@ -182,6 +182,7 @@ class BookController extends Controller
 
     public function export()
     {
-       return Excel::download(new BookExport, "buku.xlsx");
-    }
+        $qrCode = QrCode::size(50)->generate("a");
+        $pdf = Pdf::loadview('pages.book.format-export', ['data' => Books::all(), "qr" => $qrCode]);
+        return $pdf->download('book.pdf');    }
 }
