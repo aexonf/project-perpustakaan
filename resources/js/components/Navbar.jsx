@@ -68,8 +68,8 @@ export default function Navbar({ className }) {
                                     Pustakawan
                                 </Link>
                             </DropdownMenuItem>
-                            {user.role == "librarian" &&
-                                user.status == "active" && (
+                            {user?.role == "librarian" &&
+                                user?.status == "active" && (
                                     <DropdownMenuItem asChild>
                                         <Link
                                             href="/admin"
@@ -138,8 +138,8 @@ export default function Navbar({ className }) {
                                 Pustakawan
                             </Link>
                         </li>
-                        {user.role == "librarian" &&
-                            user.status == "active" && (
+                        {user?.role == "librarian" &&
+                            user?.status == "active" && (
                                 <li>
                                     <a
                                         href="/admin"
