@@ -34,29 +34,29 @@
                     </div>
                     <div class="card-body">
                         <form id="form-edit" class="needs-validation" method="POST"
-                            action="{{route("admin.setting.update")}}" enctype="multipart/form-data">
+                            action="{{ route('admin.setting.update') }}" enctype="multipart/form-data">
                             @csrf
-                            @method("PUT")
+                            @method('PUT')
                             <div class="form-group row mb-2 mb-md-3">
                                 <label class="col-sm-4 col-form-label">Tahun Pelajaran<span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-8">
                                     <select class="form-control select2" name="school_year" required>
-                                        {{$class}}
+                                        {{ $class }}
                                         {{-- <option value="{{ $setting->school_years }}" id="school_year">
                                             {{ $setting->school_years }}</option> --}}
-                                            {{-- @foreach ($school_years as $school_year)
+                                        {{-- @foreach ($school_years as $school_year)
                                             <option value="{{ $school_year }}">{{ $school_year }}</option>
                                             @endforeach --}}
-                                        </select>
-                                    </div>
+                                    </select>
                                 </div>
+                            </div>
                             <div class="form-group row mb-2 mb-md-3">
                                 <label class="col-sm-4 col-form-label">Nama Sekolah<span
                                         class="text-danger">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="name"
-                                        value={{ $setting->name }} required>
+                                    <input type="text" class="form-control" name="name" value="{{ $setting->name }}"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group row mb-2 mb-md-3">

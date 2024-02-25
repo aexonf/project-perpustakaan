@@ -49,8 +49,8 @@
                     </div>
                     <div class="card-body">
                         <div class="collapse mb-3 pb-3 border-bottom show" id="section-filter">
-                            <form class="needs-validation" novalidate="" method="GET" action="{{ route('librarian.management') }}"
-                                enctype="multipart/form-data">
+                            <form class="needs-validation" novalidate="" method="GET"
+                                action="{{ route('librarian.management') }}" enctype="multipart/form-data">
                                 <div class="row">
 
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -145,7 +145,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Perpustakawan</h5>
+                    <h5 class="modal-title">Tambah Pustakawan</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -214,12 +214,12 @@
         </div>
     </div>
 </div> --}}
-     {{-- modal edit --}}
-     <div class="modal fade" id="modal-edit" data-backdrop="static">
+    {{-- modal edit --}}
+    <div class="modal fade" id="modal-edit" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ubah Perpustakawan</h5>
+                    <h5 class="modal-title">Ubah Pustakawan</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
@@ -262,7 +262,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Hapus Perpustakawan</h5>
+                    <h5 class="modal-title">Hapus Pustakawan</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>

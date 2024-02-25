@@ -24,7 +24,9 @@ export default function DetailBookPage({ book }) {
                                         ? `/storage/upload/book/${book.image}`
                                         : "/image/notfound.jpg"
                                 }
-                                className={"w-[150px] h-[250px] object-fill"}
+                                className={
+                                    "max-w-[150px] min-w-[160px] h-[250px] object-fill"
+                                }
                                 alt=""
                             />
                         </div>

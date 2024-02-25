@@ -46,7 +46,15 @@ export default function Pustakawan({ data }) {
                                         </h5>
                                         <h5 className="flex w-full font-semibold">
                                             Jabatan :&nbsp;
-                                            <strong>{item.role}</strong>
+                                            <strong>
+                                                {item.role === "librarian"
+                                                    ? "Pustakawan"
+                                                    : item.role === "teacher"
+                                                    ? "Guru"
+                                                    : item.role === "student"
+                                                    ? "Siswa"
+                                                    : ""}
+                                            </strong>
                                         </h5>
                                     </div>
                                 </div>
