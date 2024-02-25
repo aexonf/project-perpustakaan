@@ -6,6 +6,8 @@ use App\Http\Controllers\Back\LoanController;
 use App\Http\Controllers\Back\SettingController;
 use App\Http\Controllers\Back\UserManagementController;
 use App\Http\Controllers\HomeController;
+use App\Models\Books;
+use App\Models\LogBookLoan;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +34,11 @@ Route::controller(AuthController::class)->group(function () {
 Route::prefix("/admin")->group(function () {
 
     Route::get("/", function () {
-        return view("pages.index");
+        return view("pages.index", [
+            "bookCount" => Books::count(),
+            "loanCount" => LogBookLoan::count(),
+            "studentCount" => User::where("role", "student")->count(),
+        ]);
     })->name("admin");
 
     Route::prefix("/buku")->group(function () {
@@ -73,7 +79,7 @@ Route::prefix("/admin")->group(function () {
             Route::get("/student/export", "exportStudent")->name("student.export");
             Route::post("/student/import", "importStudent")->name("student.import");
             Route::get("/download-template/student", "downloadTemplateStudent")->name("student.download.template");
-            
+
             // CRUD for teachers
             Route::get("/teacher", "teacherIndex")->name("teacher.management");
             Route::post("/teacher", "teacherCreate")->name("teacher.create");

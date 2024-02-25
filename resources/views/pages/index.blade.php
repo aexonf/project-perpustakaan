@@ -28,7 +28,7 @@
                                     <h4>Total Buku</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{-- {{ $books->count() }} --}}
+                                    {{ $bookCount }}
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     <h4>Total Siswa</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{-- {{ $student->count() }} --}}
+                                    {{ $studentCount }}
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     <h4>Total Peminjam</h4>
                                 </div>
                                 <div class="card-body">
-                                    {{-- {{ $loan->count() }} --}}
+                                    {{ $loanCount }}
                                 </div>
                             </div>
                         </div>
