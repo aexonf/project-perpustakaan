@@ -29,16 +29,17 @@ class UserManagementController extends Controller
     public function studentCreate(Request $request)
     {
         $validasi = $request->validate([
+            "id_number" => "required",
             "name" => "required",
-            "email" => "required",
+            "phone_number" => "required",
         ]);
 
         $student = User::create([
             "name" => $validasi["name"],
-            "email" => $validasi["email"],
+            "id_number" => $validasi["id_number"],
             "role" => "student",
-            "password" => Hash::make("password"),
-            "status" => $request->status,
+            "phone_number" => $validasi["phone_number"],
+            "status" => "active",
         ]);
 
 
@@ -57,9 +58,8 @@ class UserManagementController extends Controller
     {
         $student = User::find($id)->update([
             "name" => $request->name,
-            "email" => $request->email,
-            "role" => "student",
-            "password" => Hash::make($request->password),
+            "id_number" => $request->id_number,
+            "phone_number" => $request->phone_number,
             "status" => $request->status,
         ]);
 
@@ -108,16 +108,17 @@ class UserManagementController extends Controller
     public function teacherCreate(Request $request)
     {
         $validasi = $request->validate([
+            "id_number" => "required",
             "name" => "required",
-            "email" => "required",
+            "phone_number" => "required",
         ]);
 
         $teacher = User::create([
             "name" => $validasi["name"],
-            "email" => $validasi["email"],
+            "id_number" => $validasi["id_number"],
             "role" => "teacher",
-            "password" => Hash::make("password"),
-            "status" => $request->status,
+            "phone_number" => $validasi["phone_number"],
+            "status" => "active",
         ]);
 
         // Check if teacher creation was successful
@@ -135,9 +136,8 @@ class UserManagementController extends Controller
     {
         $teacher = User::find($id)->update([
             "name" => $request->name,
-            "email" => $request->email,
-            "role" => "teacher",
-            "password" => Hash::make($request->password),
+            "id_number" => $request->id_number,
+            "phone_number" => $request->phone_number,
             "status" => $request->status,
         ]);
 
@@ -202,7 +202,7 @@ class UserManagementController extends Controller
             "email" => $validasi["email"],
             "role" => "librarian",
             "image" => $imageName,
-            "password" => Hash::make("password"),
+            "password" => Hash::make($request->password),
             "status" => $request->status,
         ]);
 

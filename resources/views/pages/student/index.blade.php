@@ -39,13 +39,13 @@
                                 <button type="button" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
                                     data-toggle="modal" data-target="#modal-import"><i class="fas fa-upload"></i>
                                     Import</button>
-                                    <form action="{{route('student.export')}}" method="get">
-                                        @csrf
-                                        @method("GET")
-                                        <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"
-                                      ><i class="fas fa-upload"></i>
+                                <form action="{{ route('student.export') }}" method="get">
+                                    @csrf
+                                    @method('GET')
+                                    <button type="submit" class="btn btn-icon icon-left btn-primary mr-2 mb-2"><i
+                                            class="fas fa-upload"></i>
                                         Export</button>
-                                    </form>
+                                </form>
                             </div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <button type="button" class="btn btn-icon icon-left btn-info mr-2 mb-2"
@@ -79,8 +79,8 @@
                                                 <option value="available"
                                                     {{ request('status') == 'available' ? 'selected' : '' }}>Tersedia
                                                 </option>
-                                                <option value="blank"
-                                                    {{ request('status') == 'blank' ? 'selected' : '' }}>Tidak Tersedia
+                                                <option value="blank" {{ request('status') == 'blank' ? 'selected' : '' }}>
+                                                    Tidak Tersedia
                                                 </option>
                                             </select>
                                         </div>
@@ -97,9 +97,9 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 80px;">#</th>
-                                        <th style="min-width: 240px;">Username</th>
-                                        <th style="min-width: 240px;">Gmail</th>
-                                        <th style="min-width: 160px;">Status</th>
+                                        <th style="min-width: 240px;">Id Number</th>
+                                        <th style="min-width: 240px;">Nama</th>
+                                        <th style="min-width: 160px;">Nomer Telepon</th>
                                         <th style="min-width: 160px;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -107,15 +107,9 @@
                                     @foreach ($student as $index => $data)
                                         <tr>
                                             <td class="text-center">{{ $index + 1 }}</td>
+                                            <td>{{ $data->id_number }}</td>
                                             <td>{{ $data->name }}</td>
-                                            <td>{{ $data->email }}</td>
-                                            <td>
-                                                @if ($data->status === 'not_active')
-                                                    <span class="badge badge-warning">Tidak Aktif</span>
-                                                @else
-                                                    <span class="badge badge-success">Aktif</span>
-                                                @endif
-                                            </td>
+                                            <td>{{ $data->phone_number }}</td>
 
                                             <td>
                                                 <div class="d-flex items-center">
@@ -123,9 +117,9 @@
                                                         data-toggle="modal" data-target="#modal-edit"
                                                         onclick="
                                                     $('#modal-edit #form-edit');
+                                                    $('#modal-edit #form-edit #id_number').attr('value', '{{ $data->id_number }}');
                                                     $('#modal-edit #form-edit #name').attr('value', '{{ $data->name }}');
-                                                    $('#modal-edit #form-edit #email').attr('value', '{{ $data->email }}');
-                                                    $('#modal-edit #form-edit #status').val('{{ $data->status }}');
+                                                    $('#modal-edit #form-edit #phone_number').val('{{ $data->phone_number }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('student.edit', $data->id) }}');
                                                     "><i
                                                             class="fas fa-edit"></i></button>
@@ -162,19 +156,16 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <label for="name">Nama<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Gmail<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <label for="id_number">Nomer Id<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="id_number" id="id_number" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="status">Status<span class="text-danger">*</span></label>
-                            <select class="form-control" name="status" id="status" required>
-                                <option value="active">Aktif</option>
-                                <option value="not_active">Tidak Aktif</option>
-                            </select>
+                            <label for="phone_number">Nomer Telepon<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="phone_number" id="phone_number" required>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>
@@ -233,19 +224,16 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
-                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <label for="name">Nama<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Gmail<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <label for="id_number">Nomer Id<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="id_number" id="id_number" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="status">Status<span class="text-danger">*</span></label>
-                            <select class="form-control" name="status" id="status" required>
-                                <option value="active">Aktif</option>
-                                <option value="not_active">Tidak Aktif</option>
-                            </select>
+                            <label for="phone_number">Nomer Telepon<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="phone_number" id="phone_number" required>
                         </div>
                         <div class="mt-5 d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary ml-2" data-dismiss="modal">Kembali</button>

@@ -30,7 +30,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('log_book_loan', function (Blueprint $table) {
-            $table->dropColumn('book_id');
+            $table->dropConstrainedForeignId('book_id');
         });
     }
 };

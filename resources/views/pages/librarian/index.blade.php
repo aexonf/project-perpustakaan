@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Daftar Penjaga</h1>
+                <h1>Daftar Pustakawan</h1>
             </div>
 
             @if (session('success') || session('error'))
@@ -163,6 +163,10 @@
                             <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="form-group mb-2">
+                            <label for="password">Password<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="password" id="password" required>
+                        </div>
+                        <div class="form-group mb-2">
                             <label for="status">Status<span class="text-danger">*</span></label>
                             <select class="form-control" name="status" id="status" required>
                                 <option value="active">Aktif</option>
@@ -236,6 +240,10 @@
                         <div class="form-group mb-2">
                             <label for="email">Gmail<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="password">Password<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="password" id="password" required>
                         </div>
                         <div class="form-group mb-2">
                             <label for="status">Status<span class="text-danger">*</span></label>
