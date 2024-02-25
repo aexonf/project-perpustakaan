@@ -27,7 +27,7 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
-            if (Auth::user()->role === "librarian" || ($user && $user->status === "active")) {
+            if (Auth::user()->role === "librarian" && ($user && $user->status === "active")) {
                 return redirect('/admin')->with('success', 'Masuk berhasil!');
             }
             Auth::logout();
