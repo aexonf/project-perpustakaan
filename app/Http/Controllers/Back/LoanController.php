@@ -96,7 +96,7 @@ class LoanController extends Controller
             $bookId = $value;
             $bookFind = Books::find($bookId);
 
-            if($bookFind == 0) {
+            if($bookFind->stock == 0) {
                 Session::flash("error", "Gagal meminjam buku");
                 return redirect()->back();
             }

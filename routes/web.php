@@ -29,7 +29,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logout")->name("logout");
 });
 
-Route::prefix("/admin")->middleware(["librarian", "auth"])->group(function () {
+Route::prefix("/admin")->group(function () {
 
     Route::get("/", function () {
         return view("pages.index");
