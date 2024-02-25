@@ -22,15 +22,17 @@ export default function Welcome({ data, bookLatest, category }) {
                         <div className="relative w-full h-full my-10">
                             <div className="flex flex-wrap justify-center px-0 gap-5">
                                 {category.map((item, index) => (
-                                    <Badge
-                                        className="cursor-pointer"
-                                        variant={"outline"}
+                                    <Link
+                                        href={`/?category=${item}`}
                                         key={index}
                                     >
-                                        <Link href={`/?category=${item}`}>
+                                        <Badge
+                                            className="cursor-pointer"
+                                            variant={"outline"}
+                                        >
                                             {item}
-                                        </Link>
-                                    </Badge>
+                                        </Badge>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -44,15 +46,17 @@ export default function Welcome({ data, bookLatest, category }) {
                         </p>
                         <div className="flex gap-5 my-4 flex-wrap">
                             {category.map((item, index) => (
-                                <Badge
-                                    className="truncate cursor-pointer"
-                                    variant={"outline"}
+                                <Link
+                                    href={`/?category=${item}`}
                                     key={index + 1}
                                 >
-                                    <Link href={`/?category=${item}`}>
+                                    <Badge
+                                        className="truncate cursor-pointer"
+                                        variant={"outline"}
+                                    >
                                         {item}
-                                    </Link>
-                                </Badge>
+                                    </Badge>
+                                </Link>
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
@@ -73,7 +77,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     ? `/storage/upload/book/${item.image}`
                                                     : "/image/notfound.jpg"
                                             }
-                                            alt=""
+                                            alt="image"
                                             className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
@@ -95,15 +99,17 @@ export default function Welcome({ data, bookLatest, category }) {
                         </p>
                         <div className="flex gap-5 my-4 flex-wrap">
                             {category.map((item, index) => (
-                                <Badge
-                                    className="truncate cursor-pointer"
-                                    variant={"outline"}
+                                <Link
+                                    href={`/?category=${item}`}
                                     key={index + 1}
                                 >
-                                    <Link href={`/?category=${item}`}>
+                                    <Badge
+                                        className="truncate cursor-pointer"
+                                        variant={"outline"}
+                                    >
                                         {item}
-                                    </Link>
-                                </Badge>
+                                    </Badge>
+                                </Link>
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
@@ -124,7 +130,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     ? `/storage/upload/book/${item.image}`
                                                     : "/image/notfound.jpg"
                                             }
-                                            alt="img"
+                                            alt="image"
                                             className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
