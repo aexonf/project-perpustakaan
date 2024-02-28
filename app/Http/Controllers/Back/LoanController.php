@@ -100,6 +100,7 @@ class LoanController extends Controller
                 Session::flash("error", "Gagal meminjam buku");
                 return redirect()->back();
             }
+            $bookFind->loan_count += 1;
 
             $bookFind->stock -= 1;
 
@@ -249,6 +250,22 @@ class LoanController extends Controller
 
         foreach ($request->book as $value) {
             $bookId = $value;
+
+            $bookFind = Books::find($bookId);
+
+            if($bookFind->stock == 0) {
+                Session::flash("error", "Gagal meminjam buku");
+                return redirect()->back();
+            }
+            $bookFind->loan_count += 1;
+
+            $bookFind->stock -= 1;
+
+            if ($bookFind->stock <= 0) {
+                $bookFind->status = 'blank';
+            }
+
+            $bookFind->save();
         }
         $loan = LogBookLoan::create([
             "user_id" => $id,
