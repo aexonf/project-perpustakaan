@@ -2,7 +2,9 @@ import React from "react";
 import { Head, Link } from "@inertiajs/react";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
+import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/SearchBar";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Welcome({ data, bookLatest, category }) {
     return (
@@ -22,15 +24,19 @@ export default function Welcome({ data, bookLatest, category }) {
                         <div className="relative w-full h-full my-10">
                             <div className="flex flex-wrap justify-center px-0 gap-5">
                                 {category.map((item, index) => (
-                                    <Badge
-                                        className="cursor-pointer"
-                                        variant={"outline"}
+                                    <Link
+                                        preserveScroll
+                                        preserveState
+                                        href={`/?category=${item}`}
                                         key={index}
                                     >
-                                        <Link href={`/?category=${item}`}>
+                                        <Badge
+                                            className="cursor-pointer"
+                                            variant={"outline"}
+                                        >
                                             {item}
-                                        </Link>
-                                    </Badge>
+                                        </Badge>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -44,25 +50,31 @@ export default function Welcome({ data, bookLatest, category }) {
                         </p>
                         <div className="flex gap-5 my-4 flex-wrap">
                             {category.map((item, index) => (
-                                <Badge
-                                    className="truncate cursor-pointer"
-                                    variant={"outline"}
+                                <Link
+                                    preserveScroll
+                                    preserveState
+                                    href={`/?category=${item}`}
                                     key={index + 1}
                                 >
-                                    <Link href={`/?category=${item}`}>
+                                    <Badge
+                                        className="truncate cursor-pointer"
+                                        variant={"outline"}
+                                    >
                                         {item}
-                                    </Link>
-                                </Badge>
+                                    </Badge>
+                                </Link>
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            {data.length == 0 ? (
+                            {data.data.length == 0 ? (
                                 <h2 className="text-center font-semibold text-2xl font-jakarta">
                                     Belum ada koleksi yang dibuat.
                                 </h2>
                             ) : (
-                                data.map((item, index) => (
+                                data.data.map((item, index) => (
                                     <Link
+                                        preserveScroll
+                                        preserveState
                                         href={`/detail/${item.id}`}
                                         className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg cursor-pointer"
                                         key={index + 1}
@@ -73,7 +85,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     ? `/storage/upload/book/${item.image}`
                                                     : "/image/notfound.jpg"
                                             }
-                                            alt=""
+                                            alt={item.series_title}
                                             className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
@@ -83,6 +95,59 @@ export default function Welcome({ data, bookLatest, category }) {
                                 ))
                             )}
                         </div>
+                        {console.log(data)}
+                        {data.last_page > 1 && (
+                            <div className="flex justify-center items-center w-full my-5">
+                                {data.data.length > 0 && (
+                                    <>
+                                        {!(data.current_page == 1) && (
+                                            <Link
+                                                preserveScroll
+                                                preserveState
+                                                href={data.prev_page_url}
+                                                disabled={
+                                                    data.current_page == 1
+                                                }
+                                            >
+                                                <Button
+                                                    disabled={
+                                                        data.current_page == 1
+                                                    }
+                                                >
+                                                    <ChevronLeft className="size-5" />
+                                                </Button>
+                                            </Link>
+                                        )}
+                                        <p className="mx-4 text-lg">
+                                            {data.current_page} /{" "}
+                                            {data.last_page}
+                                        </p>
+                                        {!(
+                                            data.current_page == data.last_page
+                                        ) && (
+                                            <Link
+                                                preserveScroll
+                                                preserveState
+                                                href={data.next_page_url}
+                                                disabled={
+                                                    data.current_page ==
+                                                    data.last_page
+                                                }
+                                            >
+                                                <Button
+                                                    disabled={
+                                                        data.current_page ==
+                                                        data.last_page
+                                                    }
+                                                >
+                                                    <ChevronRight className="size-5" />
+                                                </Button>
+                                            </Link>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div className="w-full h-full mt-20">
                         <h2 className="font-bold text-2xl">
@@ -95,25 +160,31 @@ export default function Welcome({ data, bookLatest, category }) {
                         </p>
                         <div className="flex gap-5 my-4 flex-wrap">
                             {category.map((item, index) => (
-                                <Badge
-                                    className="truncate cursor-pointer"
-                                    variant={"outline"}
+                                <Link
+                                    preserveScroll
+                                    preserveState
+                                    href={`/?category=${item}`}
                                     key={index + 1}
                                 >
-                                    <Link href={`/?category=${item}`}>
+                                    <Badge
+                                        className="truncate cursor-pointer"
+                                        variant={"outline"}
+                                    >
                                         {item}
-                                    </Link>
-                                </Badge>
+                                    </Badge>
+                                </Link>
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            {data.length == 0 ? (
+                            {bookLatest.data.length == 0 ? (
                                 <h2 className="text-center font-semibold text-2xl font-jakarta">
                                     Belum ada koleksi Baru yang dibuat.
                                 </h2>
                             ) : (
-                                bookLatest.map((item, index) => (
+                                bookLatest.data.map((item, index) => (
                                     <Link
+                                        preserveScroll
+                                        preserveState
                                         href={`/detail/${item.id}`}
                                         className="p-3 bg-[#f1f1f1] w-40 flex items-center flex-col hover:shadow-lg duration-300 rounded-lg"
                                         key={index + 1}
@@ -124,7 +195,7 @@ export default function Welcome({ data, bookLatest, category }) {
                                                     ? `/storage/upload/book/${item.image}`
                                                     : "/image/notfound.jpg"
                                             }
-                                            alt="img"
+                                            alt={item.series_title}
                                             className="h-40 mb-3 object-cover"
                                         />
                                         <p className="break-words text-lg">
@@ -134,6 +205,59 @@ export default function Welcome({ data, bookLatest, category }) {
                                 ))
                             )}
                         </div>
+                        {bookLatest.last_page > 1 && (
+                            <div className="flex justify-center items-center w-full my-5">
+                                {bookLatest.data.length > 0 && (
+                                    <>
+                                        {!(bookLatest.current_page == 1) && (
+                                            <Link
+                                                preserveScroll
+                                                preserveState
+                                                href={data.prev_page_url}
+                                                disabled={
+                                                    data.current_page == 1
+                                                }
+                                            >
+                                                <Button
+                                                    disabled={
+                                                        data.current_page == 1
+                                                    }
+                                                >
+                                                    <ChevronLeft className="size-5" />
+                                                </Button>
+                                            </Link>
+                                        )}
+                                        <p className="mx-4 text-lg">
+                                            {bookLatest.current_page} /{" "}
+                                            {bookLatest.last_page}
+                                        </p>
+                                        {!(
+                                            bookLatest.current_page ==
+                                            bookLatest.last_page
+                                        ) && (
+                                            <Link
+                                                preserveScroll
+                                                preserveState
+                                                disabled={
+                                                    bookLatest.current_page ==
+                                                    bookLatest.last_page
+                                                }
+                                                href={bookLatest.next_page_url}
+                                            >
+                                                <Button
+                                                    disabled={
+                                                        bookLatest.current_page ==
+                                                        bookLatest.last_page
+                                                    }
+                                                >
+                                                    <ChevronRight className="size-5" />
+                                                </Button>
+                                            </Link>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </section>
             </main>

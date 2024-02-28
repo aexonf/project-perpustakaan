@@ -10,7 +10,8 @@ import NotFound from "../assets/not-found";
 
 export default function DetailBookPage({ data, category }) {
     const url = new URL(window.location.href);
-    const param = url.searchParams.get("title");
+    const paramTitle = url.searchParams.get("title");
+    const paramCategory = url.searchParams.get("category");
     return (
         <>
             <Head title="Pencarian Buku" />
@@ -121,10 +122,19 @@ export default function DetailBookPage({ data, category }) {
                                 {data.data.length > 0 && (
                                     <>
                                         <Button
+                                            asChild
                                             disabled={data.current_page === 1}
                                         >
                                             <Link
-                                                href={`/?title=${param}&page=${
+                                                href={`/${
+                                                    paramTitle != null
+                                                        ? `?title=${paramTitle}`
+                                                        : ""
+                                                }${
+                                                    paramCategory != null
+                                                        ? `?category=${paramCategory}`
+                                                        : ""
+                                                }&page=${
                                                     data.current_page - 1
                                                 }`}
                                             >
@@ -136,13 +146,22 @@ export default function DetailBookPage({ data, category }) {
                                             {data.last_page}
                                         </p>
                                         <Button
+                                            asChild
                                             disabled={
                                                 data.current_page ===
                                                 data.last_page
                                             }
                                         >
                                             <Link
-                                                href={`/?title=${param}&page=${
+                                                href={`/${
+                                                    paramTitle != null
+                                                        ? `?title=${paramTitle}`
+                                                        : ""
+                                                }${
+                                                    paramCategory != null
+                                                        ? `?category=${paramCategory}`
+                                                        : ""
+                                                }&page=${
                                                     data.current_page + 1
                                                 }`}
                                             >
