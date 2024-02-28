@@ -27,8 +27,8 @@ class HomeController extends Controller
             $bookQuery->where("category", "like", "%" . $categorySearch . "%")->get();
         }
 
-        $book = $bookQuery->take(10)->get();
-        $bookLatest = $bookQuery->latest()->take(10)->get();
+        $book = $bookQuery->paginate(10);
+        $bookLatest = $bookQuery->latest()->paginate(10);
         $category = $bookQuery->orderBy('created_at', 'desc')->take(5)->pluck('category');
         if ($request->query("title") || $request->query("category")) {
             return Inertia::render("Find", [
