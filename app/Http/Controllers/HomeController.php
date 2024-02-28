@@ -11,8 +11,7 @@ class HomeController extends Controller
     // detail buku
     public function index(Request $request)
     {
-
-        $bookQuery = Books::query();
+       $bookQuery = Books::query();
 
         // search by book title
         $titleSearch = $request->query("title");
@@ -35,12 +34,16 @@ class HomeController extends Controller
                 "data" => $bookQuery->paginate(10),
             ]);
         }
+
+        $popularBook = Books::orderBy('loan_count', 'desc')->get();
         return Inertia::render("Home", [
             "data" => $book,
             "bookLatest" => $bookLatest,
-            "category" => $category
+            "category" => $category,
+            "popular" => $popularBook
         ]);
     }
+
 
     public function detail($id, Request $request)
     {

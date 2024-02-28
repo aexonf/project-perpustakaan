@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('stock')->nullable();
             $table->string('edition')->nullable();
             $table->string('subject')->nullable();
+            $table->string('loan_count')->nullable()->default(0);
             $table->string('specific_details_info')->nullable();
             $table->string('statement')->nullable();
             $table->string('responsibility')->nullable();
