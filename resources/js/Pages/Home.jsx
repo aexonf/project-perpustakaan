@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/SearchBar";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Welcome({ data, bookLatest, category }) {
+export default function Welcome({ data, bookLatest, category, popular }) {
     return (
         <>
             <Head title="Online Public Access Catalog (OPAC) | PERPUSTAKAAN" />
@@ -66,12 +66,12 @@ export default function Welcome({ data, bookLatest, category }) {
                             ))}
                         </div>
                         <div className="gap-5 flex flex-wrap">
-                            {data.data.length == 0 ? (
+                            {popular?.length == 0 ? (
                                 <h2 className="text-center font-semibold text-2xl font-jakarta">
                                     Belum ada koleksi yang dibuat.
                                 </h2>
                             ) : (
-                                data.data.map((item, index) => (
+                                popular?.map((item, index) => (
                                     <Link
                                         preserveScroll
                                         preserveState
@@ -95,59 +95,6 @@ export default function Welcome({ data, bookLatest, category }) {
                                 ))
                             )}
                         </div>
-                        {console.log(data)}
-                        {data.last_page > 1 && (
-                            <div className="flex justify-center items-center w-full my-5">
-                                {data.data.length > 0 && (
-                                    <>
-                                        {!(data.current_page == 1) && (
-                                            <Link
-                                                preserveScroll
-                                                preserveState
-                                                href={data.prev_page_url}
-                                                disabled={
-                                                    data.current_page == 1
-                                                }
-                                            >
-                                                <Button
-                                                    disabled={
-                                                        data.current_page == 1
-                                                    }
-                                                >
-                                                    <ChevronLeft className="size-5" />
-                                                </Button>
-                                            </Link>
-                                        )}
-                                        <p className="mx-4 text-lg">
-                                            {data.current_page} /{" "}
-                                            {data.last_page}
-                                        </p>
-                                        {!(
-                                            data.current_page == data.last_page
-                                        ) && (
-                                            <Link
-                                                preserveScroll
-                                                preserveState
-                                                href={data.next_page_url}
-                                                disabled={
-                                                    data.current_page ==
-                                                    data.last_page
-                                                }
-                                            >
-                                                <Button
-                                                    disabled={
-                                                        data.current_page ==
-                                                        data.last_page
-                                                    }
-                                                >
-                                                    <ChevronRight className="size-5" />
-                                                </Button>
-                                            </Link>
-                                        )}
-                                    </>
-                                )}
-                            </div>
-                        )}
                     </div>
                     <div className="w-full h-full mt-20">
                         <h2 className="font-bold text-2xl">
