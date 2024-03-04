@@ -15,13 +15,13 @@ export default function Informasi({ data }) {
                     className="my-10 space-y-5 w-full container"
                     id="content"
                 >
-                    <h1 className="text-2xl font-bold">Library Information</h1>
+                    <h1 className="text-2xl font-bold">Informasi</h1>
                     <Separator />
                     {data ? (
                         <div className="mx-10 pt-5">
                             <div className="w-full">
                                 <h2 className="mb-3 text-2xl font-semibold">
-                                    Informasi Kontak
+                                    Kontak
                                 </h2>
                                 <p className="text-xl">
                                     Nama Perpustakaan: <br />
