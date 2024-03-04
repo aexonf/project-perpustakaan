@@ -181,8 +181,6 @@ class UserManagementController extends Controller
 
     public function librarianCreate(Request $request)
     {
-        dd($request->all());
-
         $imageName = "";
 
         if ($request->hasFile('image')) {
@@ -202,9 +200,12 @@ class UserManagementController extends Controller
             "email" => $validasi["email"],
             "role" => "librarian",
             "image" => $imageName,
-            "password" => Hash::make($request->password),
             "status" => $request->status,
         ]);
+
+        if ($request->has("password") !== null) {
+            $librarian->password = Hash::make($request->password);
+        }
 
         // Check if librarian creation was successful
         if ($librarian) {
@@ -231,14 +232,24 @@ class UserManagementController extends Controller
             $imageName = $user->image;
         }
 
-        $librarian = $user->update([
-            "name" => $request->name,
-            "email" => $request->email,
-            "role" => "librarian",
-            "image" => $imageName,
-            "password" => Hash::make($request->password),
-            "status" => $request->status,
-        ]);
+        if ($request->password) {
+            $librarian = $user->update([
+                "name" => $request->name,
+                "email" => $request->email,
+                "role" => "librarian",
+                'password' => Hash::make($request->password),
+                "image" => $imageName,
+                "status" => $request->status,
+            ]);
+        } else {
+            $librarian = $user->update([
+                "name" => $request->name,
+                "email" => $request->email,
+                "role" => "librarian",
+                "image" => $imageName,
+                "status" => $request->status,
+            ]);
+        }
 
         if ($librarian) {
             Session::flash("success", "Pustakawan berhasil diupdate");
@@ -296,5 +307,4 @@ class UserManagementController extends Controller
             return redirect()->route('book')->with('error', "Data Guru gagal diimport!");
         }
     }
-
 }

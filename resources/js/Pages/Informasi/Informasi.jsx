@@ -16,7 +16,7 @@ export default function Informasi({ data }) {
                     id="content"
                 >
                     <h1 className="text-3xl tracking-wide font-semibold">
-                        Pustakawan
+                        Informasi
                     </h1>
                     <Separator />
                     {data ? (

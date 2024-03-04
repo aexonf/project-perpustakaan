@@ -99,7 +99,7 @@
                                         <th class="text-center" style="width: 80px;">#</th>
                                         <th style="min-width: 240px;">Judul</th>
                                         <th style="min-width: 240px;">Penerbit</th>
-                                        <th style="min-width: 160px;">Stock</th>
+                                        <th style="min-width: 160px;">Stok</th>
                                         <th style="min-width: 160px;">Status</th>
                                         <th style="min-width: 160px;">Aksi</th>
                                     </tr>
@@ -111,15 +111,15 @@
                                             <td>
                                                 <div class="media">
                                                     @if ($book->image)
-                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                        <img alt="image" class="mr-3" width="48"
                                                             src="{{ asset('storage/upload/book/' . $book->image) }}">
                                                     @else
-                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                        <img alt="image" class="mr-3" width="48"
                                                             src="/img/book-dummy.png">
                                                     @endif
                                                     <div class="media-body">
                                                         <div class="media-title">
-                                                            {{ $book->title }}
+                                                            {{ $book->series_title }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,7 +141,7 @@
                                                         onclick="
                                                     $('#modal-edit #series_title').val('{{ $book->series_title }}');
                                                     $('#modal-edit #call_no').val('{{ $book->call_no }}');
-                                                    $('#modal-edit #description').val('{{ $book->description }}');
+                                                    $('#modal-edit #description').val('{{ $book->Deskripsi }}');
                                                     $('#modal-edit #publisher').val('{{ $book->publisher }}');
                                                     $('#modal-edit #physical_description').val('{{ $book->physical_description }}');
                                                     $('#modal-edit #language').val('{{ $book->language }}');
@@ -196,32 +196,28 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="title">Judul Buku</label>
-                            <input type="text" class="form-control" name="title" id="title">
-                        </div>
-                        <div class="form-group mb-2">
                             <label for="series_title">Series Title</label>
                             <input type="text" class="form-control" name="series_title" id="series_title">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="call_no">Call No</label>
+                            <label for="call_no">No. Inventaris</label>
                             <input type="text" class="form-control" name="call_no" id="call_no">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="description">Description</label>
+                            <label for="description">Deskripsi</label>
                             <input type="text" class="form-control" name="description" id="description">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="publisher">Publisher</label>
+                            <label for="publisher">Penerbit</label>
                             <input type="text" class="form-control" name="publisher" id="publisher">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="physical_description">Physical Description</label>
+                            <label for="physical_description">Deskripsi Fisik</label>
                             <input type="text" class="form-control" name="physical_description"
                                 id="physical_description">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="language">Language</label>
+                            <label for="language">Bahasa</label>
                             <input type="text" class="form-control" name="language" id="language">
                         </div>
                         <div class="form-group mb-2">
@@ -229,23 +225,23 @@
                             <input type="text" class="form-control" name="isbn_issn" id="isbn_issn">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="classification">Classification</label>
+                            <label for="classification">Klasifikasi</label>
                             <input type="text" class="form-control" name="classification" id="classification">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="content_type">Content Type</label>
+                            <label for="content_type">Tipe Isi</label>
                             <input type="text" class="form-control" name="content_type" id="content_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="media_type">Media Type</label>
+                            <label for="media_type">Tipe Media</label>
                             <input type="text" class="form-control" name="media_type" id="media_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="carrier_type">Carrier Type</label>
+                            <label for="carrier_type">Tipe Pembawa</label>
                             <input type="text" class="form-control" name="carrier_type" id="carrier_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="edition">Edition</label>
+                            <label for="edition">Edisi</label>
                             <input type="text" class="form-control" name="edition" id="edition">
                         </div>
                         <div class="form-group mb-2">
@@ -253,24 +249,24 @@
                             <input type="text" class="form-control" name="category" id="category">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="subject">Subject</label>
+                            <label for="subject">Subjek</label>
                             <input type="text" class="form-control" name="subject" id="subject">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="specific_details_info">Specific Details Info</label>
+                            <label for="specific_details_info">Info Detail Spesifik</label>
                             <input type="text" class="form-control" name="specific_details_info"
                                 id="specific_details_info">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="statement">Statement</label>
+                            <label for="statement">Pernyataan Tanggung Jawab</label>
                             <input type="text" class="form-control" name="statement" id="statement">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="responsibility">Responsibility</label>
+                            <label for="responsibility">Responsibilitas</label>
                             <input type="text" class="form-control" name="responsibility" id="responsibility">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="stock">Stock</label>
+                            <label for="stock">Stok</label>
                             <input type="text" class="form-control" name="stock" id="stock">
                         </div>
                         <div class="form-group mb-2">
@@ -281,7 +277,7 @@
                             </select>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="image">Image</label>
+                            <label for="image">Gambar</label>
                             <input type="file" class="form-control" name="image" id="image">
                         </div>
                         <div class="mt-5 col-12 d-flex justify-content-end">
@@ -346,25 +342,24 @@
                             <input type="text" class="form-control" name="series_title" id="series_title">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="call_no">Call No<span class="text-danger">*</span></label>
+                            <label for="call_no">No. Inventaris<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="call_no" id="call_no">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="description">Description<span class="text-danger">*</span></label>
+                            <label for="description">Deskripsi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="description" id="description">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="publisher">Publisher<span class="text-danger">*</span></label>
+                            <label for="publisher">Penerbit<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="publisher" id="publisher">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="physical_description">Physical Description<span
-                                    class="text-danger">*</span></label>
+                            <label for="physical_description">Deskripsi Fisik<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="physical_description"
                                 id="physical_description">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="language">Language<span class="text-danger">*</span></label>
+                            <label for="language">Bahasa<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="language" id="language">
                         </div>
                         <div class="form-group mb-2">
@@ -372,45 +367,45 @@
                             <input type="text" class="form-control" name="isbn_issn" id="isbn_issn">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="classification">Classification<span class="text-danger">*</span></label>
+                            <label for="classification">Klasifikasi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="classification" id="classification">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="content_type">Content Type</label>
+                            <label for="content_type">Tipe Isi</label>
                             <input type="text" class="form-control" name="content_type" id="content_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="media_type">Media Type<span class="text-danger">*</span></label>
+                            <label for="media_type">Tipe Media<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="media_type" id="media_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="carrier_type">Carrier Type<span class="text-danger">*</span></label>
+                            <label for="carrier_type">Tipe Pembawa<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="carrier_type" id="carrier_type">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="edition">Edition<span class="text-danger">*</span></label>
+                            <label for="edition">Edisi<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="edition" id="edition">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="subject">Subject<span class="text-danger">*</span></label>
+                            <label for="subject">Subjek<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="subject" id="subject">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="specific_details_info">Specific Details Info<span
+                            <label for="specific_details_info">Info Detail Spesifik<span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="specific_details_info"
                                 id="specific_details_info">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="statement">Statement<span class="text-danger">*</span></label>
+                            <label for="statement">Pernyataan Tanggung Jawab<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="statement" id="statement">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="responsibility">Responsibility<span class="text-danger">*</span></label>
+                            <label for="responsibility">Responsibilitas<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="responsibility" id="responsibility">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="stock">Stock<span class="text-danger">*</span></label>
+                            <label for="stock">Stok<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="stock" id="stock">
                         </div>
                         <div class="form-group mb-2">
@@ -421,12 +416,136 @@
                             </select>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="image">Image</label>
+                            <label for="image">Gambar</label>
                             <input type="file" class="form-control" name="image" id="image">
                         </div>
                         <div class="form-group mb-2">
                             <div class="d-flex align-items-center">
                                 <img alt="image" class="mr-3" width="100" src="" id="image-preview">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Series Title<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="series_title" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>No. Inventaris<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="call_no" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Deskripsi<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="description" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Penerbit<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="publisher" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Deskripsi Fisik<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="physical_description" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Bahasa<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="language" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>ISBN/ISSN<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="isbn_issn" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Klasifikasi<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="classification" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Tipe Isi<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="contetn_type" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Tipe Media<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="media_type" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Tipe Pembawa<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="carrier_type" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Edisi<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="edition" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Subjek<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="subject" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Info Detail Spesifik<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="specific_details_info" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Pernyataan Tanggung Jawab<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="statement" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Responsibilitas<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="responsibility" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Stok<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="stock" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Status<span class="text-danger">*</span></label>
+                                <select class="form-control" name="status" required>
+                                    <option value="available" selected>Tersedia</option>
+                                    <option value="blank">Tidak tersedia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Gambar</label>
+                                <input type="file" class="form-control" name="image">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group mb-2">
+                                <div class="d-flex align-items-center">
+                                    <img alt="image" class="mr-3" width="100" src="" id="image">
+                                </div>
                             </div>
                         </div>
                         <div class="mt-5 col-12 d-flex justify-content-end">
