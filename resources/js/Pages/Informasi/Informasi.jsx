@@ -15,7 +15,9 @@ export default function Informasi({ data }) {
                     className="my-10 space-y-5 w-full container"
                     id="content"
                 >
-                    <h1 className="text-2xl font-bold">Informasi</h1>
+                    <h1 className="text-3xl tracking-wide font-semibold">
+                        Pustakawan
+                    </h1>
                     <Separator />
                     {data ? (
                         <div className="mx-10 pt-5">
