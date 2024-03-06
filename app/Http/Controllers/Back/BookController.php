@@ -40,6 +40,7 @@ class BookController extends Controller
         // Menggunakan nullish coalescing untuk memberikan nilai default
         $books = $books->get() ?? Books::all();
 
+
         return view("pages.book.index", [
             "books" => $books,
         ]);
@@ -184,5 +185,6 @@ class BookController extends Controller
     {
         $qrCode = QrCode::size(50)->generate("a");
         $pdf = Pdf::loadview('pages.book.format-export', ['data' => Books::all(), "qr" => $qrCode]);
-        return $pdf->download('book.pdf');    }
+        return $pdf->download('book.pdf');
+    }
 }

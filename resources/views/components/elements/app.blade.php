@@ -65,7 +65,7 @@
             <!-- Footer -->
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; {{ date('Y') }} Perpustakaan - SMK N 1 Kasreman
+                    Copyright &copy; {{ date('Y') }} Perpustakaan - SMK N Jatipuro
                 </div>
             </footer>
 

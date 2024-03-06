@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Pinjaman - SMK N 1 Kasreman')
+@section('title', 'Pinjaman - SMK N Jatipuro')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -141,7 +141,7 @@
                             <label for="student">User<span class="text-danger">*</span></label>
                             <select class="form-control" name="student" id="student" required>
                                 <option value="" selected></option>
-                                {{$user}}
+                                {{ $user }}
                                 @foreach ($user as $data)
                                     <option value="{{ $data->id }}">{{ $data->name }}</option>
                                 @endforeach

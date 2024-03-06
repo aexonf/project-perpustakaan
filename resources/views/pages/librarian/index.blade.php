@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Penjaga - SMK N 1 Kasreman')
+@section('title', 'Penjaga - SMK N Jatipuro')
 
 @push('style')
     <!-- CSS Libraries -->

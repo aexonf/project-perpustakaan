@@ -1,6 +1,6 @@
 @extends('components.elements.app')
 
-@section('title', 'Pinjaman - SMK N 1 Kasreman')
+@section('title', 'Pinjaman - SMK N Jatipuro')
 
 @push('style')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
