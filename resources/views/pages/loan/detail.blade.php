@@ -29,31 +29,31 @@
                 <div class="section-body">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Informasi Siswa</h2>
+                            <h2>Informasi Peminjam</h2>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="student-id">Email</label>
-                                        <input type="text" class="form-control" id="student-id" value="{{ $user->email }}"
-                                            readonly>
+                                        <label for="student-id">ID Number</label>
+                                        <input type="text" class="form-control" id="student-id"
+                                            value="{{ $user->id_number }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="student-name">Status</label>
-                                        <input type="text" class="form-control" id="student-name" value="{{ $user->status }}"
-                                            readonly>
+                                        <label for="student-class">Nama</label>
+                                        <input type="text" class="form-control" id="student-class"
+                                            value="{{ $user->name }}" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="student-class">Nama</label>
-                                        <input type="text" class="form-control" id="student-class"
-                                            value="{{ $user->name }}" readonly>
+                                        <label for="student-id">No Telepon</label>
+                                        <input type="text" class="form-control" id="student-id"
+                                            value="{{ $user->phone_number }}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $index + 1 }}</td>
                                                 <td>{{ $value->created_at }}</td>
-                                                <td>{{ $value->book->title }}</td>
+                                                <td>{{ $value->book->series_title }}</td>
                                                 <td
                                                     class="{{ $value->status === 'pending' ? 'text-warning' : 'text-success' }}">
                                                     @if ($value->status === 'pending')
@@ -110,7 +110,7 @@
                                                     $('#modal-detail #form-detail').attr('action', '{{ route('loan.returned', $value->id) }}');
                                                     $('#modal-detail #form-detail #loan_end_date').attr('value', '{{ $value->loan_end_date }}');
                                                     $('#modal-detail #form-detail #loan_date').attr('value', '{{ $value->loan_date }}');
-                                                    $('#modal-detail #form-detail #title').attr('value', '{{ $value->book->title }}');
+                                                    $('#modal-detail #form-detail #title').attr('value', '{{ $value->book->series_title }}');
                                                     $('#modal-detail #form-detail #librarian').attr('value', '{{ $value->librarian_id != null ? $value->librarian->name : 'admin' }}');
                                                     $('#modal-detail #form-detail #return_date').attr('value', '{{ $value->return_date != null ? $value->return_date : 'Masih di pinjam' }}');
                                                     $('#modal-detail #form-detail #status').attr('value', '{{ $value->status == 'pending' ? 'Meminjam' : 'Di Kembalikan' }}');
@@ -209,21 +209,19 @@
                                     required>
                                     @foreach ($book as $value)
                                         <option value="{{ $value->id }}">
-                                            {{ $value->title }}
+                                            {{ $value->series_title }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mb-2">
-                                <label class="form-label">Tanggal Awal</label>
+                                <label class="form-label">Tanggal Awal<span class="text-danger">*</span></label>
                                 <div class="custom-file">
                                     <input type="date" name="loan_date" class="form-control">
-                                    <small class="form-text text-danger">Optional</small>
                                 </div>
                             </div>
-
-                            <div class="form-group mb-4 mt-5">
-                                <label class="form-label">Tanggal Akhir</label>
+                            <div class="form-group mb-2">
+                                <label class="form-label">Tanggal Akhir<span class="text-danger">*</span></label>
                                 <div class="custom-file">
                                     <input type="date" name="loan_end_date" class="form-control">
                                 </div>

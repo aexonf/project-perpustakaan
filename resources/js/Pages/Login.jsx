@@ -54,7 +54,7 @@ export default function Login({ message }) {
                             {message && (
                                 <Badge
                                     variant={"destructive"}
-                                    className="text-2xl text-center flex items-center justify-center"
+                                    className="text-sm py-2 px-4 text-center flex items-center justify-center"
                                 >
                                     {message}
                                 </Badge>

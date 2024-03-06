@@ -16,7 +16,7 @@ export default function Pustakawan({ data }) {
                     id="content"
                 >
                     <h1 className="text-3xl tracking-wide font-semibold">
-                        Profil Pustakawan
+                        Pustakawan
                     </h1>
                     <Separator />
                     <div className="mx-10 pt-5 grid grid-cols-1 gap-5 sm:grid-cols-1 md:grid-cols-2">

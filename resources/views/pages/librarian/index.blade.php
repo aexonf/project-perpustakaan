@@ -92,8 +92,13 @@
                                             <td class="text-center">{{ $index + 1 }}</td>
                                             <td>
                                                 <div class="media">
-                                                    <img alt="image" class="mr-3 rounded-circle" width="48"
-                                                        src="{{ asset('storage/upload/user/' . $librarian->image) }}">
+                                                    @if ($librarian->image)
+                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                            src="{{ asset('storage/upload/user/' . $librarian->image) }}">
+                                                    @else
+                                                        <img alt="image" class="mr-3 rounded-circle" width="48"
+                                                            src="{{ asset('img/avatar/avatar-1.png') }}">
+                                                    @endif
                                                     <div class="media-body">
                                                         <div class="media-title">
                                                             {{ $librarian->name }}
@@ -151,8 +156,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('librarian.create') }}"
-                        enctype="multipart/form-data">
+                    <form class="needs-validation" novalidate="" method="POST"
+                        action="{{ route('librarian.create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
                             <label for="name">Username<span class="text-danger">*</span></label>
@@ -242,8 +247,8 @@
                             <input type="text" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="password">Password<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="password" id="password" required>
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" name="password" id="password">
                         </div>
                         <div class="form-group mb-2">
                             <label for="status">Status<span class="text-danger">*</span></label>

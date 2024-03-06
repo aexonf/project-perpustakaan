@@ -72,7 +72,7 @@ export default function DetailBookPage({ book }) {
                                 <tbody>
                                     <tr>
                                         <td className="pr-20">
-                                            <strong>No. Panggil</strong>
+                                            <strong>No. Inventaris</strong>
                                         </td>
                                         <td>{book.call_no || "-"}</td>
                                     </tr>

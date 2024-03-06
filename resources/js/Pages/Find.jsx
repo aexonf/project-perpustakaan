@@ -77,7 +77,7 @@ export default function DetailBookPage({ data, category }) {
                                                 <tr>
                                                     <td className="pr-20">
                                                         <strong>
-                                                            No. Panggil
+                                                            No. Inventaris
                                                         </strong>
                                                     </td>
                                                     <td>

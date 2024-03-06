@@ -35,7 +35,7 @@ class HomeController extends Controller
             ]);
         }
 
-        $popularBook = Books::orderBy('loan_count', 'desc')->get();
+        $popularBook = Books::orderBy('loan_count', 'desc')->take(10)->get();
         return Inertia::render("Home", [
             "data" => $book,
             "bookLatest" => $bookLatest,
