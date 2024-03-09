@@ -64,25 +64,25 @@ export default function Login({ message }) {
                             <div
                                 className={cn(
                                     "space-y-2 mb-4",
-                                    errors.name && "text-destructive"
+                                    errors.username && "text-destructive"
                                 )}
                             >
                                 <Label
                                     className="text-xl font-semibold"
-                                    htmlFor="name"
+                                    htmlFor="username"
                                 >
                                     Username
                                 </Label>
                                 <Input
                                     type="text"
-                                    value={data.name}
+                                    value={data.username}
                                     onChange={(e) => {
-                                        setData("name", e.target.value);
-                                        setError("name", null);
+                                        setData("username", e.target.value);
+                                        setError("username", null);
                                     }}
-                                    id="name"
+                                    id="username"
                                     placeholder="Masukkan name anda"
-                                    name="name"
+                                    name="username"
                                     className="p-7 text-xl placeholder:text-[#A0A0A0] rounded-[8px]"
                                 />
                             </div>
@@ -111,7 +111,9 @@ export default function Login({ message }) {
                                 className="w-full p-6 mt-[32px] text-xl bg-[#0B96F7] "
                                 onClick={submit}
                                 disabled={
-                                    processing || !data.name || !data.password
+                                    processing ||
+                                    !data.username ||
+                                    !data.password
                                 }
                             >
                                 Login

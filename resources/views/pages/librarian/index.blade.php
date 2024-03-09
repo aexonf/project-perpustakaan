@@ -122,7 +122,7 @@
                                                     $('#modal-edit #form-edit');
                                                     $('#modal-edit #form-edit #name').attr('value', '{{ $librarian->name }}');
                                                     $('#modal-edit #form-edit #status').attr('value', '{{ $librarian->status }}');
-                                                    $('#modal-edit #form-edit #email').attr('value', '{{ $librarian->email }}');
+                                                    $('#modal-edit #form-edit #username').attr('value', '{{ $librarian->username }}');
                                                     $('#modal-edit #image').attr('src', '{{ asset('storage/upload/user/' . $librarian->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('librarian.edit', $librarian->id) }}');
                                                         "><i
@@ -160,12 +160,12 @@
                         action="{{ route('librarian.create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <label for="name">Nama<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Gmail<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <label for="username">Username<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="username" id="username" required>
                         </div>
                         <div class="form-group mb-2">
                             <label for="password">Password<span class="text-danger">*</span></label>
@@ -239,12 +239,12 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-2">
-                            <label for="name">Username<span class="text-danger">*</span></label>
+                            <label for="name">Nama<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="email">Gmail<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" id="email" required>
+                            <label for="username">Username<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="username" id="username" required>
                         </div>
                         <div class="form-group mb-2">
                             <label for="password">Password</label>

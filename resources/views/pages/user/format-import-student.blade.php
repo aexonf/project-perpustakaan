@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nama</th>
-            <th>Email</th>
+            <th>Username</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -10,7 +10,7 @@
         @foreach ($items as $value)
             <tr>
                 <td>{{ $value->name }}</td>
-                <td>{{ $value->email }}</td>
+                <td>{{ $value->username }}</td>
                 <td>{{ $value->status }}</td>
             </tr>
         @endforeach

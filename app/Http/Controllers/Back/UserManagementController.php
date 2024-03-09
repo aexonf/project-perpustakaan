@@ -192,12 +192,12 @@ class UserManagementController extends Controller
 
         $validasi = $request->validate([
             "name" => "required",
-            "email" => "required",
+            "username" => "required",
         ]);
 
         $librarian = User::create([
             "name" => $validasi["name"],
-            "email" => $validasi["email"],
+            "username" => $validasi["username"],
             "role" => "librarian",
             "image" => $imageName,
             "status" => $request->status,
@@ -235,7 +235,7 @@ class UserManagementController extends Controller
         if ($request->password) {
             $librarian = $user->update([
                 "name" => $request->name,
-                "email" => $request->email,
+                "username" => $request->username,
                 "role" => "librarian",
                 'password' => Hash::make($request->password),
                 "image" => $imageName,
@@ -244,7 +244,7 @@ class UserManagementController extends Controller
         } else {
             $librarian = $user->update([
                 "name" => $request->name,
-                "email" => $request->email,
+                "username" => $request->username,
                 "role" => "librarian",
                 "image" => $imageName,
                 "status" => $request->status,

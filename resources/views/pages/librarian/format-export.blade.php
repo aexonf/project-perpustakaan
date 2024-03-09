@@ -30,10 +30,10 @@
                                             <p style='margin: 0;'>ID: <b>{{ $item->id }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Username: <b>{{ $item->name }}</b></p>
+                                            <p style='margin: 0;'>Nama: <b>{{ $item->name }}</b></p>
                                         </div>
                                         <div>
-                                            <p style='margin: 0;'>Email: <b>{{ $item->email }}</b></p>
+                                            <p style='margin: 0;'>Username: <b>{{ $item->username }}</b></p>
                                         </div>
                                     </div>
                                 </td>
