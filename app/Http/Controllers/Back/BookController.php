@@ -185,6 +185,6 @@ class BookController extends Controller
     {
         $qrCode = QrCode::size(50)->generate("a");
         $pdf = Pdf::loadview('pages.book.format-export', ['data' => Books::all(), "qr" => $qrCode]);
-        return $pdf->download('book.pdf');
+        return $pdf->download('Data Buku - Perpus SMK N Jatipuro.pdf');
     }
 }

@@ -141,7 +141,7 @@
                                                         onclick="
                                                     $('#modal-edit #series_title').val('{{ $book->series_title }}');
                                                     $('#modal-edit #call_no').val('{{ $book->call_no }}');
-                                                    $('#modal-edit #description').val('{{ $book->Deskripsi }}');
+                                                    $('#modal-edit #description').val('{{ $book->description }}');
                                                     $('#modal-edit #publisher').val('{{ $book->publisher }}');
                                                     $('#modal-edit #physical_description').val('{{ $book->physical_description }}');
                                                     $('#modal-edit #language').val('{{ $book->language }}');
@@ -159,7 +159,7 @@
                                                     $('#modal-edit #stock').val('{{ $book->stock }}');
 
 
-                                                    $('#modal-edit #image').attr('src', '{{ asset('storage/upload/book/' . $book->image) }}');
+                                                    $('#modal-edit #image-preview').attr('src', '{{ asset('storage/upload/book/' . $book->image) }}');
                                                     $('#modal-edit #form-edit').attr('action', '{{ route('book.update', $book->id) }}');
                                                         "><i
                                                             class="fas fa-edit"></i></button>
@@ -192,8 +192,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="needs-validation" novalidate="" method="POST" action="{{ route('book.create') }}"
-                        enctype="multipart/form-data">
+                    <form class="needs-validation row" novalidate="" method="POST"
+                        action="{{ route('book.create') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="col-12 col-md-6">

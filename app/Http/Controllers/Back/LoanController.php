@@ -38,7 +38,7 @@ class LoanController extends Controller
             $peminjam->where("status", $request->query("status"));
         }
 
-        $peminjamResults = $peminjam->get()->unique('user_id');
+        $peminjamResults = $peminjam->orderBy('created_at', 'DESC')->get()->unique('user_id');
 
         return view("pages.loan.index", [
             "loan" => $peminjamResults,
@@ -96,7 +96,7 @@ class LoanController extends Controller
             $bookId = $value;
             $bookFind = Books::find($bookId);
 
-            if($bookFind->stock == 0) {
+            if ($bookFind->stock == 0) {
                 Session::flash("error", "Gagal meminjam buku");
                 return redirect()->back();
             }
@@ -149,7 +149,7 @@ class LoanController extends Controller
         $data = LogBookLoan::find($id);
         return view("pages.loan.detail", [
             "user" => User::find($data->user_id),
-            "loan" => LogBookLoan::where("user_id", $data->user_id)->get(),
+            "loan" => LogBookLoan::where("user_id", $data->user_id)->orderBy('created_at', 'DESC')->get(),
             "book" => Books::where("status", "available")->get(),
         ]);
     }
@@ -175,7 +175,7 @@ class LoanController extends Controller
                 "return_date" => Carbon::now("Asia/Jakarta"),
             ]);
 
-            $book = Books::find($returned->book_id);
+            $book = Books::find($value->book_id);
             $book->stock += 1;
             $book->save();
         }
@@ -253,7 +253,7 @@ class LoanController extends Controller
 
             $bookFind = Books::find($bookId);
 
-            if($bookFind->stock == 0) {
+            if ($bookFind->stock == 0) {
                 Session::flash("error", "Gagal meminjam buku");
                 return redirect()->back();
             }
