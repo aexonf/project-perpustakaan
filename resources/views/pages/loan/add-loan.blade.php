@@ -45,7 +45,7 @@
                                             <option value=""></option>
                                             @foreach ($user as $data)
                                                 <option value="{{ $data->id }}">(
-                                                    {{ ($data->role === 'student' ? 'Siswa' : $data->role === 'teacher') ? 'Guru' : 'Librarian' }}
+                                                    {{ $data->role === 'student' ? 'Siswa' : ($data->role === 'teacher' ? 'Guru' : 'Pustakawan') }}
                                                     ) {{ $data->id_number }} -
                                                     {{ $data->name }}
                                                 </option>
