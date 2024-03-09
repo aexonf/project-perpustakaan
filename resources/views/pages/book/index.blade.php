@@ -405,8 +405,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group mb-2">
-                                <label for="physical_description">Deskripsi Fisik<span
-                                        class="text-danger">*</span></label>
+                                <label for="physical_description">Deskripsi Fisik</label>
                                 <input type="text" class="form-control" name="physical_description"
                                     id="physical_description">
                             </div>
